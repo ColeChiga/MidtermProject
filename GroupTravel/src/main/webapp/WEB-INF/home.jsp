@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Travel App</title>
 </head>
 <body>
 
+<h1>Travel App</h1>
+
+${SMOKETEST}
 </body>
 </html> 
