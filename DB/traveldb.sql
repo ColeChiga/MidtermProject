@@ -16,16 +16,17 @@ CREATE SCHEMA IF NOT EXISTS `traveldb` DEFAULT CHARACTER SET utf8 ;
 USE `traveldb` ;
 
 -- -----------------------------------------------------
--- Table `hotel`
+-- Table `address`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hotel` ;
+DROP TABLE IF EXISTS `address` ;
 
-CREATE TABLE IF NOT EXISTS `hotel` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `star_rating` VARCHAR(45) NULL,
-  `pool` TINYINT NULL,
-  `fittness` TINYINT NULL,
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(200) NULL,
+  `street2` VARCHAR(200) NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
+  `postal_code` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -41,54 +42,44 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_name` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `groups` VARCHAR(45) NULL,
-  `flight` VARCHAR(45) NULL,
-  `hotel` VARCHAR(45) NULL,
   `enabled` TINYINT NOT NULL,
   `role` VARCHAR(45) NULL,
+  `address_id` INT NOT NULL,
+  `create_date` DATETIME NULL,
+  `last_update` DATETIME NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `about_me` TEXT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `group`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `group` ;
-
-CREATE TABLE IF NOT EXISTS `group` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `destination` VARCHAR(45) NULL,
-  `members` VARCHAR(45) NULL,
-  `schedule` VARCHAR(45) NULL COMMENT 'Start date \nEnd date',
-  `events` VARCHAR(45) NULL,
-  `hotel_info` VARCHAR(45) NULL COMMENT '(MtM/OtM with hotel) ←|Might be able to use indirect path to get info',
-  `flights` VARCHAR(45) NULL COMMENT 'MTM with hotel',
-  `user_id` VARCHAR(45) NULL COMMENT 'FK',
-  `comment` VARCHAR(45) NULL,
-  `likes` INT NULL,
-  `hotel_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `hotel_id`),
-  INDEX `fk_group_hotel1_idx` (`hotel_id` ASC),
-  CONSTRAINT `fk_group_hotel1`
-    FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  INDEX `fk_user_address1_idx` (`address_id` ASC),
+  CONSTRAINT `fk_user_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `restaurant`
+-- Table `family`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `restaurant` ;
+DROP TABLE IF EXISTS `family` ;
 
-CREATE TABLE IF NOT EXISTS `restaurant` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(2000) NULL,
-  PRIMARY KEY (`id`))
+CREATE TABLE IF NOT EXISTS `family` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `description` TEXT NULL,
+  `user_id` INT NOT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `create_date` DATETIME NULL,
+  `last_update` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_family_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_family_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -98,32 +89,140 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `destination` ;
 
 CREATE TABLE IF NOT EXISTS `destination` (
-  `name` INT NOT NULL,
-  `location` VARCHAR(45) NULL COMMENT 'Lat/long',
-  `activities` VARCHAR(45) NULL COMMENT 'MTM to activity',
-  `sub_destination` VARCHAR(45) NULL COMMENT 'Link to self?',
-  `restaurants` VARCHAR(45) NULL COMMENT 'OTM to restaurants',
-  `hotels` VARCHAR(45) NULL COMMENT 'OTM to hotel',
-  `hotel_id` INT NOT NULL,
-  `restaurant_id` INT NOT NULL,
-  `destination_name` INT NOT NULL,
-  PRIMARY KEY (`name`),
-  INDEX `fk_destination_hotel1_idx` (`hotel_id` ASC),
-  INDEX `fk_destination_restaurant1_idx` (`restaurant_id` ASC),
-  INDEX `fk_destination_destination1_idx` (`destination_name` ASC),
-  CONSTRAINT `fk_destination_hotel1`
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `country` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `activity`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `activity` ;
+
+CREATE TABLE IF NOT EXISTS `activity` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `description` TEXT NULL,
+  `estimated_time_hours` DOUBLE NULL,
+  `estimated_cost` DECIMAL(7,2) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vacation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vacation` ;
+
+CREATE TABLE IF NOT EXISTS `vacation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `start_date` DATE NULL,
+  `end_date` DATE NULL,
+  `family_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `title` VARCHAR(200) NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(2000) NULL,
+  `create_date` DATETIME NULL,
+  `last_update` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_vacation_group1_idx` (`family_id` ASC),
+  INDEX `fk_vacation_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_vacation_group1`
+    FOREIGN KEY (`family_id`)
+    REFERENCES `family` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `location_category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `location_category` ;
+
+CREATE TABLE IF NOT EXISTS `location_category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NULL,
+  `description` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `location`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `location` ;
+
+CREATE TABLE IF NOT EXISTS `location` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` TEXT NULL,
+  `image_url` VARCHAR(200) NULL,
+  `destination_id` INT NOT NULL,
+  `address_id` INT NOT NULL,
+  `location_category_id` INT NOT NULL,
+  `estimated_cost` DECIMAL(7,2) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_location_destination1_idx` (`destination_id` ASC),
+  INDEX `fk_location_address1_idx` (`address_id` ASC),
+  INDEX `fk_location_location_category1_idx` (`location_category_id` ASC),
+  CONSTRAINT `fk_location_destination1`
+    FOREIGN KEY (`destination_id`)
+    REFERENCES `destination` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_location_address1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_location_location_category1`
+    FOREIGN KEY (`location_category_id`)
+    REFERENCES `location_category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `attendee`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `attendee` ;
+
+CREATE TABLE IF NOT EXISTS `attendee` (
+  `vacation_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `join_date` DATETIME NULL,
+  `confirmed` TINYINT NULL,
+  `remarks` TEXT NULL,
+  `hotel_id` INT NULL,
+  PRIMARY KEY (`vacation_id`, `user_id`),
+  INDEX `fk_vacation_has_user_user1_idx` (`user_id` ASC),
+  INDEX `fk_vacation_has_user_vacation1_idx` (`vacation_id` ASC),
+  INDEX `fk_attendee_location1_idx` (`hotel_id` ASC),
+  CONSTRAINT `fk_vacation_has_user_vacation1`
+    FOREIGN KEY (`vacation_id`)
+    REFERENCES `vacation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_has_user_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_attendee_location1`
     FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_destination_restaurant1`
-    FOREIGN KEY (`restaurant_id`)
-    REFERENCES `restaurant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_destination_destination1`
-    FOREIGN KEY (`destination_name`)
-    REFERENCES `destination` (`name`)
+    REFERENCES `location` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -135,125 +234,41 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `filght` ;
 
 CREATE TABLE IF NOT EXISTS `filght` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `airline` VARCHAR(45) NULL,
   `departure` DATETIME NULL,
   `arrival` DATETIME NULL,
   `flight_number` VARCHAR(45) NULL,
-  `layover` TINYINT(1) NULL,
+  `layover` TINYINT NULL,
   `layover_airline` VARCHAR(45) NULL COMMENT 'Maybe assign layover id pointing to another flight?',
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `rental`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `rental` ;
-
-CREATE TABLE IF NOT EXISTS `rental` (
-  `id` INT NOT NULL,
-  `company` VARCHAR(45) NULL,
-  `make` VARCHAR(45) NULL,
-  `model` VARCHAR(45) NULL,
-  `number_of_passengers` INT NULL,
-  `4wd` TINYINT(1) NULL,
-  `pickup_time` DATETIME NULL,
-  `dropoff_time` DATETIME NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cost`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `cost` ;
-
-CREATE TABLE IF NOT EXISTS `cost` (
-  `flight_cost` DECIMAL(5,2) NULL,
-  `hotel_cost` DECIMAL(5,2) NULL,
-  `rental_cost` DECIMAL(5,2) NULL,
-  `estimated_food_cost` DECIMAL(5,2) NULL,
-  `estimated_activity_cost` DECIMAL(5,2) NULL,
-  `filght_id` INT NOT NULL,
-  `hotel_id` INT NOT NULL,
-  `rental_id` INT NOT NULL,
-  INDEX `fk_cost_filght1_idx` (`filght_id` ASC),
-  INDEX `fk_cost_hotel1_idx` (`hotel_id` ASC),
-  INDEX `fk_cost_rental1_idx` (`rental_id` ASC),
-  CONSTRAINT `fk_cost_filght1`
-    FOREIGN KEY (`filght_id`)
-    REFERENCES `filght` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cost_hotel1`
-    FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cost_rental1`
-    FOREIGN KEY (`rental_id`)
-    REFERENCES `rental` (`id`)
+  `attendee_vacation_id` INT NOT NULL,
+  `attendee_user_id` INT NOT NULL,
+  `estimated_cost` DECIMAL(7,2) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `flight_number_UNIQUE` (`flight_number` ASC),
+  INDEX `fk_filght_vacation_has_user1_idx` (`attendee_vacation_id` ASC, `attendee_user_id` ASC),
+  CONSTRAINT `fk_filght_vacation_has_user1`
+    FOREIGN KEY (`attendee_vacation_id` , `attendee_user_id`)
+    REFERENCES `attendee` (`vacation_id` , `user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `activity`
+-- Table `destination_activity`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `activity` ;
+DROP TABLE IF EXISTS `destination_activity` ;
 
-CREATE TABLE IF NOT EXISTS `activity` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `location` VARCHAR(45) NULL,
-  `description` VARCHAR(2000) NULL,
-  `participants` VARCHAR(45) NULL COMMENT 'users',
-  `estimated_time` DATETIME NULL,
-  `date` DATE NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user_has_activity`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_activity` ;
-
-CREATE TABLE IF NOT EXISTS `user_has_activity` (
-  `user_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `destination_activity` (
+  `destination_id` INT NOT NULL,
   `activity_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `activity_id`),
-  INDEX `fk_user_has_activity_activity1_idx` (`activity_id` ASC),
-  INDEX `fk_user_has_activity_user_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_has_activity_user`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_activity_activity1`
-    FOREIGN KEY (`activity_id`)
-    REFERENCES `activity` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `destination_has_activity`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `destination_has_activity` ;
-
-CREATE TABLE IF NOT EXISTS `destination_has_activity` (
-  `destination_name` INT NOT NULL,
-  `activity_id` INT NOT NULL,
-  PRIMARY KEY (`destination_name`, `activity_id`),
+  PRIMARY KEY (`destination_id`, `activity_id`),
   INDEX `fk_destination_has_activity_activity1_idx` (`activity_id` ASC),
-  INDEX `fk_destination_has_activity_destination1_idx` (`destination_name` ASC),
+  INDEX `fk_destination_has_activity_destination1_idx` (`destination_id` ASC),
   CONSTRAINT `fk_destination_has_activity_destination1`
-    FOREIGN KEY (`destination_name`)
-    REFERENCES `destination` (`name`)
+    FOREIGN KEY (`destination_id`)
+    REFERENCES `destination` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_destination_has_activity_activity1`
@@ -265,64 +280,15 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `group_has_hotel`
+-- Table `user_family`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `group_has_hotel` ;
+DROP TABLE IF EXISTS `user_family` ;
 
-CREATE TABLE IF NOT EXISTS `group_has_hotel` (
-  `group_id` INT NOT NULL,
-  `hotel_id` INT NOT NULL,
-  PRIMARY KEY (`group_id`, `hotel_id`),
-  INDEX `fk_group_has_hotel_hotel1_idx` (`hotel_id` ASC),
-  INDEX `fk_group_has_hotel_group1_idx` (`group_id` ASC),
-  CONSTRAINT `fk_group_has_hotel_group1`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_group_has_hotel_hotel1`
-    FOREIGN KEY (`hotel_id`)
-    REFERENCES `hotel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `group_has_filght`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `group_has_filght` ;
-
-CREATE TABLE IF NOT EXISTS `group_has_filght` (
-  `group_id` INT NOT NULL,
-  `filght_id` INT NOT NULL,
-  PRIMARY KEY (`group_id`, `filght_id`),
-  INDEX `fk_group_has_filght_filght1_idx` (`filght_id` ASC),
-  INDEX `fk_group_has_filght_group1_idx` (`group_id` ASC),
-  CONSTRAINT `fk_group_has_filght_group1`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_group_has_filght_filght1`
-    FOREIGN KEY (`filght_id`)
-    REFERENCES `filght` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user_has_group`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_has_group` ;
-
-CREATE TABLE IF NOT EXISTS `user_has_group` (
+CREATE TABLE IF NOT EXISTS `user_family` (
   `user_id` INT NOT NULL,
-  `group_id` INT NOT NULL,
-  `group_hotel_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `group_id`, `group_hotel_id`),
-  INDEX `fk_user_has_group_group1_idx` (`group_id` ASC, `group_hotel_id` ASC),
+  `family_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `family_id`),
+  INDEX `fk_user_has_group_group1_idx` (`family_id` ASC),
   INDEX `fk_user_has_group_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_has_group_user1`
     FOREIGN KEY (`user_id`)
@@ -330,8 +296,128 @@ CREATE TABLE IF NOT EXISTS `user_has_group` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_has_group_group1`
-    FOREIGN KEY (`group_id` , `group_hotel_id`)
-    REFERENCES `group` (`id` , `hotel_id`)
+    FOREIGN KEY (`family_id`)
+    REFERENCES `family` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vacation_comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vacation_comment` ;
+
+CREATE TABLE IF NOT EXISTS `vacation_comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` TEXT NULL,
+  `comment_date` DATETIME NULL,
+  `user_id` INT NOT NULL,
+  `vacation_id` INT NOT NULL,
+  `reply_to_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_user1_idx` (`user_id` ASC),
+  INDEX `fk_vacation_comment_vacation1_idx` (`vacation_id` ASC),
+  INDEX `fk_vacation_comment_vacation_comment1_idx` (`reply_to_id` ASC),
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_comment_vacation1`
+    FOREIGN KEY (`vacation_id`)
+    REFERENCES `vacation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_comment_vacation_comment1`
+    FOREIGN KEY (`reply_to_id`)
+    REFERENCES `vacation_comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vacation_destination`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vacation_destination` ;
+
+CREATE TABLE IF NOT EXISTS `vacation_destination` (
+  `vacation_id` INT NOT NULL,
+  `destination_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `remarks` TEXT NULL,
+  `create_date` DATETIME NULL,
+  `last_update` DATETIME NULL,
+  PRIMARY KEY (`vacation_id`, `destination_id`),
+  INDEX `fk_vacation_has_destination_destination1_idx` (`destination_id` ASC),
+  INDEX `fk_vacation_has_destination_vacation1_idx` (`vacation_id` ASC),
+  INDEX `fk_vacation_has_destination_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_vacation_has_destination_vacation1`
+    FOREIGN KEY (`vacation_id`)
+    REFERENCES `vacation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_has_destination_destination1`
+    FOREIGN KEY (`destination_id`)
+    REFERENCES `destination` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_has_destination_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `destination_vote`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `destination_vote` ;
+
+CREATE TABLE IF NOT EXISTS `destination_vote` (
+  `attendee_vacation_id` INT NOT NULL,
+  `attendee_user_id` INT NOT NULL,
+  `destination_vacation_id` INT NOT NULL,
+  `destination_destination_id` INT NOT NULL,
+  `vote` TINYINT NULL,
+  `vote_remarks` TEXT NULL,
+  PRIMARY KEY (`attendee_vacation_id`, `attendee_user_id`, `destination_vacation_id`, `destination_destination_id`),
+  INDEX `fk_vacation_attendee_has_vacation_destination_vacation_dest_idx` (`destination_vacation_id` ASC, `destination_destination_id` ASC),
+  INDEX `fk_vacation_attendee_has_vacation_destination_vacation_atte_idx` (`attendee_vacation_id` ASC, `attendee_user_id` ASC),
+  CONSTRAINT `fk_vacation_attendee_has_vacation_destination_vacation_attend1`
+    FOREIGN KEY (`attendee_vacation_id` , `attendee_user_id`)
+    REFERENCES `attendee` (`vacation_id` , `user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_vacation_attendee_has_vacation_destination_vacation_destin1`
+    FOREIGN KEY (`destination_vacation_id` , `destination_destination_id`)
+    REFERENCES `vacation_destination` (`vacation_id` , `destination_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `nearby_destination`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `nearby_destination` ;
+
+CREATE TABLE IF NOT EXISTS `nearby_destination` (
+  `destination_id` INT NOT NULL,
+  `nearby_id` INT NOT NULL,
+  PRIMARY KEY (`destination_id`, `nearby_id`),
+  INDEX `fk_destination_has_destination_destination2_idx` (`nearby_id` ASC),
+  INDEX `fk_destination_has_destination_destination1_idx` (`destination_id` ASC),
+  CONSTRAINT `fk_destination_has_destination_destination1`
+    FOREIGN KEY (`destination_id`)
+    REFERENCES `destination` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_destination_has_destination_destination2`
+    FOREIGN KEY (`nearby_id`)
+    REFERENCES `destination` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -348,11 +434,32 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '123 fake st', NULL, 'colorado springs', 'co', '80910');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `groups`, `flight`, `hotel`, `enabled`, `role`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', NULL, NULL, NULL, 1, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `location_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (1, 'Hotel', NULL);
+INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (2, 'Restaurant', NULL);
 
 COMMIT;
 
