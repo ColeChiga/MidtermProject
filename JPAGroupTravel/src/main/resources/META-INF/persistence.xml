@@ -11,6 +11,7 @@
 		<class>com.skilldistillery.grouptravel.entities.Family</class>
 		<class>com.skilldistillery.grouptravel.entities.Flight</class>
 		<class>com.skilldistillery.grouptravel.entities.Vacation</class>
+		<class>com.skilldistillery.grouptravel.entities.Location</class>
 		
 		
 

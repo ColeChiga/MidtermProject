@@ -1,5 +1,6 @@
 package com.skilldistillery.grouptravel.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,16 @@ public class User {
 	private String username;
 	private String password;
 	private boolean enabled;
+	private String role;
+	@Column(name = "image_url")
+	private String imageUrl;
+	@Column(name = "create_date")
+	private LocalDateTime createDate;
+	@Column(name = "last_update")
+	private LocalDateTime lastUpdate;
+	@Column(name = "about_me")
+	private String aboutMe;
+	
 
 	public User() {
 	}
@@ -68,12 +79,52 @@ public class User {
 		this.password = password;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(LocalDateTime lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
 	}
 
 	@Override
@@ -96,7 +147,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", enabled=" + enabled + "]";
+				+ ", password=" + password + ", enabled=" + enabled + ", role=" + role + ", imageUrl=" + imageUrl
+				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", aboutMe=" + aboutMe + "]";
 	}
 
 }
