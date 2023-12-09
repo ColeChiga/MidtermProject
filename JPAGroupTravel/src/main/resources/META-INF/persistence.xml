@@ -7,6 +7,7 @@
 		<class>com.skilldistillery.grouptravel.entities.User</class>
 		<class>com.skilldistillery.grouptravel.entities.Address</class>
 		<class>com.skilldistillery.grouptravel.entities.Activity</class>
+		<class>com.skilldistillery.grouptravel.entities.Destination</class>
 		
 		
 
