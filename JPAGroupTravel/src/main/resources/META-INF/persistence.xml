@@ -8,6 +8,7 @@
 		<class>com.skilldistillery.grouptravel.entities.Address</class>
 		<class>com.skilldistillery.grouptravel.entities.Activity</class>
 		<class>com.skilldistillery.grouptravel.entities.Destination</class>
+		<class>com.skilldistillery.grouptravel.entities.Family</class>
 		
 		
 
