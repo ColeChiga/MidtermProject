@@ -21,11 +21,11 @@ public class Flight {
 	private LocalDateTime arrival;
 	@Column(name="flight_number")
 	private String flightNumber;
-	private boolean layover;
+	private Boolean layover;
 	@Column(name="layover_airline")
 	private String layoverAirline;
 	@Column(name="estimated_cost")
-	private double estimatedCost;
+	private Double estimatedCost;
 	
 
 	public Flight() {
@@ -84,12 +84,12 @@ public class Flight {
 	}
 
 
-	public boolean isLayover() {
+	public Boolean isLayover() {
 		return layover;
 	}
 
 
-	public void setLayover(boolean layover) {
+	public void setLayover(Boolean layover) {
 		this.layover = layover;
 	}
 
@@ -104,12 +104,12 @@ public class Flight {
 	}
 
 
-	public double getEstimatedCost() {
+	public Double getEstimatedCost() {
 		return estimatedCost;
 	}
 
 
-	public void setEstimatedCost(double estimatedCost) {
+	public void setEstimatedCost(Double estimatedCost) {
 		this.estimatedCost = estimatedCost;
 	}
 

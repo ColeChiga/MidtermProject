@@ -229,11 +229,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `filght`
+-- Table `flight`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `filght` ;
+DROP TABLE IF EXISTS `flight` ;
 
-CREATE TABLE IF NOT EXISTS `filght` (
+CREATE TABLE IF NOT EXISTS `flight` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `airline` VARCHAR(45) NULL,
   `departure` DATETIME NULL,
@@ -438,7 +438,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '123 fake st', NULL, 'colorado springs', 'co', '80910');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '123 fake st', NULL, 'Colorado Springs', 'CO', '80910');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (2, '123 magic st', NULL, 'Bay Lake', 'FL', '34747');
 
 COMMIT;
 
@@ -454,12 +455,93 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `family`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `destination`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (1, 'Florida', NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `activity`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (1, 'family trip', NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vacation`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `location_category`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (1, 'Hotel', NULL);
 INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (2, 'Restaurant', NULL);
+INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (3, 'Theme Park', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (1, 'Disney World', NULL, NULL, 1, 2, 3, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `attendee`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `attendee` (`vacation_id`, `user_id`, `join_date`, `confirmed`, `remarks`, `hotel_id`) VALUES (1, 1, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `flight`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `flight` (`id`, `airline`, `departure`, `arrival`, `flight_number`, `layover`, `layover_airline`, `attendee_vacation_id`, `attendee_user_id`, `estimated_cost`) VALUES (1, 'United', NULL, NULL, NULL, NULL, NULL, 1, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vacation_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `vacation_comment` (`id`, `comment`, `comment_date`, `user_id`, `vacation_id`, `reply_to_id`) VALUES (1, 'meh', NULL, 1, 1, NULL);
 
 COMMIT;
 

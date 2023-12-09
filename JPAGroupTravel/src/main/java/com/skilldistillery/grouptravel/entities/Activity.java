@@ -17,9 +17,9 @@ public class Activity {
 	private String name;
 	private String description;
 	@Column(name = "estimated_time_hours")
-	private double estimatedTimeInHours;
+	private Double estimatedTimeInHours;
 	@Column(name = "estimated_cost")
-	private double estimatedCost;
+	private Double estimatedCost;
 
 	public Activity() {
 	}
@@ -48,19 +48,19 @@ public class Activity {
 		this.description = description;
 	}
 
-	public double getEstimatedTimeInHours() {
+	public Double getEstimatedTimeInHours() {
 		return estimatedTimeInHours;
 	}
 
-	public void setEstimatedTimeInHours(double estimatedTimeInHours) {
+	public void setEstimatedTimeInHours(Double estimatedTimeInHours) {
 		this.estimatedTimeInHours = estimatedTimeInHours;
 	}
 
-	public double getEstimatedCost() {
+	public Double getEstimatedCost() {
 		return estimatedCost;
 	}
 
-	public void setEstimatedCost(double estimatedCost) {
+	public void setEstimatedCost(Double estimatedCost) {
 		this.estimatedCost = estimatedCost;
 	}
 
