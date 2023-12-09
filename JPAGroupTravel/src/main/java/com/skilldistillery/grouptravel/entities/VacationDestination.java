@@ -20,7 +20,6 @@ public class VacationDestination {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "remarks")
     private String remarks;
 
     @Column(name = "create_date")

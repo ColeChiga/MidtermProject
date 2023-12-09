@@ -13,7 +13,7 @@ public class DestinationVote {
     @EmbeddedId
     private DestinationVoteId id;
 
-    @Column(name = "vote")
+   
     private int vote;
 
     @Column(name = "vote_remarks")
