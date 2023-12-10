@@ -30,6 +30,14 @@ public class Address {
 	private List<User> user;
 	
 
+	public List<User> getUser() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+
 	public Address() {
 	}
 
