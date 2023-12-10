@@ -29,8 +29,8 @@ public class Destination {
 	private List<Location> location;
 	@OneToMany(mappedBy = "destination")
 	private List<VacationDestination> vacationDestination;
-	@OneToMany(mappedBy = "nearby_id")
-	private List<NearbyDestinationId> nearbyDestination;
+	@OneToMany(mappedBy = "nearbyId")
+	private List<NearbyDestination> nearbyDestination;
 
 	public Destination() {
 	}
@@ -99,11 +99,11 @@ public class Destination {
 		this.vacationDestination = vacationDestination;
 	}
 
-	public List<NearbyDestinationId> getNearbyDestination() {
+	public List<NearbyDestination> getNearbyDestination() {
 		return nearbyDestination;
 	}
 
-	public void setNearbyDestination(List<NearbyDestinationId> nearbyDestination) {
+	public void setNearbyDestination(List<NearbyDestination> nearbyDestination) {
 		this.nearbyDestination = nearbyDestination;
 	}
 

@@ -3,6 +3,9 @@ package com.skilldistillery.grouptravel.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -23,13 +26,15 @@ public class VacationDestination {
 
 	private String remarks;
 
-	@Column(name = "create_date")
+	@Column(name="create_date")
+	@CreationTimestamp
 	private LocalDateTime createDate;
 
-	@Column(name = "last_update")
+	@Column(name="last_update")
+	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
 	@ManyToOne
-	@JoinColumn(name = "desination_id")
+	@JoinColumn(name = "destination_id")
 	private Destination destination;
 
 	public VacationDestinationId getId() {
