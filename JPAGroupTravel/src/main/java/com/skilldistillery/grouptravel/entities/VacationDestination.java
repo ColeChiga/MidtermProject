@@ -1,4 +1,5 @@
 package com.skilldistillery.grouptravel.entities;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -13,20 +14,23 @@ import jakarta.persistence.Table;
 @Table(name = "vacation_destination")
 public class VacationDestination {
 
-    @EmbeddedId
-    private VacationDestinationId id;
+	@EmbeddedId
+	private VacationDestinationId id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
-    private String remarks;
+	private String remarks;
 
-    @Column(name = "create_date")
-    private LocalDateTime createDate;
+	@Column(name = "create_date")
+	private LocalDateTime createDate;
 
-    @Column(name = "last_update")
-    private LocalDateTime lastUpdate;
+	@Column(name = "last_update")
+	private LocalDateTime lastUpdate;
+	@ManyToOne
+	@JoinColumn(name = "desination_id")
+	private Destination destination;
 
 	public VacationDestinationId getId() {
 		return id;
@@ -68,6 +72,14 @@ public class VacationDestination {
 		this.lastUpdate = lastUpdate;
 	}
 
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(createDate, id, lastUpdate, remarks, user);
@@ -93,6 +105,4 @@ public class VacationDestination {
 				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
-  
 }
-

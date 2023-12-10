@@ -9,7 +9,9 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class DestinationVoteId implements Serializable {
 
-    @Column(name = "attendee_vacation_id")
+    private static final long serialVersionUID = 1L;
+
+	@Column(name = "attendee_vacation_id")
     private int attendeeVacationId;
 
     @Column(name = "attendee_user_id")

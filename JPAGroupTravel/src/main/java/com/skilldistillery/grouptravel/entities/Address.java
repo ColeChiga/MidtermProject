@@ -1,5 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -21,6 +24,11 @@ public class Address {
 
 	@Column(name = "postal_code")
 	private String postalCode;
+	@OneToMany(mappedBy = "address")
+	private List<Location> location;
+	@OneToMany(mappedBy = "address")
+	private List<User> user;
+	
 
 	public Address() {
 	}
@@ -71,6 +79,47 @@ public class Address {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public List<Location> getLocation() {
+		return location;
+	}
+
+	public void setLocation(List<Location> location) {
+		this.location = location;
+	}
+	
+	public void addLocation(Location location) {
+		if (this.location == null) {
+			this.location = new ArrayList<>();
+
+		}
+		if (!this.location.contains(location)) {
+			this.location.add(location);
+			location.setAddress(this);
+		}
+	}
+	public void removeLocation(Location location) {
+		if (this.location!=null && this.location.contains(location)) {
+			this.location.remove(location);
+			location.setAddress(null);
+		}
+	}
+	public void addUser(User user) {
+		if (this.user == null) {
+			this.user = new ArrayList<>();
+			
+		}
+		if (!this.user.contains(user)) {
+			this.user.add(user);
+			user.setAddress(this);
+		}
+	}
+	public void removeUser(User user) {
+		if (this.user!=null && this.user.contains(user)) {
+			this.user.remove(user);
+			user.setAddress(null);
+		}
 	}
 
 	@Override

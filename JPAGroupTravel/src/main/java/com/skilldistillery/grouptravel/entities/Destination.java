@@ -1,5 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Destination {
@@ -19,6 +23,14 @@ public class Destination {
 	@Column(name = "image_url")
 	private String imageUrl;
 	private String country;
+	@ManyToMany(mappedBy = "destination")
+	private List<Activity> activity;
+	@OneToMany(mappedBy = "destination")
+	private List<Location> location;
+	@OneToMany(mappedBy = "destination")
+	private List<VacationDestination> vacationDestination;
+	@OneToMany(mappedBy = "nearby_id")
+	private List<NearbyDestinationId> nearbyDestination;
 
 	public Destination() {
 	}
@@ -47,7 +59,6 @@ public class Destination {
 		this.description = description;
 	}
 
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -62,6 +73,97 @@ public class Destination {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public List<Activity> getActivity() {
+		return activity;
+	}
+
+	public void setActivity(List<Activity> activity) {
+		this.activity = activity;
+	}
+
+	public List<Location> getLocation() {
+		return location;
+	}
+
+	public void setLocation(List<Location> location) {
+		this.location = location;
+	}
+
+	public List<VacationDestination> getVacationDestination() {
+		return vacationDestination;
+	}
+
+	public void setVacationDestination(List<VacationDestination> vacationDestination) {
+		this.vacationDestination = vacationDestination;
+	}
+
+	public List<NearbyDestinationId> getNearbyDestination() {
+		return nearbyDestination;
+	}
+
+	public void setNearbyDestination(List<NearbyDestinationId> nearbyDestination) {
+		this.nearbyDestination = nearbyDestination;
+	}
+
+	public void addActivity(Activity activity) {
+		if (this.activity == null) {
+			this.activity = new ArrayList<>();
+
+		}
+		if (!this.activity.contains(activity)) {
+			this.activity.add(activity);
+			activity.addDestination(this);
+		}
+
+	}
+
+	public void removeActivity(Activity activity) {
+		if (this.activity != null && this.activity.contains(activity)) {
+			this.activity.remove(activity);
+			activity.removeDestination(this);
+		}
+
+	}
+
+	public void addLocation(Location location) {
+		if (this.location == null) {
+			this.location = new ArrayList<>();
+
+		}
+		if (!this.location.contains(location)) {
+			this.location.add(location);
+			location.setDestination(this);
+		}
+
+	}
+
+	public void removeLocation(Location location) {
+		if (this.location != null && this.location.contains(location)) {
+			this.location.remove(location);
+			location.setDestination(null);
+		}
+	}
+
+	public void addVacationDestination(VacationDestination vacationDestination) {
+		if (this.vacationDestination == null) {
+			this.vacationDestination = new ArrayList<>();
+
+		}
+		if (!this.vacationDestination.contains(vacationDestination)) {
+			this.vacationDestination.add(vacationDestination);
+			vacationDestination.setDestination(this);
+		}
+
+	}
+
+	public void removeVacationDestination(VacationDestination vacationDestination) {
+		if (this.vacationDestination != null && this.vacationDestination.contains(vacationDestination)) {
+			this.vacationDestination.remove(vacationDestination);
+			vacationDestination.setDestination(null);
+		}
+
 	}
 
 	@Override
@@ -86,5 +188,7 @@ public class Destination {
 		return "Destination [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", country=" + country + "]";
 	}
+
+	
 
 }

@@ -9,7 +9,9 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class NearbyDestinationId implements Serializable {
 
-    @Column(name = "destination_id")
+    private static final long serialVersionUID = 1L;
+
+	@Column(name = "destination_id")
     private int destinationId;
 
     @Column(name = "nearby_id")

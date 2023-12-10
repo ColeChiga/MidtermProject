@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Location {
@@ -20,6 +22,13 @@ public class Location {
 	private String imageUrl;
 	@Column(name = "estimated_cost")
 	private String estimatedCost;
+	@ManyToOne
+	@JoinColumn(name ="destination_id")
+	private Destination destination;
+	@ManyToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+	
 
 	public Location() {
 	}
@@ -65,6 +74,21 @@ public class Location {
 		this.estimatedCost = country;
 	}
 
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination=destination;
+	}
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -87,5 +111,8 @@ public class Location {
 		return "Location [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", estimatedCost=" + estimatedCost + "]";
 	}
+
+	
+
 
 }

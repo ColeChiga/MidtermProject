@@ -3,11 +3,16 @@ package com.skilldistillery.grouptravel.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class User {
@@ -29,12 +34,16 @@ public class User {
 	@Column(name = "image_url")
 	private String imageUrl;
 	@Column(name = "create_date")
+	@CreationTimestamp
 	private LocalDateTime createDate;
 	@Column(name = "last_update")
+	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
 	@Column(name = "about_me")
 	private String aboutMe;
-	
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public User() {
 	}
@@ -125,6 +134,14 @@ public class User {
 
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

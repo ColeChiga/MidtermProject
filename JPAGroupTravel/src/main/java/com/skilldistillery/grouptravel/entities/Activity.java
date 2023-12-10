@@ -1,5 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Activity {
@@ -20,6 +25,9 @@ public class Activity {
 	private Double estimatedTimeInHours;
 	@Column(name = "estimated_cost")
 	private Double estimatedCost;
+	@ManyToMany
+	@JoinTable(name = "destination_activity", joinColumns = @JoinColumn(name = "activity_id"), inverseJoinColumns = @JoinColumn(name = "destination_id"))
+	private List<Destination> destination;
 
 	public Activity() {
 	}
@@ -64,6 +72,31 @@ public class Activity {
 		this.estimatedCost = estimatedCost;
 	}
 
+	public List<Destination> getDestination() {
+		return destination;
+	}
+
+	public void setDestination(List<Destination> destination) {
+		this.destination = destination;
+	}
+
+	public void addDestination(Destination destination) {
+		if (this.destination == null) {
+			this.destination = new ArrayList<>();
+
+		}
+		if (!this.destination.contains(destination)) {
+			this.destination.add(destination);
+			destination.addActivity(this);
+		}
+	}
+	public void removeDestination(Destination destination) {
+		if (this.destination!=null && this.destination.contains(destination)) {
+			this.destination.remove(destination);
+			destination.removeActivity(this);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -84,7 +117,7 @@ public class Activity {
 	@Override
 	public String toString() {
 		return "Activity [id=" + id + ", name=" + name + ", description=" + description + ", estimatedTimeInHours="
-				+ estimatedTimeInHours + ", estimatedCost=" + estimatedCost + "]";
+				+ estimatedTimeInHours + ", estimatedCost=" + estimatedCost + ", destination=" + destination + "]";
 	}
 
 }
