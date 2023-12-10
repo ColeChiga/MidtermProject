@@ -47,5 +47,11 @@ class ActivityTest {
 		assertNotNull(activity);
 		assertEquals("family trip", activity.getName());
 	}
+//	@Test
+//	void test_activity_destination_connection() {
+//		assertNotNull(activity);
+//		assertEquals(1, activity.getDestination().size());
+//		assertEquals("Florida", activity.getDestination().get(0).getName());
+//	}
 
 }
