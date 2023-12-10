@@ -3,6 +3,9 @@ import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,6 +14,15 @@ public class NearbyDestination {
 
     @EmbeddedId
     private NearbyDestinationId id;
+    
+    @ManyToOne
+	@JoinColumn(name = "destination_id") 
+	@MapsId(value = "destinationId")     
+	private Destination destinationId;
+    @ManyToOne
+    @JoinColumn(name = "nearby_id") 
+    @MapsId(value = "nearbyId")     
+    private Destination nearbyId;
 
 	public NearbyDestinationId getId() {
 		return id;
@@ -18,6 +30,22 @@ public class NearbyDestination {
 
 	public void setId(NearbyDestinationId id) {
 		this.id = id;
+	}
+
+	public Destination getDestinationId() {
+		return destinationId;
+	}
+
+	public void setDestinationId(Destination destinationId) {
+		this.destinationId = destinationId;
+	}
+
+	public Destination getNearbyId() {
+		return nearbyId;
+	}
+
+	public void setNearbyId(Destination nearbyId) {
+		this.nearbyId = nearbyId;
 	}
 
 	@Override
