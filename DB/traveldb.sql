@@ -470,6 +470,7 @@ COMMIT;
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (1, 'Florida', NULL, NULL, NULL);
+INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (2, 'Texas', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -537,6 +538,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `destination_activity`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `destination_activity` (`destination_id`, `activity_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_family`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `user_family` (`user_id`, `family_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `vacation_comment`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -562,6 +583,16 @@ COMMIT;
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `destination_vote` (`attendee_vacation_id`, `attendee_user_id`, `destination_vacation_id`, `destination_destination_id`, `vote`, `vote_remarks`) VALUES (1, 1, 1, 1, 1, 'yay');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `nearby_destination`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `nearby_destination` (`destination_id`, `nearby_id`) VALUES (1, 2);
 
 COMMIT;
 

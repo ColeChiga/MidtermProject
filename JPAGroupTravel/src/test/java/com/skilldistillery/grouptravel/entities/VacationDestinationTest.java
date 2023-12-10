@@ -36,7 +36,7 @@ class VacationDestinationTest {
 		em = emf.createEntityManager();
 		VacationDestinationId vdi = new VacationDestinationId();
 		vdi.setVacationId(1);
-		//vdi.setDestinationId(1);;
+//		vdi.setDestinationId(1);
 		vacationDestination = em.find(VacationDestination.class, vdi);
 		
 	}
