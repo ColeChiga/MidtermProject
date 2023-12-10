@@ -521,7 +521,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `attendee` (`vacation_id`, `user_id`, `join_date`, `confirmed`, `remarks`, `hotel_id`) VALUES (1, 1, NULL, NULL, NULL, NULL);
+INSERT INTO `attendee` (`vacation_id`, `user_id`, `join_date`, `confirmed`, `remarks`, `hotel_id`) VALUES (1, 1, NULL, 1, 'sure', 1);
 
 COMMIT;
 
@@ -542,6 +542,26 @@ COMMIT;
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `vacation_comment` (`id`, `comment`, `comment_date`, `user_id`, `vacation_id`, `reply_to_id`) VALUES (1, 'meh', NULL, 1, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vacation_destination`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`) VALUES (1, 1, 1, 'meh', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `destination_vote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `traveldb`;
+INSERT INTO `destination_vote` (`attendee_vacation_id`, `attendee_user_id`, `destination_vacation_id`, `destination_destination_id`, `vote`, `vote_remarks`) VALUES (1, 1, 1, 1, 1, 'yay');
 
 COMMIT;
 

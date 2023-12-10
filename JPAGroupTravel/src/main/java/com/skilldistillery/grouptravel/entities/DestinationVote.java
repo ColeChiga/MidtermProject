@@ -14,7 +14,7 @@ public class DestinationVote {
     private DestinationVoteId id;
 
    
-    private int vote;
+    private boolean vote;
 
     @Column(name = "vote_remarks")
     private String voteRemarks;
@@ -27,11 +27,11 @@ public class DestinationVote {
 		this.id = id;
 	}
 
-	public int getVote() {
+	public boolean getVote() {
 		return vote;
 	}
 
-	public void setVote(int vote) {
+	public void setVote(boolean vote) {
 		this.vote = vote;
 	}
 
