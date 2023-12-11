@@ -45,14 +45,14 @@ class DestinationTest {
 	@Test
 	void test() {
 		assertNotNull(destination);
-		assertEquals("Florida", destination.getName());
+		assertEquals("Orlando", destination.getName());
 	}
 
 	@Test
 	void test_activity_destination_connection() {
 		assertNotNull(destination);
 		assertEquals(1, destination.getActivity().size());
-		assertEquals("family trip", destination.getActivity().get(0).getName());
+		assertEquals("Disney World", destination.getActivity().get(0).getName());
 	}
 	
 	@Test

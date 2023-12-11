@@ -51,9 +51,9 @@ class NearbyDestinationTest {
 	void test() {
 		assertNotNull(nearbyDestination);
 		assertEquals(2, nearbyDestination.getNearbyId().getId());
-		assertEquals("Texas", nearbyDestination.getNearbyId().getName());
+		assertEquals("Miami", nearbyDestination.getNearbyId().getName());
 		assertEquals(1, nearbyDestination.getDestinationId().getId());
-		assertEquals("Florida", nearbyDestination.getDestinationId().getName());
+		assertEquals("Orlando", nearbyDestination.getDestinationId().getName());
 		
 	}
 
