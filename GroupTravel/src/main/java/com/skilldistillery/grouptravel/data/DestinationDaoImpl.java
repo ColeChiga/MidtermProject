@@ -13,25 +13,12 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class UserDaoImpl implements UserDAO {
+public class DestinationDaoImpl{
 
 	@PersistenceContext
 	private EntityManager em;
 
-	@Override
-	public User authenticateUser(String username, String password) {
-		String jpql = "SELECT user FROM User user WHERE user.username = :username and user.password = :password and user.enabled = true";
-		User user = null;
-		try {
-			user = em.createQuery(jpql, User.class).setParameter("username", username).setParameter("password", password).getSingleResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Invalid user: " + username);
-		}
-		return user;
-	}
 
-	@Override
 	public List<Destination> findAll() {
 		String jpql = "SELECT destination FROM Destination destination";
         return em.createQuery(jpql, Destination.class).getResultList();
