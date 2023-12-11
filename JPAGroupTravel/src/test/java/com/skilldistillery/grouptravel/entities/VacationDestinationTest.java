@@ -54,5 +54,12 @@ class VacationDestinationTest {
 		assertEquals("meh",vacationDestination.getRemarks());
 		
 	}
+	
+	@Test
+	void test_vacaDest_Destination() {
+		assertNotNull(vacationDestination);
+		assertEquals(1, vacationDestination.getDestination().getId());
+		assertEquals("Florida",vacationDestination.getDestination().getName());
+	}
 
 }
