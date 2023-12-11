@@ -1,28 +1,42 @@
 package com.skilldistillery.grouptravel.entities;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "attendee")
 public class Attendee {
 
-    @EmbeddedId
-    private AttendeeId id;
+	@EmbeddedId
+	private AttendeeId id;
 
-    @Column(name = "join_date")
-    private LocalDateTime joinDate;
+	@Column(name = "join_date")
+	private LocalDateTime joinDate;
 
-    private boolean confirmed;
+	private boolean confirmed;
 
-    private String remarks;
+	private String remarks;
 
-    @Column(name = "hotel_id")
-    private int hotelId;
+	@Column(name = "hotel_id")
+	private int hotelId;
+
+	@ManyToOne
+	@JoinColumn(name = "vacation_id")
+	@MapsId(value = "vacationId")
+	private Vacation vacation;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
+	private User user;
 
 	public AttendeeId getId() {
 		return id;
@@ -64,6 +78,22 @@ public class Attendee {
 		this.hotelId = hotelId;
 	}
 
+	public Vacation getVacation() {
+		return vacation;
+	}
+
+	public void setVacation(Vacation vacation) {
+		this.vacation = vacation;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(confirmed, hotelId, id, joinDate, remarks);
@@ -88,6 +118,4 @@ public class Attendee {
 				+ ", hotelId=" + hotelId + "]";
 	}
 
-    
 }
-

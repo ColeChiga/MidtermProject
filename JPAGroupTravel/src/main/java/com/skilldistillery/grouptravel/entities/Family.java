@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Family {
@@ -23,6 +25,9 @@ public class Family {
 	private LocalDateTime createDate;
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
+
+	@ManyToMany(mappedBy = "families")
+	private List<User> users;
 
 	public Family() {
 	}
@@ -51,7 +56,6 @@ public class Family {
 		this.description = description;
 	}
 
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -60,7 +64,6 @@ public class Family {
 		this.imageUrl = imageUrl;
 	}
 
-	
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
@@ -75,6 +78,14 @@ public class Family {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override

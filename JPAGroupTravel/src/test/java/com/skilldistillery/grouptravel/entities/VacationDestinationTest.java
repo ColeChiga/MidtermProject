@@ -58,8 +58,8 @@ class VacationDestinationTest {
 	@Test
 	void test_vacaDest_Destination() {
 		assertNotNull(vacationDestination);
-		assertEquals(1, vacationDestination.getDestinationId().getId());
-		assertEquals("Orlando",vacationDestination.getDestinationId().getName());
+		assertEquals(1, vacationDestination.getDestination().getId());
+		assertEquals("Orlando",vacationDestination.getDestination().getName());
 	}
 
 }

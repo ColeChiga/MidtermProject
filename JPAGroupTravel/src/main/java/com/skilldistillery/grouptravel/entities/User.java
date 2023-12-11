@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -44,6 +47,11 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@ManyToMany
+	@JoinTable(name = "user_family", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "family_id"))
+	private List<Family> families;
+	
 
 	public User() {
 	}
@@ -142,6 +150,14 @@ public class User {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Family> getFamilies() {
+		return families;
+	}
+
+	public void setFamilies(List<Family> families) {
+		this.families = families;
 	}
 
 	@Override

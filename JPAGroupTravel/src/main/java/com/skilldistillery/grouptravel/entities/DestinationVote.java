@@ -1,23 +1,34 @@
 package com.skilldistillery.grouptravel.entities;
+
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "destination_vote")
 public class DestinationVote {
 
-    @EmbeddedId
-    private DestinationVoteId id;
+	@EmbeddedId
+	private DestinationVoteId id;
 
-   
-    private boolean vote;
+	private boolean vote;
 
-    @Column(name = "vote_remarks")
-    private String voteRemarks;
+	@Column(name = "vote_remarks")
+	private String voteRemarks;
+
+//	@ManyToOne
+//	@JoinColumns({ @JoinColumn(name = "attendee_vacation_id"), @JoinColumn(name = "attendee_user_id") })
+//	private Attendee attendee;
+//
+//	@ManyToOne
+//	@JoinColumns({ @JoinColumn(name = "destination_vacation_id"), @JoinColumn(name = "destination_destination_id") })
+//	private VacationDestination destination;
 
 	public DestinationVoteId getId() {
 		return id;
@@ -43,6 +54,22 @@ public class DestinationVote {
 		this.voteRemarks = voteRemarks;
 	}
 
+//	public Attendee getAttendee() {
+//		return attendee;
+//	}
+//
+//	public void setAttendee(Attendee attendee) {
+//		this.attendee = attendee;
+//	}
+//
+//	public VacationDestination getDestination() {
+//		return destination;
+//	}
+//
+//	public void setDestination(VacationDestination destination) {
+//		this.destination = destination;
+//	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, vote, voteRemarks);
@@ -65,6 +92,4 @@ public class DestinationVote {
 		return "DestinationVote [id=" + id + ", vote=" + vote + ", voteRemarks=" + voteRemarks + "]";
 	}
 
-    
 }
-

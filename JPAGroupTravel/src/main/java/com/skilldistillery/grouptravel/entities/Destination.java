@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
@@ -27,10 +29,12 @@ public class Destination {
 	private List<Activity> activity;
 	@OneToMany(mappedBy = "destination")
 	private List<Location> location;
-	@OneToMany(mappedBy = "destinationId")
+	@OneToMany(mappedBy = "destination")
 	private List<VacationDestination> vacationDestination;
-	@OneToMany(mappedBy = "destinationId")
-	private List<NearbyDestination> nearbyDestination;
+	
+	@ManyToMany
+	@JoinTable(name="nearby_destination",joinColumns = @JoinColumn (name="destination_id"),  inverseJoinColumns = @JoinColumn(name="nearby_id"))
+	private List<Destination> nearbyDestinations;
 
 	public Destination() {
 	}
@@ -99,13 +103,7 @@ public class Destination {
 		this.vacationDestination = vacationDestination;
 	}
 
-	public List<NearbyDestination> getNearbyDestination() {
-		return nearbyDestination;
-	}
-
-	public void setNearbyDestination(List<NearbyDestination> nearbyDestination) {
-		this.nearbyDestination = nearbyDestination;
-	}
+	
 
 	public void addActivity(Activity activity) {
 		if (this.activity == null) {
@@ -153,7 +151,7 @@ public class Destination {
 		}
 		if (!this.vacationDestination.contains(vacationDestination)) {
 			this.vacationDestination.add(vacationDestination);
-			vacationDestination.setDestinationId(this);
+			vacationDestination.setDestination(this);
 		}
 
 	}
@@ -161,9 +159,17 @@ public class Destination {
 	public void removeVacationDestination(VacationDestination vacationDestination) {
 		if (this.vacationDestination != null && this.vacationDestination.contains(vacationDestination)) {
 			this.vacationDestination.remove(vacationDestination);
-			vacationDestination.setDestinationId(null);
+			vacationDestination.setDestination(null);
 		}
 
+	}
+
+	public List<Destination> getNearbyDestinations() {
+		return nearbyDestinations;
+	}
+
+	public void setNearbyDestinations(List<Destination> nearbyDestinations) {
+		this.nearbyDestinations = nearbyDestinations;
 	}
 
 	@Override

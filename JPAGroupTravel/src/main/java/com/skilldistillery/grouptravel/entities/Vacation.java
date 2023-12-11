@@ -2,6 +2,7 @@ package com.skilldistillery.grouptravel.entities;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Vacation {
@@ -28,7 +30,9 @@ public class Vacation {
 	private Date startDate;
 	@Column(name = "end_date")
 	private Date endDate;
-	
+
+	@OneToMany(mappedBy = "vacation")
+	private List<VacationDestination> destinations;
 
 	public Vacation() {
 	}
@@ -40,7 +44,6 @@ public class Vacation {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -74,7 +77,6 @@ public class Vacation {
 		this.description = description;
 	}
 
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -83,7 +85,6 @@ public class Vacation {
 		this.imageUrl = imageUrl;
 	}
 
-	
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
@@ -98,6 +99,14 @@ public class Vacation {
 
 	public void setLastUpdate(LocalDateTime lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public List<VacationDestination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<VacationDestination> destinations) {
+		this.destinations = destinations;
 	}
 
 	@Override

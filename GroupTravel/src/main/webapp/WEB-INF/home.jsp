@@ -14,6 +14,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 	<main>
 
 		<div id="myCarousel" class="carousel slide mb-6"
@@ -35,7 +36,7 @@
 						alt="Talladega Nights">
 					<div class="container">
 						<div class="carousel-caption text-start">
-							<h1>Example headline.</h1>
+							<h1>Daytona Beach, Florida</h1>
 							<p class="opacity-75">Some representative placeholder content
 								for the first slide of the carousel.</p>
 							<p>
@@ -51,7 +52,7 @@
 						alt="Serenity">
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>Another example headline.</h1>
+							<h1>Miami, Florida</h1>
 							<p>Some representative placeholder content for the second
 								slide of the carousel.</p>
 							<p>
@@ -67,7 +68,7 @@
 						alt="Princess Mononoke">
 					<div class="container">
 						<div class="carousel-caption text-end">
-							<h1>One more for good measure.</h1>
+							<h1>Orlando, Florida</h1>
 							<p>Some representative placeholder content for the third
 								slide of this carousel.</p>
 							<p>
@@ -104,7 +105,7 @@
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg"
 						role="img" aria-label="Placeholder">
 					
-					<h2 class="fw-normal">Heading</h2>
+					<h2 class="fw-normal">New Account</h2>
 					<p>Some representative placeholder content for the three
 						columns of text below the carousel. This is the first column.</p>
 					<p>
@@ -119,7 +120,7 @@
 						focusable="false">
 						<title>Placeholder</title><rect width="100%" height="100%"
 							fill="var(--bs-secondary-color)"></rect></svg>
-					<h2 class="fw-normal">Heading</h2>
+					<h2 class="fw-normal">Log in to your account</h2>
 					<p>Another exciting bit of representative placeholder content.
 						This time, we've moved on to the second column.</p>
 					<p>
@@ -134,7 +135,7 @@
 						focusable="false">
 						<title>Placeholder</title><rect width="100%" height="100%"
 							fill="var(--bs-secondary-color)"></rect></svg>
-					<h2 class="fw-normal">Heading</h2>
+					<h2 class="fw-normal">View all available destinations</h2>
 					<p>And lastly this, the third column of representative
 						placeholder content.</p>
 					<p>

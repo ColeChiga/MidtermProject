@@ -41,30 +41,30 @@ public class VacationDestination {
 	@ManyToOne
 	@JoinColumn(name = "destination_id") 
 	@MapsId(value = "destinationId")     
-	private Destination destinationId;
+	private Destination destination;
 	
     @ManyToOne
     @JoinColumn(name = "vacation_id") 
     @MapsId(value = "vacationId")     
-    private Destination vacationId;
+    private Vacation vacation;
 	
 	
 	
 	
-	public Destination getDestinationId() {
-		return destinationId;
+	public Destination getDestination() {
+		return destination;
 	}
 
-	public void setDestinationId(Destination destinationId) {
-		this.destinationId = destinationId;
+	public void setDestination(Destination destinationId) {
+		this.destination = destinationId;
 	}
 
-	public Destination getVacationId() {
-		return vacationId;
+	public Vacation getVacation() {
+		return vacation;
 	}
 
-	public void setVacationId(Destination vacationId) {
-		this.vacationId = vacationId;
+	public void setVacation(Vacation vacationId) {
+		this.vacation = vacationId;
 	}
 
 	public VacationDestinationId getId() {
