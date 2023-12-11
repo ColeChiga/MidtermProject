@@ -70,11 +70,9 @@ class DestinationTest {
 	@Test
 	void test_nearbyDestination_destination_connection() {
 		assertNotNull(destination);
-		assertNotNull(destination.getNearbyDestination());
-		
 		assertEquals(1, destination.getNearbyDestination().size());
 		assertEquals(2, destination.getNearbyDestination().get(0).getNearbyId().getId());
-		
+
 	}
 	
 }
