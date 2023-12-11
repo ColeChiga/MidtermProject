@@ -45,7 +45,7 @@ public class VacationDestination {
 	
     @ManyToOne
     @JoinColumn(name = "vacation_id") 
-    @MapsId(value = "vacatioInd")     
+    @MapsId(value = "vacationId")     
     private Destination vacationId;
 	
 	

@@ -67,11 +67,11 @@ class DestinationTest {
 		assertEquals(1, destination.getVacationDestination().size());
 		assertEquals("meh", destination.getVacationDestination().get(0).getRemarks());
 	}
-//	@Test
-//	void test_nearbyDestination_destination_connection() {
-//		assertNotNull(destination);
-//		assertEquals(1, destination.getNearbyDestination().size());
-//		assertEquals(2, destination.getNearbyDestination().get(0).getId());
-//	}
+	@Test
+	void test_nearbyDestination_destination_connection() {
+		assertNotNull(destination);
+		assertEquals(1, destination.getNearbyDestination().size());
+		assertEquals(2, destination.getNearbyDestination().get(0).getNearbyId().getId());
+	}
 	
 }
