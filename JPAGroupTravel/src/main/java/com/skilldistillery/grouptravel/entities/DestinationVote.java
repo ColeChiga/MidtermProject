@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,13 +23,15 @@ public class DestinationVote {
 	@Column(name = "vote_remarks")
 	private String voteRemarks;
 
-//	@ManyToOne
-//	@JoinColumns({ @JoinColumn(name = "attendee_vacation_id"), @JoinColumn(name = "attendee_user_id") })
-//	private Attendee attendee;
-//
-//	@ManyToOne
-//	@JoinColumns({ @JoinColumn(name = "destination_vacation_id"), @JoinColumn(name = "destination_destination_id") })
-//	private VacationDestination destination;
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "attendee_vacation_id", referencedColumnName = "vacation_id"), @JoinColumn(name = "attendee_user_id",referencedColumnName = "user_id") })
+	@MapsId(value="attendeeId")
+	private Attendee attendee;
+
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "destination_vacation_id", referencedColumnName = "vacation_id"), @JoinColumn(name = "destination_destination_id", referencedColumnName = "destination_id") })
+	@MapsId(value="vacationDestinationId")
+	private VacationDestination destination;
 
 	public DestinationVoteId getId() {
 		return id;
@@ -54,21 +57,21 @@ public class DestinationVote {
 		this.voteRemarks = voteRemarks;
 	}
 
-//	public Attendee getAttendee() {
-//		return attendee;
-//	}
-//
-//	public void setAttendee(Attendee attendee) {
-//		this.attendee = attendee;
-//	}
-//
-//	public VacationDestination getDestination() {
-//		return destination;
-//	}
-//
-//	public void setDestination(VacationDestination destination) {
-//		this.destination = destination;
-//	}
+	public Attendee getAttendee() {
+		return attendee;
+	}
+
+	public void setAttendee(Attendee attendee) {
+		this.attendee = attendee;
+	}
+
+	public VacationDestination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(VacationDestination destination) {
+		this.destination = destination;
+	}
 
 	@Override
 	public int hashCode() {

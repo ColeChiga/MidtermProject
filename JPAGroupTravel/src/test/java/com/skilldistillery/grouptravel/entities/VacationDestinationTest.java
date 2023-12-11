@@ -38,7 +38,7 @@ class VacationDestinationTest {
 		vdi.setVacationId(1);
 		vdi.setDestinationId(1);
 		vacationDestination = em.find(VacationDestination.class, vdi);
-		
+
 	}
 
 	@AfterEach
@@ -48,18 +48,25 @@ class VacationDestinationTest {
 	}
 
 	@Test
+	void test_list_of_destination_votes() {
+		assertNotNull(vacationDestination);
+		assertNotNull(vacationDestination.getDestinationVotes());
+		assertTrue(vacationDestination.getDestinationVotes().size() > 0);
+	}
+
+	@Test
 	void test() {
 		assertNotNull(vacationDestination);
 		assertEquals(1, vacationDestination.getUser().getId());
-		assertEquals("meh",vacationDestination.getRemarks());
-		
+		assertEquals("meh", vacationDestination.getRemarks());
+
 	}
-	
+
 	@Test
 	void test_vacaDest_Destination() {
 		assertNotNull(vacationDestination);
 		assertEquals(1, vacationDestination.getDestination().getId());
-		assertEquals("Orlando",vacationDestination.getDestination().getName());
+		assertEquals("Orlando", vacationDestination.getDestination().getName());
 	}
 
 }

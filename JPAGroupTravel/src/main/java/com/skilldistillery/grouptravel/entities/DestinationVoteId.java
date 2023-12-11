@@ -3,61 +3,49 @@ package com.skilldistillery.grouptravel.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 
 @Embeddable
 public class DestinationVoteId implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-	@Column(name = "attendee_vacation_id")
-    private int attendeeVacationId;
+	@Embedded
+	private VacationDestinationId vacationDestinationId;
 
-    @Column(name = "attendee_user_id")
-    private int attendeeUserId;
+	@Embedded
+	private AttendeeId attendeeId;
 
-    @Column(name = "destination_vacation_id")
-    private int destinationVacationId;
-
-    @Column(name = "destination_destination_id")
-    private int destinationDestinationId;
-
-	public int getAttendeeVacationId() {
-		return attendeeVacationId;
+	public DestinationVoteId() {
+		super();
 	}
 
-	public void setAttendeeVacationId(int attendeeVacationId) {
-		this.attendeeVacationId = attendeeVacationId;
+	public DestinationVoteId(VacationDestinationId vacationDestinationId, AttendeeId attendeeId) {
+		super();
+		this.vacationDestinationId = vacationDestinationId;
+		this.attendeeId = attendeeId;
 	}
 
-	public int getAttendeeUserId() {
-		return attendeeUserId;
+	public VacationDestinationId getVacationDestinationId() {
+		return vacationDestinationId;
 	}
 
-	public void setAttendeeUserId(int attendeeUserId) {
-		this.attendeeUserId = attendeeUserId;
+	public void setVacationDestinationId(VacationDestinationId vacationDestinationId) {
+		this.vacationDestinationId = vacationDestinationId;
 	}
 
-	public int getDestinationVacationId() {
-		return destinationVacationId;
+	public AttendeeId getAttendeeId() {
+		return attendeeId;
 	}
 
-	public void setDestinationVacationId(int destinationVacationId) {
-		this.destinationVacationId = destinationVacationId;
-	}
-
-	public int getDestinationDestinationId() {
-		return destinationDestinationId;
-	}
-
-	public void setDestinationDestinationId(int destinationDestinationId) {
-		this.destinationDestinationId = destinationDestinationId;
+	public void setAttendeeId(AttendeeId attendeeId) {
+		this.attendeeId = attendeeId;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(attendeeUserId, attendeeVacationId, destinationDestinationId, destinationVacationId);
+		return Objects.hash(attendeeId, vacationDestinationId);
 	}
 
 	@Override
@@ -69,17 +57,12 @@ public class DestinationVoteId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		DestinationVoteId other = (DestinationVoteId) obj;
-		return attendeeUserId == other.attendeeUserId && attendeeVacationId == other.attendeeVacationId
-				&& destinationDestinationId == other.destinationDestinationId
-				&& destinationVacationId == other.destinationVacationId;
+		return Objects.equals(attendeeId, other.attendeeId)
+				&& Objects.equals(vacationDestinationId, other.vacationDestinationId);
 	}
 
 	@Override
 	public String toString() {
-		return "DestinationVoteId [attendeeVacationId=" + attendeeVacationId + ", attendeeUserId=" + attendeeUserId
-				+ ", destinationVacationId=" + destinationVacationId + ", destinationDestinationId="
-				+ destinationDestinationId + "]";
+		return "DestinationVoteId [vacationDestinationId=" + vacationDestinationId + ", attendeeId=" + attendeeId + "]";
 	}
-
-    
 }

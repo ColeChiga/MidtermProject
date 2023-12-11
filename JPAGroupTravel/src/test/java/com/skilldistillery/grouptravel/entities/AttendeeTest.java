@@ -48,6 +48,12 @@ class AttendeeTest {
 	}
 
 	@Test
+	void test_list_of_destination_votes() {
+		assertNotNull(attendee);
+		assertNotNull(attendee.getDestinationVotes());
+		assertTrue(attendee.getDestinationVotes().size() > 0);
+	}
+	@Test
 	void test() {
 		assertNotNull(attendee);
 		assertEquals(1, attendee.getHotelId());

@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +39,9 @@ public class Attendee {
 	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")
 	private User user;
+
+	@OneToMany(mappedBy = "attendee")
+	private List<DestinationVote> destinationVotes;
 
 	public AttendeeId getId() {
 		return id;
@@ -92,6 +97,14 @@ public class Attendee {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<DestinationVote> getDestinationVotes() {
+		return destinationVotes;
+	}
+
+	public void setDestinationVotes(List<DestinationVote> destinationVotes) {
+		this.destinationVotes = destinationVotes;
 	}
 
 	@Override

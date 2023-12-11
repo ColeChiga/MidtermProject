@@ -21,6 +21,16 @@ public class AttendeeId implements Serializable {
 		return vacationId;
 	}
 
+	public AttendeeId() {
+		super();
+	}
+
+	public AttendeeId(int vacationId, int userId) {
+		super();
+		this.vacationId = vacationId;
+		this.userId = userId;
+	}
+
 	public void setVacationId(int vacationId) {
 		this.vacationId = vacationId;
 	}

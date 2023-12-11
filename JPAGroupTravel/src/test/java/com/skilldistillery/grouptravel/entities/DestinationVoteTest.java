@@ -34,11 +34,12 @@ class DestinationVoteTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		DestinationVoteId div = new DestinationVoteId();
-		div.setAttendeeUserId(1);
-		div.setAttendeeVacationId(1);
-		div.setDestinationDestinationId(1);
-		div.setDestinationVacationId(1);
+		AttendeeId aid = new AttendeeId(1, 1);
+		VacationDestinationId vid = new VacationDestinationId(1,1);
+		DestinationVoteId div = new DestinationVoteId(vid, aid);
+		
+		
+		
 		destinationVote = em.find(DestinationVote.class, div);
 		
 	}

@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,30 +29,30 @@ public class VacationDestination {
 
 	private String remarks;
 
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
 
-	@Column(name="last_update")
+	@Column(name = "last_update")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
 //	@ManyToOne
 //	@JoinColumn(name = "destination_id")
 //	private Destination destination;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "destination_id") 
-	@MapsId(value = "destinationId")     
+	@JoinColumn(name = "destination_id")
+	@MapsId(value = "destinationId")
 	private Destination destination;
-	
-    @ManyToOne
-    @JoinColumn(name = "vacation_id") 
-    @MapsId(value = "vacationId")     
-    private Vacation vacation;
-	
-	
-	
-	
+
+	@ManyToOne
+	@JoinColumn(name = "vacation_id")
+	@MapsId(value = "vacationId")
+	private Vacation vacation;
+
+	@OneToMany(mappedBy = "destination")
+	private List<DestinationVote> destinationVotes;
+
 	public Destination getDestination() {
 		return destination;
 	}
@@ -114,6 +116,14 @@ public class VacationDestination {
 //	public void setDestination(Destination destination) {
 //		this.destination = destination;
 //	}
+
+	public List<DestinationVote> getDestinationVotes() {
+		return destinationVotes;
+	}
+
+	public void setDestinationVotes(List<DestinationVote> destinationVotes) {
+		this.destinationVotes = destinationVotes;
+	}
 
 	@Override
 	public int hashCode() {
