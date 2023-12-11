@@ -57,7 +57,7 @@ class LocationTest {
 	@Test
 	void test_location_destination_connection() {
 		assertNotNull(location);
-		assertEquals("Florida", location.getDestination().getName());
+		assertEquals("Orlando", location.getDestination().getName());
 	}
 	
 }
