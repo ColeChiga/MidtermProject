@@ -440,6 +440,9 @@ START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '123 fake st', NULL, 'Colorado Springs', 'CO', '80910');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (2, '123 magic st', NULL, 'Bay Lake', 'FL', '34747');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (3, '347 Don Shula Dr', NULL, 'Miami Gardens', 'FL', '33056');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (4, '12 N Ocean Ave', NULL, 'Daytona Beach', 'FL', '32118');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (5, '742 Evergreen Terrace', NULL, 'Springfield', 'OR', '97477');
 
 COMMIT;
 
@@ -450,6 +453,7 @@ COMMIT;
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (2, 'homer', 'simpson', 'dntlvr', 'mmmmm', 1, NULL, 5, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -469,8 +473,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (1, 'Florida', NULL, NULL, NULL);
-INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (2, 'Texas', NULL, NULL, NULL);
+INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (1, 'Orlando', 'Florida', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Lake_Eola_Park_in_Orlando_02.jpg/2560px-Lake_Eola_Park_in_Orlando_02.jpg', 'United States');
+INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (2, 'Miami', 'Florida', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg', 'United States');
+INSERT INTO `destination` (`id`, `name`, `description`, `image_url`, `country`) VALUES (3, 'Daytona Beach', 'Florida', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Daytona_Beach_looking_north_from_pier.jpg/1920px-Daytona_Beach_looking_north_from_pier.jpg', 'United States');
 
 COMMIT;
 
@@ -480,7 +485,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (1, 'family trip', NULL, NULL, NULL);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (1, 'Disney World', 'Disney Fun at Theme Park', 14, 159.00);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (2, 'Miami Dolphins Game', 'Watch the Dolphins home game', 4, 162.00);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (3, 'Daytona Beach Boardwalk', 'Rides and games at an Amusement Center', 12, 50.00);
 
 COMMIT;
 
@@ -490,7 +497,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', NULL, NULL, NULL, NULL);
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -503,6 +510,8 @@ USE `traveldb`;
 INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (1, 'Hotel', NULL);
 INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (2, 'Restaurant', NULL);
 INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (3, 'Theme Park', NULL);
+INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (4, 'Amusement Park', NULL);
+INSERT INTO `location_category` (`id`, `name`, `description`) VALUES (5, 'Sports Stadium', NULL);
 
 COMMIT;
 
@@ -512,7 +521,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (1, 'Disney World', NULL, NULL, 1, 2, 3, NULL);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (1, 'Disney World', 'Disney World ', NULL, 1, 2, 3, NULL);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (2, 'Hard Rock Stadium ', 'Home of the Miami Dolphins', NULL, 2, 3, 5, NULL);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (3, 'Daytona Beach Boardwalk Amusements', 'Amusement Park on a Pier', NULL, 3, 4, 4, NULL);
 
 COMMIT;
 

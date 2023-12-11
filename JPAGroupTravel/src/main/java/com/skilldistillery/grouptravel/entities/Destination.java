@@ -29,7 +29,7 @@ public class Destination {
 	private List<Location> location;
 	@OneToMany(mappedBy = "destinationId")
 	private List<VacationDestination> vacationDestination;
-	@OneToMany(mappedBy = "nearbyId")
+	@OneToMany(mappedBy = "destinationId")
 	private List<NearbyDestination> nearbyDestination;
 
 	public Destination() {
