@@ -46,5 +46,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	
+	@Test
+	void test_user_adress_connection() {
+		assertNotNull(user);
+		assertEquals("123 fake st", user.getAddress().getStreet());
+	}
 
 }

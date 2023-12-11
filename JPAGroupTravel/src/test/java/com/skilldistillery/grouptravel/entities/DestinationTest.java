@@ -48,12 +48,12 @@ class DestinationTest {
 		assertEquals("Florida", destination.getName());
 	}
 
-//	@Test
-//	void test_activity_destination_connection() {
-//		assertNotNull(destination);
-//		assertEquals(1, destination.getActivity().size());
-//		assertEquals("family trip", destination.getActivity().get(0).getName());
-//	}
+	@Test
+	void test_activity_destination_connection() {
+		assertNotNull(destination);
+		assertEquals(1, destination.getActivity().size());
+		assertEquals("family trip", destination.getActivity().get(0).getName());
+	}
 	
 	@Test
 	void test_location_destination_connection() {
@@ -71,7 +71,7 @@ class DestinationTest {
 //	void test_nearbyDestination_destination_connection() {
 //		assertNotNull(destination);
 //		assertEquals(1, destination.getNearbyDestination().size());
-//		assertEquals(1, destination.getNearbyDestination().get(0).getId());
+//		assertEquals(2, destination.getNearbyDestination().get(0).getId());
 //	}
 	
 }

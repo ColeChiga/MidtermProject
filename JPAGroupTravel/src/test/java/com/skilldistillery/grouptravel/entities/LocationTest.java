@@ -47,5 +47,17 @@ class LocationTest {
 		assertNotNull(location);
 		assertEquals("Disney World", location.getName());
 	}
+	
+	@Test
+	void test_address_location_connection() {
+		assertNotNull(location);
+		assertEquals("123 magic st", location.getAddress().getStreet());
+	}
 
+	@Test
+	void test_location_destination_connection() {
+		assertNotNull(location);
+		assertEquals("Florida", location.getDestination().getName());
+	}
+	
 }

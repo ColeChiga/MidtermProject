@@ -14,11 +14,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class VacationDestinationTest {
+class NearbyDestinationTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private VacationDestination vacationDestination;
+	private NearbyDestination nearbyDestination;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,32 +34,27 @@ class VacationDestinationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		VacationDestinationId vdi = new VacationDestinationId();
-		vdi.setVacationId(1);
-//		vdi.setDestinationId(1);
-		vacationDestination = em.find(VacationDestination.class, vdi);
-		
+		NearbyDestinationId destId = new NearbyDestinationId();
+		destId.setDestinationId(1);
+		destId.setNearbyId(2);
+//		destId.setDestinationId(1);
+		nearbyDestination = em.find(NearbyDestination.class, destId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		vacationDestination = null;
+		nearbyDestination = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(vacationDestination);
-		assertEquals(1, vacationDestination.getUser().getId());
-		assertEquals("meh",vacationDestination.getRemarks());
+		assertNotNull(nearbyDestination);
+		assertEquals(2, nearbyDestination.getNearbyId().getId());
+		assertEquals("Texas", nearbyDestination.getNearbyId().getName());
+		assertEquals(1, nearbyDestination.getDestinationId().getId());
+		assertEquals("Florida", nearbyDestination.getDestinationId().getName());
 		
-	}
-	
-	@Test
-	void test_vacaDest_Destination() {
-		assertNotNull(vacationDestination);
-		assertEquals(1, vacationDestination.getDestination().getId());
-		assertEquals("Florida",vacationDestination.getDestination().getName());
 	}
 
 }
