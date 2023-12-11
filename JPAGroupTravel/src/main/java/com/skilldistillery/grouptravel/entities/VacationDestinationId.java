@@ -14,8 +14,8 @@ public class VacationDestinationId implements Serializable {
 	@Column(name = "vacation_id")
     private int vacationId;
 
-//    @Column(name = "destination_id")
-//    private int destinationId;
+    @Column(name = "destination_id")
+    private int destinationId;
 
 	public int getVacationId() {
 		return vacationId;
@@ -25,17 +25,17 @@ public class VacationDestinationId implements Serializable {
 		this.vacationId = vacationId;
 	}
 
-//	public int getDestinationId() {
-//		return destinationId;
-//	}
-//
-//	public void setDestinationId(int destinationId) {
-//		this.destinationId = destinationId;
-//	}
+	public int getDestinationId() {
+		return destinationId;
+	}
+
+	public void setDestinationId(int destinationId) {
+		this.destinationId = destinationId;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(vacationId);
+		return Objects.hash(destinationId, vacationId);
 	}
 
 	@Override
@@ -47,12 +47,12 @@ public class VacationDestinationId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		VacationDestinationId other = (VacationDestinationId) obj;
-		return  vacationId == other.vacationId;
+		return destinationId == other.destinationId && vacationId == other.vacationId;
 	}
 
 	@Override
 	public String toString() {
-		return "VacationDestinationId [vacationId=" + vacationId + ", destinationId=" + "]";
+		return "VacationDestinationId [vacationId=" + vacationId + ", destinationId=" + destinationId + "]";
 	}
 
   

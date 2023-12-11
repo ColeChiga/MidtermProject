@@ -27,7 +27,7 @@ public class Destination {
 	private List<Activity> activity;
 	@OneToMany(mappedBy = "destination")
 	private List<Location> location;
-	@OneToMany(mappedBy = "destination")
+	@OneToMany(mappedBy = "destinationId")
 	private List<VacationDestination> vacationDestination;
 	@OneToMany(mappedBy = "nearbyId")
 	private List<NearbyDestination> nearbyDestination;
@@ -153,7 +153,7 @@ public class Destination {
 		}
 		if (!this.vacationDestination.contains(vacationDestination)) {
 			this.vacationDestination.add(vacationDestination);
-			vacationDestination.setDestination(this);
+			vacationDestination.setDestinationId(this);
 		}
 
 	}
@@ -161,7 +161,7 @@ public class Destination {
 	public void removeVacationDestination(VacationDestination vacationDestination) {
 		if (this.vacationDestination != null && this.vacationDestination.contains(vacationDestination)) {
 			this.vacationDestination.remove(vacationDestination);
-			vacationDestination.setDestination(null);
+			vacationDestination.setDestinationId(null);
 		}
 
 	}

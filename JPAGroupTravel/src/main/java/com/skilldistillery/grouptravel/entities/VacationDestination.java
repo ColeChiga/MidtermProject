@@ -11,6 +11,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,9 +34,38 @@ public class VacationDestination {
 	@Column(name="last_update")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
+//	@ManyToOne
+//	@JoinColumn(name = "destination_id")
+//	private Destination destination;
+	
 	@ManyToOne
-	@JoinColumn(name = "destination_id")
-	private Destination destination;
+	@JoinColumn(name = "destination_id") 
+	@MapsId(value = "destinationId")     
+	private Destination destinationId;
+	
+    @ManyToOne
+    @JoinColumn(name = "vacation_id") 
+    @MapsId(value = "vacatioInd")     
+    private Destination vacationId;
+	
+	
+	
+	
+	public Destination getDestinationId() {
+		return destinationId;
+	}
+
+	public void setDestinationId(Destination destinationId) {
+		this.destinationId = destinationId;
+	}
+
+	public Destination getVacationId() {
+		return vacationId;
+	}
+
+	public void setVacationId(Destination vacationId) {
+		this.vacationId = vacationId;
+	}
 
 	public VacationDestinationId getId() {
 		return id;
@@ -77,13 +107,13 @@ public class VacationDestination {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Destination getDestination() {
-		return destination;
-	}
-
-	public void setDestination(Destination destination) {
-		this.destination = destination;
-	}
+//	public Destination getDestination() {
+//		return destination;
+//	}
+//
+//	public void setDestination(Destination destination) {
+//		this.destination = destination;
+//	}
 
 	@Override
 	public int hashCode() {
