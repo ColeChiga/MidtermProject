@@ -30,10 +30,10 @@
 						<p class="lead"></p>
 					</div>
 					<div class="col-md-5">
-						<img
+						<a href="individual.do?destinationId=${destinationList.id}"><img
 							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
 							width="500px" height="500px" src="${destinationList.imageUrl}"
-							role="img" aria-label="Placeholder: 500x500">
+							role="img" aria-label="Placeholder: 500x500"></a>
 						<title>${destinationList.name}</title>
 						<rect width="25%" height="500px" fill="var(--bs-secondary-bg)"></rect>
 						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>

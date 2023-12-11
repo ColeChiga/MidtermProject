@@ -19,8 +19,8 @@
 				<li class="nav-item"><a class="nav-link" href="showAllDestinations.do">Show All
 						Destinations</a></li>
 			</ul>
-			<form class="d-flex" role="search" action="#">
-				<input class="form-control me-2" type="text" name="#"
+			<form class="d-flex" role="search" action="individual.do">
+				<input class="form-control me-2" type="text" name="destinationId"
 					placeholder="Enter City Name" aria-label="Search By Keyword"
 					required>
 				<button class="btn btn-outline-warning" type="submit">Search

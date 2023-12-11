@@ -25,6 +25,10 @@ public class DestinationDaoImpl{
 	
 	}
 	
+	public Destination findDestinationById(int destinationId){
+		return em.find(Destination.class, destinationId);
+	}
+	
 	
 	
 	
