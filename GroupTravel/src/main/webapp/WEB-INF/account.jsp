@@ -57,7 +57,7 @@ body {
 		<c:forEach items="${sessionUser.vacations}" var="vacation">
 			<a
 				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-				href="home.do">${vacation.title}</a>
+				href="vacation.do?vacationId=${vacation.id}">${vacation.title}</a>
 			<br>
 		</c:forEach>
 
