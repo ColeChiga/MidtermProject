@@ -30,7 +30,7 @@ body {
 	<br>
 	<div class="mx-auto p-2" style="width: 200px">
 
-		<form>
+		<form action="createAccount.do" method="POST">
 			<label for="title">*First Name : </label><input type="text"
 				name="firstName" value="first Name" required><br> <label
 				for="title">*Last Name : </label><input type="text" name="lastName"
@@ -42,6 +42,16 @@ body {
 				for="title">*About Me : </label>
 			<textarea rows="4" cols="50" name="aboutMe"
 				value="${sessionUser.aboutMe}"></textarea>
+			<label for="title">*Address : </label>
+		
+			<label for="title">*Street : </label><input type="text"
+				name="street" value="street" required><br>
+			<label for="title">*City : </label><input type="text"
+				name="city" value="city" required><br>
+			<label for="title">*State : </label><input type="text"
+				name="state" value="state" required><br>
+			<label for="title">*Postal Code : </label><input type="text"
+				name="postalCode" value="postal Code" required><br>
 			<button class="btn btn-outline-warning" type="submit">Create
 				Account</button>
 		</form>

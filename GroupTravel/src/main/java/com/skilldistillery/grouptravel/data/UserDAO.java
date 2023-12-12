@@ -8,6 +8,12 @@ import com.skilldistillery.grouptravel.entities.User;
 public interface UserDAO {
 	User authenticateUser(String username, String password);
 
-	List<Destination> findAll();
+	public List<Destination> findAll();
+
+	User create(User user);
+
+	User update(int userId, User user);
+
+	boolean deleteById(int userId);
 
 }

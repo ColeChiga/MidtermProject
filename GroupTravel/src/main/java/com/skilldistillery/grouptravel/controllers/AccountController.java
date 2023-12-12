@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.grouptravel.data.UserDAO;
+import com.skilldistillery.grouptravel.entities.Address;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,7 +29,8 @@ public class AccountController {
 	@RequestMapping(path = { "createAccount.do" })
 	public String createAccount(HttpSession session) {
 		if (session.getAttribute("sessionUser") == null) {
-			
+			Address createAddress = null;
+			session.setAttribute("sessionAddress", createAddress);
 			return "createAccount";
 		} else {
 			return "updateAccount";
