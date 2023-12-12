@@ -9,19 +9,13 @@
 		<class>com.skilldistillery.grouptravel.entities.Attendee</class>
 		<class>com.skilldistillery.grouptravel.entities.AttendeeId</class>
 		<class>com.skilldistillery.grouptravel.entities.Destination</class>
-		<class>com.skilldistillery.grouptravel.entities.DestinationActivity</class>
-		<class>com.skilldistillery.grouptravel.entities.DestinationActivityID</class>
 		<class>com.skilldistillery.grouptravel.entities.DestinationVote</class>
 		<class>com.skilldistillery.grouptravel.entities.DestinationVoteId</class>
 		<class>com.skilldistillery.grouptravel.entities.Family</class>
 		<class>com.skilldistillery.grouptravel.entities.Flight</class>
 		<class>com.skilldistillery.grouptravel.entities.Location</class>
 		<class>com.skilldistillery.grouptravel.entities.LocationCategory</class>
-		<class>com.skilldistillery.grouptravel.entities.NearbyDestination</class>
-		<class>com.skilldistillery.grouptravel.entities.NearbyDestinationId</class>
 		<class>com.skilldistillery.grouptravel.entities.User</class>
-		<class>com.skilldistillery.grouptravel.entities.UserFamily</class>
-		<class>com.skilldistillery.grouptravel.entities.UserFamilyID</class>
 		<class>com.skilldistillery.grouptravel.entities.Vacation</class>
 		<class>com.skilldistillery.grouptravel.entities.VacationComment</class>
 		<class>com.skilldistillery.grouptravel.entities.VacationDestination</class>

@@ -33,11 +33,7 @@ body {
 		<form action="updateAccount.do" method="POST">
 		
 			<input type="text" name="userId" value="${sessionUser.id}" readonly="readonly" hidden="hidden" />
-			
-			<input type="text" name="vacations" value="${sessionUser.vacations}" readonly="readonly" hidden="hidden" />
-			
-			<input type="text" name="families" value="${sessionUser.families}" readonly="readonly" hidden="hidden" />
-			
+						
 			<label for="title">*First Name : </label><input type="text" name="firstName" value="${sessionUser.firstName}" required><br> 
 			
 			<label for="title">*Last Name : </label><input type="text" name="lastName" value="${sessionUser.lastName}" required><br> 
@@ -48,7 +44,7 @@ body {
 			
 			<label for="title">*Image URL : </label><input type="text" name="imageUrl" value="${sessionUser.imageUrl}"> <br> 
 			
-			<label for="title">*About Me : </label> <textarea rows="4" cols="50" name="aboutMe" value="${sessionUser.aboutMe}"></textarea>
+			<label for="title">*About Me : </label> <textarea rows="4" cols="50" name="aboutMe">${sessionUser.aboutMe}</textarea>
 			
 			<label for="title">*Address : </label> <input type="text" name="addressId" value="${sessionAddress.id}" readonly="readonly" hidden="hidden" />
 			

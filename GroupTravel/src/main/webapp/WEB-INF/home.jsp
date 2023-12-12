@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
+	<jsp:include page="navbar.jsp" />
 	<main>
 
 		<div id="myCarousel" class="carousel slide mb-6"
@@ -104,13 +104,26 @@
 						height="140"
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg"
 						role="img" aria-label="Placeholder">
-					
-					<h2 class="fw-normal">New Account</h2>
-					<p>Some representative placeholder content for the three
-						columns of text below the carousel. This is the first column.</p>
-					<p>
-						<a class="btn btn-secondary" href="createAccount.do">Create account »</a>
-					</p>
+					<c:choose>
+						<c:when test="${! empty sessionUser }">
+							<h2 class="fw-normal">Update Account</h2>
+							<p>Some representative placeholder content for the three
+								columns of text below the carousel. This is the first column.</p>
+							<p>
+								<a class="btn btn-secondary" href="updateAccount.do">Update
+									account »</a>
+							</p>
+						</c:when>
+						<c:otherwise>
+						<h2 class="fw-normal">New Account</h2>
+						<p>Some representative placeholder content for the three
+							columns of text below the carousel. This is the first column.</p>
+						<p>
+							<a class="btn btn-secondary" href="createAccount.do">Create
+								account »</a>
+						</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<!-- /.col-lg-4 -->
 				<div class="col-lg-4">

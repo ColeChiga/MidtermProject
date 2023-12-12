@@ -63,9 +63,9 @@ body {
 
 		<!--About Me-->
 		<h1>About Me</h1>
+		<p>${sessionUser.aboutMe}</p>
 		<!--Image URL -->
 		<img src="${sessionUser.imageUrl}" width="400" height="400" />
-		<p>${sessionUser.aboutMe}</p>
 
 
 		<!-- Comments -->
