@@ -7,10 +7,14 @@ import com.skilldistillery.grouptravel.entities.Destination;
 
 public interface AddressDao {
 
-	public List<Destination> findAll() ;
+	public List<Destination> findAll();
 
-	public Destination findDestinationById(int destinationId) ;
+	public Destination findDestinationById(int destinationId);
 
 	public Address create(Address address);
+
+	Address update(int id, Address address);
+
+	boolean deleteById(int userId);
 
 }

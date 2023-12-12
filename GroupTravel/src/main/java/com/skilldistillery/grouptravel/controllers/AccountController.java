@@ -26,7 +26,7 @@ public class AccountController {
 
 	}
 	
-	@RequestMapping(path = { "createAccount.do" })
+	@RequestMapping(path = { "createAccount.do", "updateAccount.do" })
 	public String createAccount(HttpSession session) {
 		if (session.getAttribute("sessionUser") == null) {
 			Address createAddress = null;

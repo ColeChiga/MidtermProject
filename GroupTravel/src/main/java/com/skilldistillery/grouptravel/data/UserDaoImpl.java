@@ -63,6 +63,7 @@ public class UserDaoImpl implements UserDAO {
 			userFound.setAddress(user.getAddress());
 			userFound.setFamilies(user.getFamilies());
 			userFound.setVacations(user.getVacations());
+			user.setEnabled(true);
 		}
 		return userFound;
 	}
