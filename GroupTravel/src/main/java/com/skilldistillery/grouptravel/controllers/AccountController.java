@@ -33,6 +33,8 @@ public class AccountController {
 			session.setAttribute("sessionAddress", createAddress);
 			return "createAccount";
 		} else {
+			System.out.println(session.getAttribute("sessionAddress"));
+			System.out.println(session.getAttribute("sessionUser"));
 			return "updateAccount";
 		}
 

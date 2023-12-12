@@ -49,6 +49,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public User update(int userId, User user) {
 		User userFound = em.find(User.class, userId);
+		user.setEnabled(true);
 		if (userFound != null) {
 			userFound.setFirstName(user.getFirstName());
 			userFound.setLastName(user.getLastName());
@@ -60,10 +61,9 @@ public class UserDaoImpl implements UserDAO {
 			userFound.setCreateDate(user.getCreateDate());
 			userFound.setLastUpdate(user.getLastUpdate());
 			userFound.setAboutMe(user.getAboutMe());
-			userFound.setAddress(user.getAddress());
 			userFound.setFamilies(user.getFamilies());
 			userFound.setVacations(user.getVacations());
-			user.setEnabled(true);
+			userFound.setEnabled(user.isEnabled());
 		}
 		return userFound;
 	}
