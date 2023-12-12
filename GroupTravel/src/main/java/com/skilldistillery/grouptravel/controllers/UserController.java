@@ -52,6 +52,7 @@ public class UserController {
 		session.setAttribute("sessionAddress", updateAddress);
 		User updateUser = userDao.update(userId, user);
 		session.setAttribute("sessionUser", updateUser);
+		
 		if (updateUser == null) {
 			return "updateAccount";
 		} else {
@@ -60,7 +61,13 @@ public class UserController {
 		
 	}
 
-	
+	@RequestMapping(path = "deleteAccount.do", method = RequestMethod.GET)
+	public String deleteAccount(@RequestParam("userId") int userId, HttpSession session) {
+		userDao.deleteById(userId);
+		session.removeAttribute("sessionUser");
+		
+		return "home";
+	}
 
 //	@RequestMapping(path = "updateAccount.do", method = RequestMethod.POST)
 //	public String updateAccount(HttpSession session,User user, Address address) {

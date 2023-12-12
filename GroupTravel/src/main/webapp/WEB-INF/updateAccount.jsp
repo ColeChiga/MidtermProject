@@ -31,30 +31,37 @@ body {
 	<div class="mx-auto p-2" style="width: 200px">
 
 		<form action="updateAccount.do" method="POST">
+		
 			<input type="text" name="userId" value="${sessionUser.id}" readonly="readonly" hidden="hidden" />
-			<label for="title">*First Name : </label><input type="text"
-				name="firstName" value="${sessionUser.firstName}" required><br> <label
-				for="title">*Last Name : </label><input type="text" name="lastName"
-				value="${sessionUser.lastName}" required><br> <label for="title">*Username
-				: </label><input type="text" name="username" value="${sessionUser.username}" required><br>
-			<label for="title">*password : </label><input type="password"
-				name="password" value="${sessionUser.password}" required><br> <label for="title">*Image
-				URL : </label><input type="text" name="imageUrl" value="${sessionUser.imageUrl}"> <br> <label
-				for="title">*About Me : </label>
-			<textarea rows="4" cols="50" name="aboutMe"
-				value="${sessionUser.aboutMe}"></textarea>
-			<label for="title">*Address : </label>
-			<input type="text" name="addressId" value="${sessionAddress.id}" readonly="readonly" hidden="hidden" />
-			<label for="title">*Street : </label><input type="text"
-				name="street" value="${sessionAddress.street}" required><br>
-			<label for="title">*City : </label><input type="text"
-				name="city" value="${sessionAddress.city}" required><br>
-			<label for="title">*State : </label><input type="text"
-				name="state" value="${sessionAddress.state}" required><br>
-			<label for="title">*Postal Code : </label><input type="text"
-				name="postalCode" value="${sessionAddress.postalCode}" required><br>
-			<button class="btn btn-outline-warning" type="submit">Update
-				Account</button>
+			
+			<input type="text" name="vacations" value="${sessionUser.vacations}" readonly="readonly" hidden="hidden" />
+			
+			<input type="text" name="families" value="${sessionUser.families}" readonly="readonly" hidden="hidden" />
+			
+			<label for="title">*First Name : </label><input type="text" name="firstName" value="${sessionUser.firstName}" required><br> 
+			
+			<label for="title">*Last Name : </label><input type="text" name="lastName" value="${sessionUser.lastName}" required><br> 
+			
+			<label for="title">*Username : </label><input type="text" name="username" value="${sessionUser.username}" required><br>
+			
+			<label for="title">*password : </label><input type="password" name="password" value="${sessionUser.password}" required><br> 
+			
+			<label for="title">*Image URL : </label><input type="text" name="imageUrl" value="${sessionUser.imageUrl}"> <br> 
+			
+			<label for="title">*About Me : </label> <textarea rows="4" cols="50" name="aboutMe" value="${sessionUser.aboutMe}"></textarea>
+			
+			<label for="title">*Address : </label> <input type="text" name="addressId" value="${sessionAddress.id}" readonly="readonly" hidden="hidden" />
+			
+			<label for="title">*Street : </label><input type="text" name="street" value="${sessionAddress.street}" required><br>
+			
+			<label for="title">*City : </label><input type="text" name="city" value="${sessionAddress.city}" required><br>
+			
+			<label for="title">*State : </label><input type="text" name="state" value="${sessionAddress.state}" required><br>
+			
+			<label for="title">*Postal Code : </label><input type="text" name="postalCode" value="${sessionAddress.postalCode}" required><br>
+			
+			<button class="btn btn-outline-warning" type="submit">Update Account</button>
+			
 		</form>
 	</div>
 

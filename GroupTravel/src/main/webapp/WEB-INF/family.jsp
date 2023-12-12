@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${destination.name}</title>
+<title>Title</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -14,27 +14,39 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-		<p>Image: <img src="${destination.imageUrl}" width="400" height="400" ></p>
 
-		<p>Name: ${destination.name}</p>
-		
-		<p>Description: ${destination.description}</p>
-		
-		<p>Country: ${destination.country}</p>
+	<form action="family.do" method="GET">
 	
+	
+	<c:forEach items="${ sessionFamily}" var="family">
 
+	<h3><img src="${family.imageUrl }"></h3>
+	<h3>${family.name }</h3>
+	<h3>${family.description }</h3>
+	
+	<c:forEach items="${ family.users}" var="user">
+	
+		<p>${user.firstName }</p>
+		<p>${user.lastName }</p>
+	
+	</c:forEach>
+	<c:forEach items="${ family.vacations}" var="vacation">
+	
+		<a
+				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+				href="home.do">${vacation.title}</a>
+	
+	</c:forEach>
+	</c:forEach>
 
-
-
-
-
-
-
+		
+	</form>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-
+</body>
+</html>
 </body>
 </html>

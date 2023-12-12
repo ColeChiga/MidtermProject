@@ -42,6 +42,11 @@ class UserTest {
 	}
 
 	@Test
+	void test_families() {
+		assertNotNull(user);
+		assertTrue(user.getFamilies().size() > 0);
+	}
+	@Test
 	void test() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());

@@ -45,6 +45,7 @@ body {
 		<!-- Family -->
 		<h3>Families:</h3>
 		<c:forEach items="${sessionUser.families}" var="family">
+			<input type="hidden" name="familyId" value="${family.id}" >
 			<a
 				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 				href="family.do?familyId=${family.id}">${family.name}</a>
@@ -78,7 +79,7 @@ body {
 			<input type="hidden" name="userId" value=${sessionUser.id} >
 			<button type="submit" class="btn btn-danger"
 				onclick="return confirm('Are you sure?')">Delete
-				${sessionUser.firsName}'s Account</button>
+				${sessionUser.firstName}'s Account</button>
 		</form>
 	</div>
 

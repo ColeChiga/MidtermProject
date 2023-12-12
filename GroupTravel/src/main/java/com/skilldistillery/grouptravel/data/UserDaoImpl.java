@@ -61,8 +61,6 @@ public class UserDaoImpl implements UserDAO {
 			userFound.setCreateDate(user.getCreateDate());
 			userFound.setLastUpdate(user.getLastUpdate());
 			userFound.setAboutMe(user.getAboutMe());
-			userFound.setFamilies(user.getFamilies());
-			userFound.setVacations(user.getVacations());
 			userFound.setEnabled(user.isEnabled());
 		}
 		return userFound;
