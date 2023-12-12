@@ -26,8 +26,7 @@
 }
 	</style>
 <br>
-<div class="col-3"></div>
-<div class="col-9">
+<div class="mx-auto p-2" style="width: 200px">
 <div class="container">
 	<form action="login.do" method="post">
   <div class="row">
