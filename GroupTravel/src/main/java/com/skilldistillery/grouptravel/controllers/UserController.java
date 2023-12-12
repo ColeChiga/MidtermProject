@@ -46,12 +46,10 @@ public class UserController {
 	
 	@RequestMapping(path = "updateAccount.do", method = RequestMethod.POST)
 	public String updateAccount(HttpSession session, @RequestParam("userId")int userId, User user, @RequestParam("addressId")int addressId, Address address) {
-		userId = user.getId();
-		addressId = address.getId();
 		Address updateAddress = addressDao.update(addressId, address);
+		user.setAddress(updateAddress);
 		
 		session.setAttribute("sessionAddress", updateAddress);
-		user.setAddress(updateAddress);
 		User updateUser = userDao.update(userId, user);
 		session.setAttribute("sessionUser", updateUser);
 		if (updateUser == null) {

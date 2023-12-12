@@ -33,6 +33,8 @@ public class LoginController {
 		if (loggedInUser != null) {
 
 			session.setAttribute("sessionUser", loggedInUser);
+			session.setAttribute("sessionAddress", loggedInUser.getAddress());
+			
 			return "account";
 
 		}
