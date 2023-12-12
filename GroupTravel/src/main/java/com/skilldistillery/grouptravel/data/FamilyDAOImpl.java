@@ -27,7 +27,7 @@ public class FamilyDAOImpl implements FamilyDAO {
 	@Override
 	public Family create(Family family) {
 		em.persist(family);
-		return null;
+		return family;
 	}
 
 	@Override
