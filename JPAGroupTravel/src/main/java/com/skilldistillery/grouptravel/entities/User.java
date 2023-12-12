@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -52,6 +53,8 @@ public class User {
 	@JoinTable(name = "user_family", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "family_id"))
 	private List<Family> families;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Vacation> vacations;
 
 	public User() {
 	}
@@ -158,6 +161,14 @@ public class User {
 
 	public void setFamilies(List<Family> families) {
 		this.families = families;
+	}
+
+	public List<Vacation> getVacations() {
+		return vacations;
+	}
+
+	public void setVacations(List<Vacation> vacations) {
+		this.vacations = vacations;
 	}
 
 	@Override

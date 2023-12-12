@@ -9,29 +9,17 @@ import com.skilldistillery.grouptravel.data.UserDAO;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class AccountController {
+public class AddressController {
 
 	@Autowired
 	private UserDAO userDao;
 
-	@RequestMapping(path = { "account.do" })
-	public String account(HttpSession session) {
+	@RequestMapping(path = { "Address.do" })
+	public String address(HttpSession session) {
 		if (session.getAttribute("sessionUser") != null) {
-			
 			return "account";
 		} else {
 			return "login";
-		}
-
-	}
-	
-	@RequestMapping(path = { "createAccount.do" })
-	public String createAccount(HttpSession session) {
-		if (session.getAttribute("sessionUser") == null) {
-			
-			return "createAccount";
-		} else {
-			return "updateAccount";
 		}
 
 	}

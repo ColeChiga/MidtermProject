@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Account</title>
+<title>update Account</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -29,47 +29,25 @@ body {
 </style>
 	<br>
 	<div class="mx-auto p-2" style="width: 200px">
-		<h1>Hello ${sessionUser.firstName}</h1>
 
-		<!--First Name  -->
-		<p>First Name: ${sessionUser.firstName}</p>
-		<!-- Last Name -->
-		<p>Last Name: ${sessionUser.lastName}</p>
-		<!-- Username -->
-		<p>Username: ${sessionUser.username}</p>
-		<!-- Address -->
-		<p>Address: ${sessionUser.address.street}
-			${sessionUser.address.city}, ${sessionUser.address.state}
-			${sessionUser.address.postalCode}</p>
-
-		<!-- Family -->
-		<h3>Families:</h3>
-		<c:forEach items="${sessionUser.families}" var="family">
-			<a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-			 href="family.do?familyId=${family.id}">${family.name}</a>
-			<br>
-		</c:forEach>
-		
-		<!-- Vacations -->
-		<h3>Vacations:</h3>
-		<c:forEach items="${sessionUser.vacations}" var="vacation">
-			<a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" 
-			href="home.do">${vacation.title}</a>
-			<br>
-		</c:forEach>
-		
-		<!--About Me-->
-		<h1>About Me</h1>
-		<!--Image URL -->
-		<img ${sessionUser.imageUrl} />
-		<p>${sessionUser.aboutMe}</p>
-
-
-		<!-- Comments -->
-
+		<form>
+			<label for="title">*First Name : </label><input type="text"
+				name="firstName" value="${sessionUser.firstName}" required><br>
+			<label for="title">*Last Name : </label><input type="text"
+				name="lastName" value="${sessionUser.lastName}" required><br>
+			<label for="title">*Username : </label><input type="text"
+				name="username" value="${sessionUser.username}" required><br>
+			<label for="title">*password : </label><input type="password"
+				name="password" value="${sessionUser.password}" required><br>
+			<label for="title">*Image URL : </label><input type="text"
+				name="imageUrl" value="${sessionUser.imageUrl}"><br> <label
+				for="title">*About Me : </label>
+			<textarea rows="4" cols="50" name="aboutMe"
+				value="${sessionUser.aboutMe}"></textarea>
+			<button class="btn btn-outline-warning" type="submit">Update
+				Account</button>
+		</form>
 	</div>
-
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Family {
@@ -28,6 +29,9 @@ public class Family {
 
 	@ManyToMany(mappedBy = "families")
 	private List<User> users;
+	
+	@OneToMany(mappedBy = "family")
+	private List<Vacation> vacations;
 
 	public Family() {
 	}
@@ -86,6 +90,14 @@ public class Family {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public List<Vacation> getVacations() {
+		return vacations;
+	}
+
+	public void setVacations(List<Vacation> vacations) {
+		this.vacations = vacations;
 	}
 
 	@Override

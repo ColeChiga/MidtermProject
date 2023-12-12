@@ -109,7 +109,7 @@
 					<p>Some representative placeholder content for the three
 						columns of text below the carousel. This is the first column.</p>
 					<p>
-						<a class="btn btn-secondary" href="#">Create account »</a>
+						<a class="btn btn-secondary" href="createAccount.do">Create account »</a>
 					</p>
 				</div>
 				<!-- /.col-lg-4 -->
