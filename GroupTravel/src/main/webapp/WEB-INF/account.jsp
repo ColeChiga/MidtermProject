@@ -45,32 +45,42 @@ body {
 		<!-- Family -->
 		<h3>Families:</h3>
 		<c:forEach items="${sessionUser.families}" var="family">
-			<a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-			 href="family.do?familyId=${family.id}">${family.name}</a>
+			<a
+				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+				href="family.do?familyId=${family.id}">${family.name}</a>
 			<br>
 		</c:forEach>
-		
+
 		<!-- Vacations -->
 		<h3>Vacations:</h3>
 		<c:forEach items="${sessionUser.vacations}" var="vacation">
-			<a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" 
-			href="home.do">${vacation.title}</a>
+			<a
+				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+				href="home.do">${vacation.title}</a>
 			<br>
 		</c:forEach>
-		
+
 		<!--About Me-->
 		<h1>About Me</h1>
 		<!--Image URL -->
-		<img src="${sessionUser.imageUrl}"width = "400" height = "400" />
+		<img src="${sessionUser.imageUrl}" width="400" height="400" />
 		<p>${sessionUser.aboutMe}</p>
 
 
 		<!-- Comments -->
 
-	</div>
-	
-	
+		<form action="updateAccount.do">
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-warning">Update Account</button>
+		</form>
 
+		<form action="deleteAccount.do" method="GET">
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-danger"
+				onclick="return confirm('Are you sure?')">Delete
+				${sessionUser.firsName}'s Account</button>
+		</form>
+	</div>
 
 
 	<script

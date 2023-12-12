@@ -43,7 +43,7 @@ public class UserController {
 		}
 
 	}
-	
+
 	@RequestMapping(path = "updateAccount.do", method = RequestMethod.POST)
 	public String updateAccount(HttpSession session, @RequestParam("userId")int userId, User user, @RequestParam("addressId")int addressId, Address address) {
 		userId = user.getId();
@@ -61,6 +61,8 @@ public class UserController {
 		}
 		
 	}
+
+	
 
 //	@RequestMapping(path = "updateAccount.do", method = RequestMethod.POST)
 //	public String updateAccount(HttpSession session,User user, Address address) {
