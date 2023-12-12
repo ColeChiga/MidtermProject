@@ -61,7 +61,7 @@ body {
 		<!--About Me-->
 		<h1>About Me</h1>
 		<!--Image URL -->
-		<img ${sessionUser.imageUrl} />
+		<img src="${sessionUser.imageUrl}"width = "400" height = "400" />
 		<p>${sessionUser.aboutMe}</p>
 
 
