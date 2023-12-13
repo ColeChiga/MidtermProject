@@ -56,7 +56,7 @@ class AttendeeTest {
 	@Test
 	void test() {
 		assertNotNull(attendee);
-		assertEquals(1, attendee.getHotelId());
+		assertEquals(1, attendee.getLocation());
 		assertTrue (attendee.isConfirmed());
 		
 	}

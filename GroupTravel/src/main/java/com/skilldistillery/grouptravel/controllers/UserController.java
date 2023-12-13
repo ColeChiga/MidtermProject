@@ -69,12 +69,4 @@ public class UserController {
 		return "home";
 	}
 
-//	@RequestMapping(path = "updateAccount.do", method = RequestMethod.POST)
-//	public String updateAccount(HttpSession session,User user, Address address) {
-//		session.setAttribute("sessionAddress", addressDao.update(address.getId(), address));
-//		user.setAddress(address);
-//		session.setAttribute("sessionUser", userDao.update(user.getId(), user));
-//		return "account";
-//	}
-
 }

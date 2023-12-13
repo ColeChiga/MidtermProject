@@ -34,16 +34,13 @@
 		<c:forEach items="${vacation.destinations}" var="destination">
 			<p>${destination.destination.name}</p>
 		</c:forEach>
+		
+		<c:forEach items="${vacation.attendees}" var="attendee">  
+		<p>${attendee.user.firstName}</p>
+		<p>${attendee.user.lastName}</p>
+		
+		</c:forEach>
 			
-
-
-			<%--  <c:forEach items="${ vacation.vacations}" var="vacation">
-	
-		<a
-				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-				href="home.do">${vacation.title}</a>
-	
-	</c:forEach>--%>
 		</c:forEach>
 
 

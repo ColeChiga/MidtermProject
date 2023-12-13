@@ -44,6 +44,13 @@ public class Vacation {
 	@JoinColumn(name="family_id")
 	private Family family;
 	
+	@OneToMany(mappedBy= "vacation")
+	private List<Attendee> attendees;
+	
+	@OneToMany(mappedBy= "vacation")
+	private List<VacationComment> vacationComments;
+	
+	
 	public Vacation() {
 	}
 
@@ -133,6 +140,22 @@ public class Vacation {
 
 	public void setFamily(Family family) {
 		this.family = family;
+	}
+
+	public List<Attendee> getAttendees() {
+		return attendees;
+	}
+
+	public void setAttendees(List<Attendee> attendees) {
+		this.attendees = attendees;
+	}
+
+	public List<VacationComment> getVacationComments() {
+		return vacationComments;
+	}
+
+	public void setVacationComments(List<VacationComment> vacationComments) {
+		this.vacationComments = vacationComments;
 	}
 
 	@Override

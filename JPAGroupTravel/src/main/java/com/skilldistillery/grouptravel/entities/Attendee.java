@@ -27,9 +27,6 @@ public class Attendee {
 
 	private String remarks;
 
-	@Column(name = "hotel_id")
-	private int hotelId;
-
 	@ManyToOne
 	@JoinColumn(name = "vacation_id")
 	@MapsId(value = "vacationId")
@@ -42,6 +39,13 @@ public class Attendee {
 
 	@OneToMany(mappedBy = "attendee")
 	private List<DestinationVote> destinationVotes;
+
+	@OneToMany(mappedBy = "attendee")
+	private List<Flight> flights;
+
+	@ManyToOne
+	@JoinColumn(name = "hotel_id")
+	private Location location;
 
 	public AttendeeId getId() {
 		return id;
@@ -75,14 +79,6 @@ public class Attendee {
 		this.remarks = remarks;
 	}
 
-	public int getHotelId() {
-		return hotelId;
-	}
-
-	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
-	}
-
 	public Vacation getVacation() {
 		return vacation;
 	}
@@ -107,9 +103,25 @@ public class Attendee {
 		this.destinationVotes = destinationVotes;
 	}
 
+	public List<Flight> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(confirmed, hotelId, id, joinDate, remarks);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -121,14 +133,14 @@ public class Attendee {
 		if (getClass() != obj.getClass())
 			return false;
 		Attendee other = (Attendee) obj;
-		return confirmed == other.confirmed && hotelId == other.hotelId && Objects.equals(id, other.id)
-				&& Objects.equals(joinDate, other.joinDate) && Objects.equals(remarks, other.remarks);
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
 		return "Attendee [id=" + id + ", joinDate=" + joinDate + ", confirmed=" + confirmed + ", remarks=" + remarks
-				+ ", hotelId=" + hotelId + "]";
+				+ ", vacation=" + vacation + ", user=" + user + ", destinationVotes=" + destinationVotes + ", flights="
+				+ flights + ", location=" + location + "]";
 	}
 
 }
