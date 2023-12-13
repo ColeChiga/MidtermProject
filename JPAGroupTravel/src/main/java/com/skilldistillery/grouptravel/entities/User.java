@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,6 +56,10 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Vacation> vacations;
+	
+	
+	@OneToMany(mappedBy="user")
+	private List<Family> createdFamily;
 
 	public User() {
 	}
@@ -169,6 +174,31 @@ public class User {
 
 	public void setVacations(List<Vacation> vacations) {
 		this.vacations = vacations;
+	}
+
+	public void addFamily (Family family) {
+		if (this.families == null) {
+			this.families = new ArrayList<>();
+
+		}
+		if (!this.families.contains(family)) {
+			this.families.add(family);
+			family.addUser(this);
+		}
+	}
+	public void removeFamily(Family family) {
+		if (this.families!=null && this.families.contains(family)) {
+			this.families.remove(family);
+			family.removeUser(this);
+		}
+	}
+
+	public List<Family> getCreatedFamily() {
+		return createdFamily;
+	}
+
+	public void setCreatedFamily(List<Family> createdFamily) {
+		this.createdFamily = createdFamily;
 	}
 
 	@Override

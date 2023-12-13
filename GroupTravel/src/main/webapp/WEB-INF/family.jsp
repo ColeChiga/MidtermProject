@@ -24,6 +24,8 @@
 	<h3>${family.name }</h3>
 	<h3>${family.description }</h3>
 	
+	<!--Join Family button  -->
+	
 	<c:forEach items="${ family.users}" var="user">
 	
 		<p>${user.firstName }</p>

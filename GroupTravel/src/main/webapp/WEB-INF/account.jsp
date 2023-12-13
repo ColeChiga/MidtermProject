@@ -52,6 +52,10 @@ body {
 			<br>
 		</c:forEach>
 
+		<form action="createFamily.do">
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-warning">Create Family</button>
+		</form>
 		<!-- Vacations -->
 		<h3>Vacations:</h3>
 		<c:forEach items="${sessionUser.vacations}" var="vacation">
@@ -61,6 +65,10 @@ body {
 			<br>
 		</c:forEach>
 
+		<form action="createVacation.do">
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-warning">Create Vacation</button>
+		</form>
 		<!--About Me-->
 		<h1>About Me</h1>
 		<p>${sessionUser.aboutMe}</p>

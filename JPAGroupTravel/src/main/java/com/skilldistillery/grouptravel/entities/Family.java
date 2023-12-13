@@ -1,6 +1,7 @@
 package com.skilldistillery.grouptravel.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -32,6 +35,10 @@ public class Family {
 	
 	@OneToMany(mappedBy = "family")
 	private List<Vacation> vacations;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public Family() {
 	}
@@ -98,6 +105,31 @@ public class Family {
 
 	public void setVacations(List<Vacation> vacations) {
 		this.vacations = vacations;
+	}
+	
+	public void addUser (User user) {
+		if (this.users == null) {
+			this.users = new ArrayList<>();
+
+		}
+		if (!this.users.contains(user)) {
+			this.users.add(user);
+			user.addFamily(this);
+		}
+	}
+	public void removeUser(User user) {
+		if (this.users!=null && this.users.contains(user)) {
+			this.users.remove(user);
+			user.removeFamily(this);
+		}
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
