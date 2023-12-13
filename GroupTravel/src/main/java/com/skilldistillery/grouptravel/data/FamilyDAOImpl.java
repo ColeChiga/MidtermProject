@@ -28,6 +28,7 @@ public class FamilyDAOImpl implements FamilyDAO {
 	@Override
 	public Family create(Family family) {
 		em.persist(family);
+		family.setEnabled(true);
 		return family;
 	}
 
@@ -35,11 +36,13 @@ public class FamilyDAOImpl implements FamilyDAO {
 	public Family update(int familyId, Family family, User user) {
 		Family famFound = em.find(Family.class, familyId);
 		user = em.find(User.class, user.getId());
+		family.setEnabled(true);
 		if (famFound != null) {
 			famFound.addUser(user);
 			famFound.setName(family.getName());
 			famFound.setDescription(family.getDescription());
 			famFound.setImageUrl(family.getImageUrl());
+			famFound.setEnabled(family.isEnabled());
 
 		}
 		return famFound;
@@ -50,8 +53,8 @@ public class FamilyDAOImpl implements FamilyDAO {
 		Family deletedFam = em.find(Family.class, familyId);
 		boolean successfullDeletedFam = false;
 		if (deletedFam != null) {
-			em.remove(deletedFam);
-			successfullDeletedFam = !em.contains(deletedFam);
+			deletedFam.setEnabled(false);
+			successfullDeletedFam = !deletedFam.isEnabled();
 		}
 		return successfullDeletedFam;
 	}

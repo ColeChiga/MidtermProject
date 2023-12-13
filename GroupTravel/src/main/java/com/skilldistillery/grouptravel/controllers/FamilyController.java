@@ -41,6 +41,7 @@ public class FamilyController {
 	public String createFamilyGet(HttpSession session, @RequestParam("userId") int id, User user, Family family) {
 		user = (User) session.getAttribute("sessionUser");
 		family.setUser(user);
+		family.setName("placeholder");
 		Family createFamily = familyDao.create(family);
 		List<Family> listFam = new ArrayList<>();
 		listFam.add(createFamily);
@@ -65,9 +66,8 @@ public class FamilyController {
 	}
 
 	@RequestMapping(path = "updateFamily.do", method = RequestMethod.POST)
-	public String updateFamily(HttpSession session, User user, Family family) {
+	public String updateFamilyUsers(HttpSession session, User user, Family family) {
 		user = (User) session.getAttribute("sessionUser");
-		System.out.println(user);
 		List<Family>listFamily = (List<Family>) session.getAttribute("sessionFamily");
 		family = listFamily.get(0);
 		userDao.update(user.getId(), user);
@@ -78,5 +78,55 @@ public class FamilyController {
 		session.setAttribute("sessionFamily", family);
 		return "account";
 
+	}
+	@RequestMapping(path = "updateFamilyValues.do", method = RequestMethod.GET)
+	public String createFamilyValuesGet(HttpSession session, User user, Family family) {
+		user = (User) session.getAttribute("sessionUser");
+		List<Family>listFamily = (List<Family>) session.getAttribute("sessionFamily");
+		family = listFamily.get(0);
+		userDao.update(user.getId(), user);
+		user.addFamily(family);
+		familyDao.update(family.getId(), family, user);
+		session.setAttribute("sessionUser", user);
+		session.setAttribute("family", family);
+		session.setAttribute("sessionFamily", family);
+	
+		
+		return "updateFamily";
+		}
+	
+	@RequestMapping(path = "updateFamilyValues.do", method = RequestMethod.POST)
+	public String createFamilyValuesPost(HttpSession session, @RequestParam("familyId") int id, User user, Family family) {
+
+		user = (User) session.getAttribute("sessionUser");
+		userDao.update(user.getId(), user);
+		Family createFamily = familyDao.update(id, family, user);
+		List<Family> listFam = new ArrayList<>();
+		listFam.add(createFamily);
+		user.setCreatedFamily(listFam);
+		user.addFamily(createFamily);
+		session.setAttribute("sessionUser", user);
+		session.setAttribute("sessionFamily", createFamily);
+		return "newFamily";
+	}
+	
+	@RequestMapping(path = "deleteFamily.do", method = RequestMethod.GET)
+	public String deleteAccount(@RequestParam("familyId") int familyId, HttpSession session) {
+		familyDao.deleteById(familyId);
+			refreshSessionUser(session);
+		return "redirect:account.do";
+	}
+	
+	public void refreshSessionUser(HttpSession session) {
+		User user = (User) session.getAttribute("sessionUser");
+		user = userDao.authenticateUser(user.getUsername(), user.getPassword());
+		if(user != null) {
+			user.getFamilies().size();
+			user.getVacations().size();
+			user.getCreatedFamily().size();
+			session.setAttribute("sessionUser", user);
+			
+		}
+		
 	}
 }

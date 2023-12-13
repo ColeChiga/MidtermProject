@@ -67,12 +67,13 @@ DROP TABLE IF EXISTS `family` ;
 
 CREATE TABLE IF NOT EXISTS `family` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NOT NULL,
   `description` TEXT NULL,
   `user_id` INT NOT NULL,
   `image_url` VARCHAR(2000) NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_family_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_family_user1`
@@ -463,7 +464,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL);
+INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`, `enabled`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL, NULL);
 
 COMMIT;
 

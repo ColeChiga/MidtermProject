@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Family</title>
+<title>Update Family</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -15,12 +15,17 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 
-	<form action="newFamily.do" method="GET">
+	<form action="updateFamilyValues.do" method="POST">
 		
-<p>${sessionFamily.name}</p>
-<p>${sessionFamily.description}</p>
-<p>${sessionFamily.imageUrl}</p>
+			<input type="text" name="familyId" value="${sessionFamily.id}" readonly="readonly" hidden="hidden" />
 						
+			<label for="title">*Family Name : </label><input type="text" name="name" value="${sessionFamily.name}" required><br> 
+			
+			<label for="title">Description : </label><input type="text" name="description" value="${sessionFamily.description}" ><br> 
+			
+			<label for="title">Image URL : </label><input type="text" name="imageUrl" value="${sessionFamily.imageUrl}"> <br> 
+			
+			<button class="btn btn-outline-warning" type="submit">Update Family</button>
 			
 		</form>
 		

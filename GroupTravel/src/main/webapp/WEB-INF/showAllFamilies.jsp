@@ -17,7 +17,7 @@
 
 
 	<c:forEach items="${ familyList}" var="family">
-
+		<c:if test="${family.enabled }">
 		<h3>
 			<img src="${family.imageUrl }"
 				class="bd-placeholder-img rounded-circle" width="140" height="140"
@@ -27,6 +27,7 @@
 			class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 			href="family.do?familyId=${family.id}">${family.name}</a>
 		<h3>${family.description }</h3>
+		</c:if>
 	</c:forEach>
 
 

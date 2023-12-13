@@ -39,6 +39,8 @@ public class Family {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	private boolean enabled;
 
 	public Family() {
 	}
@@ -130,6 +132,14 @@ public class Family {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override

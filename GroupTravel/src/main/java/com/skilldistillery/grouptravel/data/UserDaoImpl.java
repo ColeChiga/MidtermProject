@@ -71,8 +71,8 @@ public class UserDaoImpl implements UserDAO {
 		User deletedUser= em.find(User.class, userId);
 		boolean successfullDeletedUser = false;
 		if (deletedUser != null) {
-			em.remove(deletedUser);
-			successfullDeletedUser = !em.contains(deletedUser);
+			deletedUser.setEnabled(false);
+			successfullDeletedUser = !deletedUser.isEnabled();
 		}
 		return successfullDeletedUser;
 	}
