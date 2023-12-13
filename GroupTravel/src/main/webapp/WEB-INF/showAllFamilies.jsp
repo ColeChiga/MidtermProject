@@ -14,18 +14,24 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	
+
 
 	<c:forEach items="${ familyList}" var="family">
 
-	<h3><img src="${family.imageUrl }"></h3>
-	<h3>${family.name }</h3>
-	<h3>${family.description }</h3>
+		<h3>
+			<img src="${family.imageUrl }"
+				class="bd-placeholder-img rounded-circle" width="140" height="140"
+				role="img" aria-label="Placeholder">
+		</h3>
+		<a
+			class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+			href="family.do?familyId=${family.id}">${family.name}</a>
+		<h3>${family.description }</h3>
 	</c:forEach>
-	
 
-    <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 </body>

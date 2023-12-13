@@ -38,7 +38,7 @@ public class FamilyController {
 	}
 
 	@RequestMapping(path = "createFamily.do", method = RequestMethod.GET)
-	public String createFamilyGet(HttpSession session,@RequestParam("userId")int id, User user, Family family) {
+	public String createFamilyGet(HttpSession session, @RequestParam("userId") int id, User user, Family family) {
 		user = (User) session.getAttribute("sessionUser");
 		family.setUser(user);
 		Family createFamily = familyDao.create(family);
@@ -46,19 +46,37 @@ public class FamilyController {
 		listFam.add(createFamily);
 		session.setAttribute("sessionFamily", createFamily);
 		user.setCreatedFamily(listFam);
-			return "createFamily";
+		return "createFamily";
 	}
-	
+
 	@RequestMapping(path = "createFamily.do", method = RequestMethod.POST)
-	public String createFamilyPost(HttpSession session, @RequestParam("familyId")int id, User user,Family family) {
-	
+	public String createFamilyPost(HttpSession session, @RequestParam("familyId") int id, User user, Family family) {
+
 		user = (User) session.getAttribute("sessionUser");
-		userDao.update(user.getId(),user);
-		Family createFamily = familyDao.update(id,family);
+		userDao.update(user.getId(), user);
+		Family createFamily = familyDao.update(id, family, user);
 		List<Family> listFam = new ArrayList<>();
 		listFam.add(createFamily);
-		session.setAttribute("sessionFamily", createFamily);
 		user.setCreatedFamily(listFam);
-		return"newFamily";
+		user.addFamily(createFamily);
+		session.setAttribute("sessionUser", user);
+		session.setAttribute("sessionFamily", createFamily);
+		return "newFamily";
+	}
+
+	@RequestMapping(path = "updateFamily.do", method = RequestMethod.POST)
+	public String updateFamily(HttpSession session, User user, Family family) {
+		user = (User) session.getAttribute("sessionUser");
+		System.out.println(user);
+		List<Family>listFamily = (List<Family>) session.getAttribute("sessionFamily");
+		family = listFamily.get(0);
+		userDao.update(user.getId(), user);
+		user.addFamily(family);
+		familyDao.update(family.getId(), family, user);
+		session.setAttribute("sessionUser", user);
+		session.setAttribute("family", family);
+		session.setAttribute("sessionFamily", family);
+		return "account";
+
 	}
 }

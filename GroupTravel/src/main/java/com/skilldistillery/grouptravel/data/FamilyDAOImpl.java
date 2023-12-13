@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Family;
+import com.skilldistillery.grouptravel.entities.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -32,10 +32,11 @@ public class FamilyDAOImpl implements FamilyDAO {
 	}
 
 	@Override
-	public Family update(int familyId, Family family) {
+	public Family update(int familyId, Family family, User user) {
 		Family famFound = em.find(Family.class, familyId);
-
+		user = em.find(User.class, user.getId());
 		if (famFound != null) {
+			famFound.addUser(user);
 			famFound.setName(family.getName());
 			famFound.setDescription(family.getDescription());
 			famFound.setImageUrl(family.getImageUrl());

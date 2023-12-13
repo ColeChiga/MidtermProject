@@ -41,8 +41,12 @@
 	</c:forEach>
 	</c:forEach>
 
-		
 	</form>
+		<form action="updateFamily.do" method = "POST">
+			<input type="hidden" name="familyId" value=${family.id} >
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-warning">Add Yourself</button>
+		</form>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
