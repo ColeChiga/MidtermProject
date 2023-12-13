@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Family;
 
 import jakarta.persistence.EntityManager;
@@ -52,6 +53,12 @@ public class FamilyDAOImpl implements FamilyDAO {
 			successfullDeletedFam = !em.contains(deletedFam);
 		}
 		return successfullDeletedFam;
+	}
+	
+	@Override
+	public List<Family> findAll() {
+		String jpql = "SELECT family FROM Family family";
+        return em.createQuery(jpql, Family.class).getResultList();
 	}
 
 }

@@ -13,5 +13,7 @@ public interface FamilyDAO {
 	Family update(int familyId, Family family);
 
 	boolean deleteById(int familyId);
+	
+	public List<Family> findAll();
 
 }
