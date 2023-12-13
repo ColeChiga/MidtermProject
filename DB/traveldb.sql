@@ -464,7 +464,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`, `enabled`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL, NULL);
+INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`, `enabled`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL, 1);
 
 COMMIT;
 
