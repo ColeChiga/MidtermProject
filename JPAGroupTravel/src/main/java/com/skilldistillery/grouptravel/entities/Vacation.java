@@ -50,6 +50,8 @@ public class Vacation {
 	@OneToMany(mappedBy= "vacation")
 	private List<VacationComment> vacationComments;
 	
+	private boolean active;
+	
 	
 	public Vacation() {
 	}
@@ -156,6 +158,14 @@ public class Vacation {
 
 	public void setVacationComments(List<VacationComment> vacationComments) {
 		this.vacationComments = vacationComments;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

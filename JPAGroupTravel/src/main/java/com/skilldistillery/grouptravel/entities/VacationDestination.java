@@ -52,6 +52,8 @@ public class VacationDestination {
 
 	@OneToMany(mappedBy = "destination")
 	private List<DestinationVote> destinationVotes;
+	
+	private boolean active;
 
 	public Destination getDestination() {
 		return destination;
@@ -123,6 +125,14 @@ public class VacationDestination {
 
 	public void setDestinationVotes(List<DestinationVote> destinationVotes) {
 		this.destinationVotes = destinationVotes;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

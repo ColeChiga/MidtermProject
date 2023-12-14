@@ -9,6 +9,7 @@ import com.skilldistillery.grouptravel.entities.Vacation;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
 public class VacationDaoImpl implements VacationDAO {
@@ -22,6 +23,7 @@ public class VacationDaoImpl implements VacationDAO {
 
 		return em.createQuery(jpql, Vacation.class).setParameter("id", id).getResultList();
 	}
+
 	@Override
 	public Vacation findVacationById(int id) {
 		String jpql = "Select vacation FROM Vacation vacation WHERE vacation.id = :id";
@@ -31,6 +33,7 @@ public class VacationDaoImpl implements VacationDAO {
 	@Override
 	public Vacation create(Vacation vacation) {
 		em.persist(vacation);
+		vacation.setActive(true);
 		return vacation;
 	}
 
@@ -38,10 +41,12 @@ public class VacationDaoImpl implements VacationDAO {
 	public Vacation update(int vacationId, Vacation vacation) {
 		Vacation vacaFound = em.find(Vacation.class, vacationId);
 
+		vacation.setActive(true);
 		if (vacaFound != null) {
 			vacaFound.setTitle(vacation.getTitle());
 			vacaFound.setDescription(vacation.getDescription());
 			vacaFound.setImageUrl(vacation.getImageUrl());
+			vacaFound.setActive(vacation.isActive());
 		}
 		return vacaFound;
 	}
@@ -57,7 +62,4 @@ public class VacationDaoImpl implements VacationDAO {
 		return successfullDeletedVaca;
 	}
 
-
-	}
-
-
+}
