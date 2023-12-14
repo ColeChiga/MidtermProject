@@ -8,6 +8,8 @@ public interface VacationDAO {
 
 	List<Vacation> findVacationByUserId(int id);
 
+	Vacation findVacationById(int id);
+
 	Vacation create(Vacation vacation);
 
 	Vacation update(int vacationId, Vacation vacation);

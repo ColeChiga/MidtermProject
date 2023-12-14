@@ -22,6 +22,11 @@ public class VacationDaoImpl implements VacationDAO {
 
 		return em.createQuery(jpql, Vacation.class).setParameter("id", id).getResultList();
 	}
+	@Override
+	public Vacation findVacationById(int id) {
+		String jpql = "Select vacation FROM Vacation vacation WHERE vacation.id = :id";
+		return em.createQuery(jpql, Vacation.class).setParameter("id", id).getSingleResult();
+	}
 
 	@Override
 	public Vacation create(Vacation vacation) {
@@ -51,6 +56,7 @@ public class VacationDaoImpl implements VacationDAO {
 		}
 		return successfullDeletedVaca;
 	}
+
 
 	}
 

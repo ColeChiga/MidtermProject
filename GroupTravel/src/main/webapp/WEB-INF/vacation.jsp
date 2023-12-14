@@ -17,7 +17,8 @@
 
 
 
-		<c:forEach items="${ sessionVacation}" var="vacation">
+	<c:choose>
+		<c:when test="${not empty vacation}">
 
 			<h3>
 				<img src="${vacation.imageUrl }">
@@ -39,15 +40,22 @@
 				<p>${attendee.user.lastName}</p>
 
 			</c:forEach>
-			
+
 			<form action="updateVacation.do" method="GET">
 				<input type="hidden" name="vacationId" value="${vacation.id}">
 				<button type="submit" class="btn btn-warning">Update
 					Vacation</button>
 			</form>
+			<br>
+			<form action="createAttendee.do" method="GET">
+				<input type="hidden" name="familyId" value="${vacation.family.id}">
+				<input type="hidden" name="vacationId" value="${vacation.id}">
+				<button type="submit" class="btn btn-warning">Add Attendee</button>
+			</form>
 
-
-		</c:forEach>
+		</c:when>
+		<c:otherwise>Vacation not found</c:otherwise>
+	</c:choose>
 
 
 

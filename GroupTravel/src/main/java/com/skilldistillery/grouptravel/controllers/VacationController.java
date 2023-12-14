@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +29,10 @@ public class VacationController {
 	private UserDAO userDao;
 
 	@RequestMapping(path = "vacation.do", method = RequestMethod.GET)
-	public String getVacation(HttpSession session, @RequestParam("vacationId") int id) {
+	public String getVacation(HttpSession session, @RequestParam("vacationId") int id, Model model) {
 		if (session.getAttribute("sessionUser") != null) {
-			session.setAttribute("sessionVacation", vacationDao.findVacationByUserId(id));
-
+			//session.setAttribute("sessionVacation", vacationDao.findVacationById(id));
+			model.addAttribute("vacation", vacationDao.findVacationById(id));
 			return "vacation";
 
 		}
@@ -77,6 +78,16 @@ public class VacationController {
 		session.setAttribute("sessionVacation", updatedVacay);	
 		refreshSessionUser(session);
 		return "redirect:account.do";
+	}
+	
+	@RequestMapping(path= "removeUser.do", method = RequestMethod.GET)
+	public String removerUserFromVacation(HttpSession session, @RequestParam("vacationId") int vacationId, Vacation vacation, User user) {
+		user = (User) session.getAttribute("sessionUser");
+		session.removeAttribute("sessionUser");
+		
+
+		return null;
+		
 	}
 
 	public void refreshSessionUser(HttpSession session) {
