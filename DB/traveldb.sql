@@ -130,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `vacation` (
   `image_url` VARCHAR(2000) NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vacation_group1_idx` (`family_id` ASC),
   INDEX `fk_vacation_user1_idx` (`user_id` ASC),
@@ -350,6 +351,7 @@ CREATE TABLE IF NOT EXISTS `vacation_destination` (
   `remarks` TEXT NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`vacation_id`, `destination_id`),
   INDEX `fk_vacation_has_destination_destination1_idx` (`destination_id` ASC),
   INDEX `fk_vacation_has_destination_vacation1_idx` (`vacation_id` ASC),
@@ -498,7 +500,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL);
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -584,7 +586,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`) VALUES (1, 1, 1, 'meh', NULL, NULL);
+INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`, `active`) VALUES (1, 1, 1, 'meh', NULL, NULL, NULL);
 
 COMMIT;
 
