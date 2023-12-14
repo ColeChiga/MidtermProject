@@ -24,6 +24,12 @@ public class FamilyDAOImpl implements FamilyDAO {
 
 		return em.createQuery(jpql, Family.class).setParameter("id", id).getResultList();
 	}
+	@Override
+	public Family findFamilyById(int id) {
+		String jpql = "SELECT family FROM Family family WHERE family.id = :id";
+		
+		return em.createQuery(jpql, Family.class).setParameter("id", id).getSingleResult();
+	}
 
 	@Override
 	public Family create(Family family) {

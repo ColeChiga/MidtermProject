@@ -38,9 +38,15 @@
 
 			<a
 				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-				href="home.do">${vacation.title}</a>
-
+				href="vacation.do?vacationId=${vacation.id}">${vacation.title}</a>
+<br>
 		</c:forEach>
+
+		<form action="createVacation.do">
+			<input type="hidden" name="userId" value=${sessionUser.id} >
+			<button type="submit" class="btn btn-warning">Create
+				Vacation</button>
+		</form>
 
 		<form action="updateFamily.do" method="POST">
 			<input type="hidden" name="familyId" value=${family.id} > <input

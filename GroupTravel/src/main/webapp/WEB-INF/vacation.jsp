@@ -15,7 +15,6 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 
-	<form action="vacation.do" method="GET">
 
 
 		<c:forEach items="${ sessionVacation}" var="vacation">
@@ -31,26 +30,30 @@
 			<p>${vacation.user.firstName }</p>
 			<p>${vacation.user.lastName }</p>
 			<p>${vacation.family.name}</p>
-		<c:forEach items="${vacation.destinations}" var="destination">
-			<p>${destination.destination.name}</p>
-		</c:forEach>
-		
-		<c:forEach items="${vacation.attendees}" var="attendee">  
-		<p>${attendee.user.firstName}</p>
-		<p>${attendee.user.lastName}</p>
-		
-		</c:forEach>
+			<c:forEach items="${vacation.destinations}" var="destination">
+				<p>${destination.destination.name}</p>
+			</c:forEach>
+
+			<c:forEach items="${vacation.attendees}" var="attendee">
+				<p>${attendee.user.firstName}</p>
+				<p>${attendee.user.lastName}</p>
+
+			</c:forEach>
 			
+			<form action="updateVacation.do" method="GET">
+				<input type="hidden" name="vacationId" value="${vacation.id}">
+				<button type="submit" class="btn btn-warning">Update
+					Vacation</button>
+			</form>
+
+
 		</c:forEach>
 
 
-	</form>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-</body>
-</html>
 </body>
 </html>

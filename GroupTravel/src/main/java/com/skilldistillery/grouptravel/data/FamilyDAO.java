@@ -17,4 +17,6 @@ public interface FamilyDAO {
 	
 	public List<Family> findAll();
 
+	Family findFamilyById(int id);
+
 }
