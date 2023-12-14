@@ -56,8 +56,8 @@ public class VacationDaoImpl implements VacationDAO {
 		Vacation deletedVaca = em.find(Vacation.class, vacationId);
 		boolean successfullDeletedVaca = false;
 		if (deletedVaca != null) {
-			em.remove(deletedVaca);
-			successfullDeletedVaca = !em.contains(deletedVaca);
+			deletedVaca.setActive(successfullDeletedVaca);
+			successfullDeletedVaca = !deletedVaca.isActive();
 		}
 		return successfullDeletedVaca;
 	}

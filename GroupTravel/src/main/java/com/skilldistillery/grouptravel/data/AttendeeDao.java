@@ -3,6 +3,7 @@ package com.skilldistillery.grouptravel.data;
 import java.util.List;
 
 import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Vacation;
 
 public interface AttendeeDao {
@@ -13,8 +14,8 @@ public interface AttendeeDao {
 
 	public Attendee create(Attendee attendee, int vacationId, int userId);
 
-	Attendee update(int id, Attendee attendee);
+	Attendee update(AttendeeId id, Attendee attendee);
 
-	boolean deleteById(int userId);
+	boolean deleteById(int userId, int vacationId);
 
 }

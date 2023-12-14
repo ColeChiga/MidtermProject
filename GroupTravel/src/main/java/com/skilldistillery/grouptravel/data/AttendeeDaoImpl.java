@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.grouptravel.entities.Attendee;
 import com.skilldistillery.grouptravel.entities.AttendeeId;
+import com.skilldistillery.grouptravel.entities.DestinationVote;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 
@@ -41,18 +42,25 @@ public class AttendeeDaoImpl implements AttendeeDao {
 		Vacation vacation = em.find(Vacation.class ,vacationId);
 		User user = em.find(User.class, userId);
 		if (vacation !=null && user !=null) {
+			if(attendee.getUser() == null && attendee.getVacation() == null) {
+				
 			AttendeeId attendeeId = new AttendeeId(vacationId, userId);
+			if(em.find(Attendee.class, attendeeId) == null) {
+				
 			attendee.setId(attendeeId);
 			attendee.setUser(user);
 			attendee.setVacation(vacation);
 			em.persist(attendee);
 			return attendee;
 		}
+			
+			}
+		}
 		return null;
 	}
 
 	@Override
-	public Attendee update(int id, Attendee attendee) {
+	public Attendee update(AttendeeId id, Attendee attendee) {
 		Attendee attendeeFound = em.find(Attendee.class, id);
 		attendee.setConfirmed(true);
 		if (attendeeFound != null) {
@@ -64,13 +72,18 @@ public class AttendeeDaoImpl implements AttendeeDao {
 	}
 
 	@Override
-	public boolean deleteById(int userId) {
-		Attendee deletedAttendee = em.find(Attendee.class, userId);
+	public boolean deleteById(int userId, int vacationId) {
+		AttendeeId attendeeId = new AttendeeId(vacationId, userId);
+		Attendee deletedAttendee = em.find(Attendee.class, attendeeId);
 		boolean successfullDeletedAttendee = false;
-		if (deletedAttendee != null) {
-			deletedAttendee.setConfirmed(false);
-			successfullDeletedAttendee = !deletedAttendee.isConfirmed();
-		}
+			if (deletedAttendee != null) {
+				for (DestinationVote dv : deletedAttendee.getDestinationVotes()) {
+					em.remove(dv);
+				}
+				em.remove(deletedAttendee);
+				successfullDeletedAttendee = true;
+			}
+			
 		return successfullDeletedAttendee;
 	}
 

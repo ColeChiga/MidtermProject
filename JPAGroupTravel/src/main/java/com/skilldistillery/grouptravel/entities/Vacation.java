@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Vacation {
@@ -37,22 +38,21 @@ public class Vacation {
 	private List<VacationDestination> destinations;
 
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToOne
-	@JoinColumn(name="family_id")
+	@JoinColumn(name = "family_id")
 	private Family family;
-	
-	@OneToMany(mappedBy= "vacation")
+
+	@OneToMany(mappedBy = "vacation")
 	private List<Attendee> attendees;
-	
-	@OneToMany(mappedBy= "vacation")
+
+	@OneToMany(mappedBy = "vacation")
 	private List<VacationComment> vacationComments;
-	
+
 	private boolean active;
-	
-	
+
 	public Vacation() {
 	}
 
@@ -166,6 +166,19 @@ public class Vacation {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	@Transient
+	public boolean userIsAttendee(int userId) {
+		boolean isAttendee = false;
+		for (Attendee attendee : attendees) {
+			if (attendee.getUser().getId() == userId) {
+				isAttendee = true;
+				break;
+			}
+		}
+
+		return isAttendee;
 	}
 
 	@Override

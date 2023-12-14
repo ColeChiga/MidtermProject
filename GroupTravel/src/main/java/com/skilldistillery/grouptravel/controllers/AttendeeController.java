@@ -14,6 +14,7 @@ import com.skilldistillery.grouptravel.data.FamilyDAO;
 import com.skilldistillery.grouptravel.data.UserDAO;
 import com.skilldistillery.grouptravel.data.VacationDAO;
 import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Family;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
@@ -52,9 +53,11 @@ public class AttendeeController {
 			@RequestParam("vacationId") int vacationId, Model model) {
 		Family family = familyDao.findFamilyById(familyId);
 		Vacation vacation = vacationDao.findVacationById(vacationId);
+
 		// session.setAttribute("sessionFamily", family);
 		model.addAttribute("family", family);
 		model.addAttribute("vacation", vacation);
+		model.addAttribute("attendee", vacation.getAttendees());
 		return "createAttendee";
 	}
 
@@ -63,15 +66,25 @@ public class AttendeeController {
 			@RequestParam("vacationId") int vacationId, Attendee attendee, Model model) {
 		User user = (User) session.getAttribute("sessionUser");
 		Vacation vacation = vacationDao.findVacationById(vacationId);
-		vacation.setUser(user);
-//		List<Attendee> attendees = vacation.getAttendees();
-//		attendees.add(attendee);
-//		vacation.setAttendees(attendees);
-		Attendee createAttendee = attendeeDAO.create(attendee, vacationId, userId);
-		model.addAttribute("createAttendee", createAttendee);
-		model.addAttribute("vacation", vacation);
-//		session.setAttribute("sessionAttendee", createAttendee);
-//		session.setAttribute("sessionVacation", vacation);
+		Attendee createAttendee = null;
+		try {
+			createAttendee = attendeeDAO.create(attendee, vacationId, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (createAttendee == null) {
+
+			model.addAttribute("createAttendee", createAttendee);
+			model.addAttribute("vacation", vacation);
+			refreshSessionUser(session);
+		}
+		return "redirect:vacation.do?vacationId=" + vacationId;
+	}
+
+	@RequestMapping(path = "removeAttendee.do", method = RequestMethod.GET)
+	public String removeAttendee(@RequestParam("userId") int userId, @RequestParam("vacationId") int vacationId,
+			HttpSession session) {
+		attendeeDAO.deleteById(userId, vacationId);
 		refreshSessionUser(session);
 		return "redirect:vacation.do?vacationId=" + vacationId;
 	}

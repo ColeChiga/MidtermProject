@@ -63,9 +63,7 @@ public class VacationController {
 	@RequestMapping(path = "updateVacation.do", method = RequestMethod.GET)
 	public String updateVacationGet(HttpSession session, @RequestParam("vacationId")int vacationId,  Vacation vacation) {
 		User user = (User) session.getAttribute("sessionUser");
-		List<Vacation> vacations=(List<Vacation>) session.getAttribute("sessionVacation");
-		vacation=vacations.get(0);
-		
+		vacation= (Vacation) session.getAttribute("sessionVacation");
 		session.setAttribute("sessionVacation", vacation);	
 		return "updateVacation";
 		}

@@ -500,7 +500,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL, NULL);
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL, 1);
 
 COMMIT;
 
@@ -586,7 +586,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`, `active`) VALUES (1, 1, 1, 'meh', NULL, NULL, NULL);
+INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`, `active`) VALUES (1, 1, 1, 'meh', NULL, NULL, 1);
 
 COMMIT;
 

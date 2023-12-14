@@ -28,16 +28,16 @@
 
 
 
-			<p>${vacation.user.firstName }</p>
-			<p>${vacation.user.lastName }</p>
+			<p>Created By: ${vacation.user.firstName } ${vacation.user.lastName }</p>
 			<p>${vacation.family.name}</p>
 			<c:forEach items="${vacation.destinations}" var="destination">
 				<p>${destination.destination.name}</p>
 			</c:forEach>
-
-			<c:forEach items="${vacation.attendees}" var="attendee">
-				<p>${attendee.user.firstName}</p>
-				<p>${attendee.user.lastName}</p>
+				<c:forEach items="${vacation.attendees}" var="attendee">
+				<%-- <c:if test="${attendee.confirmed}"> --%>
+					<p>Attendee: ${attendee.user.firstName}
+						${attendee.user.lastName} Confirmed: ${attendee.confirmed } </p>
+			<%-- 	</c:if> --%>
 
 			</c:forEach>
 
@@ -50,8 +50,9 @@
 			<form action="createAttendee.do" method="GET">
 				<input type="hidden" name="familyId" value="${vacation.family.id}">
 				<input type="hidden" name="vacationId" value="${vacation.id}">
-				<button type="submit" class="btn btn-warning">Add Attendee</button>
+				<button type="submit" class="btn btn-warning">Add/Remove Attendee</button>
 			</form>
+			
 
 		</c:when>
 		<c:otherwise>Vacation not found</c:otherwise>
