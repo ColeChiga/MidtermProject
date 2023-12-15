@@ -97,9 +97,17 @@
 						</form>
 						<ul class="list-group list-group-flush">
 							<c:forEach items="${vacation.vacationComments}" var="comment">
-														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}
+														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}  
+								<form action="removeComment.do" method="POST"><input type="hidden" name="commentId"
+								value="${comment.id}"><input type="hidden" name="vacationId"
+								value="${vacation.id}">
+									<button type="submit"
+										class="btn btn-outline-danger mb-2 btn-sm"
+										onclick="return confirm('Are you sure?')">Remove
+										comment</button>
+								</form>
 														 <br>
-													</c:forEach>
+							</c:forEach>
 						</ul>
 
 					</div>

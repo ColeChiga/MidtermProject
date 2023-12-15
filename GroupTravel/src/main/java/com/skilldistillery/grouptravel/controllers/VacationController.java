@@ -110,8 +110,16 @@ public class VacationController {
 			e.printStackTrace();
 		}
 		refreshSessionUser(session);
-		return "redirect:vacation.do?vacationId="+vacationId;
+		return "redirect:vacation.do?vacationId=" + vacationId;
 
+	}
+
+	@RequestMapping(path = "removeComment.do", method = RequestMethod.POST)
+	public String removeComment(HttpSession session, @RequestParam("vacationId") int vacationId, @RequestParam ("commentId") int commentId,
+			Vacation vacation, User user, Model model) {
+		user = (User) session.getAttribute("sessionUser");
+		vacationCommentDao.deleteById(commentId);
+		return "redirect:vacation.do?vacationId=" + vacationId;
 	}
 
 	public void refreshSessionUser(HttpSession session) {

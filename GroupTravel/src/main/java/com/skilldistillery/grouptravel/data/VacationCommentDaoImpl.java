@@ -2,6 +2,10 @@ package com.skilldistillery.grouptravel.data;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
+import com.skilldistillery.grouptravel.entities.DestinationVote;
+import com.skilldistillery.grouptravel.entities.Flight;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 import com.skilldistillery.grouptravel.entities.VacationComment;
@@ -20,7 +24,6 @@ public class VacationCommentDaoImpl implements VacationCommentDao {
 	@Override
 	public VacationComment create(Vacation vacation, User user, String comments) {
 		VacationComment vacationComments = new VacationComment();
-		//em.find(VacationComment.class, vacationComments);
 			vacationComments.setComment(comments);
 			vacationComments.setUser(user);
 			vacationComments.setVacation(vacation);
@@ -33,14 +36,10 @@ public class VacationCommentDaoImpl implements VacationCommentDao {
 	}
 
 	@Override
-	public boolean deleteById(Vacation vacation) {
-		VacationComment deletedVacationComment = em.find(VacationComment.class, vacation);
-		boolean successfullDeletedVacationComment = false;
-		if (deletedVacationComment != null) {
-			em.remove(deletedVacationComment);
-			successfullDeletedVacationComment = !em.contains(deletedVacationComment);
-		}
-		return successfullDeletedVacationComment;
+	public boolean deleteById(int vacationId) {
+		VacationComment deleteVacationComment = em.find(VacationComment.class, vacationId);
+		em.remove(deleteVacationComment);
+		return false;
 	}
 
 }

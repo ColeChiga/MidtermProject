@@ -9,6 +9,6 @@ public interface VacationCommentDao {
 	VacationComment create(Vacation vacation, User user, String comments);
 	
 	
-	boolean deleteById(Vacation vacation);
+	boolean deleteById(int vacationId);
 	
 }
