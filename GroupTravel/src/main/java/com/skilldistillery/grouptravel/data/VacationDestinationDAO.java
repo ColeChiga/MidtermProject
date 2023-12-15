@@ -17,6 +17,8 @@ public interface VacationDestinationDAO {
 	VacationDestination create(Vacation vacation, Destination destination, User user, String remarks);
 
 	List<VacationDestination >findVacationDestinationByVacationId(int id);
+
+	boolean deleteById(int destinationId, int vacationId);
 	
 	
 }

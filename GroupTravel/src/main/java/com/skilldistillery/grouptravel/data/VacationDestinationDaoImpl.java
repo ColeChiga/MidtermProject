@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Destination;
+import com.skilldistillery.grouptravel.entities.DestinationVote;
+import com.skilldistillery.grouptravel.entities.Flight;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 import com.skilldistillery.grouptravel.entities.VacationDestination;
@@ -45,8 +49,8 @@ public class VacationDestinationDaoImpl implements VacationDestinationDAO {
 		
 		
 		VacationDestinationId vdi = new VacationDestinationId(vacation.getId(), destination.getId());
-		System.out.println(vdi.toString());
-		if (em.find(VacationDestination.class, vdi) == null) {
+		VacationDestination newDestination = em.find(VacationDestination.class, vdi);
+		if ( newDestination == null) {
 			VacationDestination vd = new VacationDestination();
 			vd.setId(vdi);
 			vd.setActive(true);
@@ -59,7 +63,27 @@ public class VacationDestinationDaoImpl implements VacationDestinationDAO {
 			em.persist(vd);
 			return vd;
 		}
-		return null;
+		else{ 
+			newDestination.setActive(true);
+			newDestination.setRemarks(remarks);
+		}
+		return newDestination;
+	}
+
+	@Override
+	public boolean deleteById(int destinationId, int vacationId) {
+		VacationDestinationId vdi = new VacationDestinationId(vacationId, destinationId);
+
+		Destination destination = em.find(Destination.class, destinationId);
+ 		VacationDestination deletedVD = em.find(VacationDestination.class, vdi);
+		
+		boolean successfullDeletedAttendee = false;
+		if (deletedVD != null) {
+			deletedVD.setActive(false);
+			successfullDeletedAttendee = true;
+		}
+
+		return successfullDeletedAttendee;		
 	}
 
 }

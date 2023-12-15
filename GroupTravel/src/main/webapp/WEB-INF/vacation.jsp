@@ -56,10 +56,21 @@
 								<ul class="list-group list-group-flush">
 									<c:forEach items="${destinations}" var="destination">
 										<c:if test="${not empty destination}">
-											<li class="list-group-item"><a
+											<c:if test="${destination.active}">
+											<li class="list-group-item">
+											<form action="removeVacationDestination.do" method="POST">
+											<a
 												href="individual.do?destinationId=${destination.destination.id}">${destination.destination.name},
 													${destination.destination.description}</a>
-												${destination.remarks}</li>
+												${destination.remarks}
+												<input type="hidden" name="vacationId" value="${vacation.id}">
+												<input type="hidden" name="destinationId" value="${destination.destination.id}">
+												<button type="submit" class="btn btn-danger mb-2 btn-sm" onclick="return confirm('Are you sure?')">Remove
+													destination</button>
+											</form>
+												</li>
+										</c:if>
+
 										</c:if>
 									</c:forEach>
 								</ul>

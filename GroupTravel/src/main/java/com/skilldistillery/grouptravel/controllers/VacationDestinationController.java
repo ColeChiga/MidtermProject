@@ -124,10 +124,10 @@ public class VacationDestinationController {
 		
 	}
 
-	@RequestMapping(path = "removeVacationDestination.do", method = RequestMethod.GET)
-	public String removeAttendee(@RequestParam("userId") int userId, @RequestParam("vacationId") int vacationId,
+	@RequestMapping(path = "removeVacationDestination.do", method = RequestMethod.POST)
+	public String removeVacationDestination(@RequestParam("destinationId") int destinationId, @RequestParam("vacationId") int vacationId,
 			HttpSession session) {
-		attendeeDAO.deleteById(userId, vacationId);
+		vacationDestinationDao.deleteById(destinationId, vacationId);
 		refreshSessionUser(session);
 		return "redirect:vacation.do?vacationId=" + vacationId;
 	}
