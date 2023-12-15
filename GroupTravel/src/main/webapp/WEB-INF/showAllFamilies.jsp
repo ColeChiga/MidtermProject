@@ -14,7 +14,17 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-
+<style>
+	body {
+	color: dark;
+	background-image:
+		url('https://img.freepik.com/free-photo/cute-animals-group-white-background_23-2150038562.jpg?w=1800&t=st=1702604821~exp=1702605421~hmac=c7292b7316f5de23c1fca7bcda79e7514b9570e907ca88a124b5815859a95c3f');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font color= dark;
+}
+	</style>
 
 	<c:forEach items="${ familyList}" var="family">
 		<c:if test="${family.enabled }">
@@ -24,7 +34,7 @@
 				role="img" aria-label="Placeholder">
 		</h3>
 		<a
-			class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+			class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 			href="family.do?familyId=${family.id}">${family.name}</a>
 		<h3>${family.description }</h3>
 		</c:if>

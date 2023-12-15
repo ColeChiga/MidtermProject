@@ -14,6 +14,17 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
+	<style>
+	body {
+	color: white;
+	background-image:
+		url('https://img.freepik.com/free-photo/small-flag-map-travel-concept_169016-28625.jpg?w=1800&t=st=1702604548~exp=1702605148~hmac=f41b7f5738cb7c3cf9f6d901752e1908066b4b4503b618d75db8eeadbe06172b');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font color= white;
+}
+	</style>
 
 	<hr class="featurette-divider">
 	<c:choose>
@@ -23,20 +34,19 @@
 				<div class="row featurette">
 					<div class="col-md-7">
 						<h2 class="featurette-heading fw-normal lh-1">
-							${destinationList.name} <span class="text-body-secondary">Insert
-								funny comment</span>
+							${destinationList.name} <span class="text-body-secondary">${destinationList.description}</span>
 						</h2>
 
 						<p class="lead"></p>
 					</div>
 					<div class="col-md-5">
 						<a href="individual.do?destinationId=${destinationList.id}"><img
-							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-							width="500px" height="500px" src="${destinationList.imageUrl}"
+							class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
+							width="500px" height="250px" src="${destinationList.imageUrl}"
 							role="img" aria-label="Placeholder: 500x500"></a>
 						<title>${destinationList.name}</title>
 						<rect width="25%" height="500px" fill="var(--bs-secondary-bg)"></rect>
-						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">${destinationList.country}</text>
 					</div>
 				</div>
 		<hr class="featurette-divider">

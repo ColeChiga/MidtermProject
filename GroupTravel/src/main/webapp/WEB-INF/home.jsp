@@ -37,10 +37,9 @@
 					<div class="container">
 						<div class="carousel-caption text-start">
 							<h1>Daytona Beach, Florida</h1>
-							<p class="opacity-75">Some representative placeholder content
-								for the first slide of the carousel.</p>
+							<p class="opacity-75">Known for Daytona International Speedway.</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="#">Sign up today</a>
+								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=3">View Destination</a>
 							</p>
 						</div>
 					</div>
@@ -53,10 +52,9 @@
 					<div class="container">
 						<div class="carousel-caption">
 							<h1>Miami, Florida</h1>
-							<p>Some representative placeholder content for the second
-								slide of the carousel.</p>
+							<p>Famous for its golden beaches, foodie scene and Latin vibe.</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="#">Learn more</a>
+								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=2">Learn more</a>
 							</p>
 						</div>
 					</div>
@@ -69,10 +67,9 @@
 					<div class="container">
 						<div class="carousel-caption text-end">
 							<h1>Orlando, Florida</h1>
-							<p>Some representative placeholder content for the third
-								slide of this carousel.</p>
+							<p>Known as the Theme Park Capital of the World</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
+								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=1">Browse Destination</a>
 							</p>
 						</div>
 					</div>
@@ -99,10 +96,10 @@
 
 			<!-- Three columns of text below the carousel -->
 			<div class="row">
-				<div class="col-lg-4">
-					<img class="bd-placeholder-img rounded-circle" width="140"
+				<div class="col-lg-4 card mb-3">
+					<img class="bd-placeholder-img rounded-circle " width="140"
 						height="140"
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg"
+						src="https://img.freepik.com/free-photo/vertical-shot-wooden-passage-reflective-small-lake-mountain-range-horizon_181624-37099.jpg?w=826&t=st=1702602022~exp=1702602622~hmac=d4f363079c3e740b18c54476ea434020fe5ce016d9b95ba02b3ca1245b51f41d"
 						role="img" aria-label="Placeholder">
 					<c:choose>
 						<c:when test="${! empty sessionUser }">
@@ -115,67 +112,43 @@
 							</p>
 						</c:when>
 						<c:otherwise>
-							<h2 class="fw-normal">New Account</h2>
-							<p>Some representative placeholder content for the three
-								columns of text below the carousel. This is the first column.</p>
-							<p>
-								<a class="btn btn-secondary" href="createAccount.do">Create
-									account »</a>
-							</p>
+						<h2 class="fw-normal">New Account</h2>
+						<p>Join your family and make an account to link each others trips together.</p>
+						<p>
+							<a class="btn btn-warning" href="createAccount.do">Create
+								account »</a>
+						</p>
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<!-- /.col-lg-4 -->
-				<div class="col-lg-4">
+				<div class="col-lg-4 card mb-3">
 					<img class="bd-placeholder-img rounded-circle" width="140"
 						height="140"
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg"
+						src="https://img.freepik.com/premium-photo/clear-days-aerial-view-beachs-waves-crashing-shore_410516-2232.jpg?w=1800"
 						role="img" aria-label="Placeholder">
 					<h2 class="fw-normal">Log in to your account</h2>
-					<p>Another exciting bit of representative placeholder content.
-						This time, we've moved on to the second column.</p>
+					<p>One of the team already? Then come on in and start making memories.</p>
 					<p>
-						<a class="btn btn-secondary" href="#">Log in »</a>
+						<a class="btn btn-primary" href="http://localhost:8085/login.do">Log in »</a>
 					</p>
 				</div>
 				<!-- /.col-lg-4 -->
-				<div class="col-lg-4">
-				<video class="bd-hover-img rounded-circle" width="140" height="140" loop=""
-							autoplay="" playsinline="">
-							<source
-								src="https://vod-bgc-na-east-1.media.dssott.com/bgui/ps01/disney/bgui/2019/08/07/1565217923-national-geographic.mp4"
-								type="video/mp4">
-						</video>
+				<div class="col-lg-4 card mb-3">
+					<img class="bd-placeholder-img rounded-circle" width="140"
+						height="140"
+						src="https://img.freepik.com/free-photo/vertical-shot-avenue-giants-california_181624-27567.jpg?w=826&t=st=1702601113~exp=1702601713~hmac=1c2a3fa88b5a8815025aed11c5730da00a2b80a88e351b7a40bc1b807a3cfa16"
+						role="img" aria-label="Placeholder">
 					<h2 class="fw-normal">View all available destinations</h2>
-					<p>And lastly this, the third column of representative
-						placeholder content.</p>
+					<p>Check out all the places others have been so far.</p>
 					<p>
-						<a class="btn btn-secondary" href="#">View Destinations »</a>
+						<a class="btn btn-success" href="http://localhost:8085/showAllDestinations.do">View Destinations »</a>
 					</p>
 				</div>
 				<!-- /.col-lg-4 -->
 			</div>
 			<!-- /.row -->
-			<div role="link" class="sc-cvbbAY dMCmmS skipToContentTarget"
-				tabindex="0" aria-label="National Geographic"
-				data-testid="asset-wrapper-1-4" data-gv2elementkey="contentTile"
-				data-gv2elementtype="contentId"
-				data-gv2elementvalue="3bf4b88f-49a0-4533-ad24-97af0ca9b1d3">
-				<div class="sc-bdVaJa hRKcBi image-container" alt=""
-					style="background: linear-gradient(rgb(48, 50, 62), rgb(30, 31, 42)); border-radius: 4px; padding-top: 56.25%;">
-					<div>
-						<img alt=""
-							src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2EF24AA0A1E648E6D1A3B26491F516632137ED87AB22969D153316F8BD670FB5/scale?width=640&amp;aspectRatio=1.78&amp;format=png"
-							class="sc-bwzfXH hlugew">
-						<video class="hover-image" width="320" height="240" loop=""
-							autoplay="" playsinline="">
-							<source
-								src="https://vod-bgc-na-east-1.media.dssott.com/bgui/ps01/disney/bgui/2019/08/07/1565217923-national-geographic.mp4"
-								type="video/mp4">
-						</video>
-					</div>
-				</div>
-			</div>
+
 
 			<!-- START THE FEATURETTES -->
 
@@ -184,20 +157,17 @@
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading fw-normal lh-1">
-						First featurette heading. <span class="text-body-secondary">It’ll
+						Looking for an adventure check out these Destinations. <span class="text-body-secondary"> It’ll
 							blow your mind.</span>
 					</h2>
 					<p class="lead"></p>
 				</div>
 				<div class="col-md-5">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="var(--bs-secondary-bg)"></rect>
-						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+					<img
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
+						width="400" height="300" src="https://img.freepik.com/free-photo/beautiful-scenery-emerald-lake-yoho-national-park-british-columbia-canada_181624-6877.jpg?w=900&t=st=1702602171~exp=1702602771~hmac=c030f14b4afd1d7e5dcd49afe87dc28e482833d568d17dd48c78cba0aa42560f"
+						role="img" aria-label="Placeholder: 500x500">
+						<a href="http://localhost:8085/showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Destinations</text></a>
 				</div>
 			</div>
 
@@ -206,20 +176,17 @@
 			<div class="row featurette">
 				<div class="col-md-7 order-md-2">
 					<h2 class="featurette-heading fw-normal lh-1">
-						Oh yeah, it’s that good. <span class="text-body-secondary">See
+						Check out these Locations. <span class="text-body-secondary"> See
 							for yourself.</span>
 					</h2>
 					<p class="lead"></p>
 				</div>
 				<div class="col-md-5 order-md-1">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="var(--bs-secondary-bg)"></rect>
-						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+					<img
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
+						width="400" height="300" src="https://img.freepik.com/free-photo/world-map-continent-global-support-graphic_53876-124649.jpg?w=900&t=st=1702603256~exp=1702603856~hmac=ba34c94ab6b954e420021c1ee30cb3656464fcf36d2ef977c047024d79a57038"
+						role="img" aria-label="Placeholder: 500x500">
+						<a href="#"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Locations</text></a>
 				</div>
 			</div>
 
@@ -228,19 +195,16 @@
 			<div class="row featurette">
 				<div class="col-md-7">
 					<h2 class="featurette-heading fw-normal lh-1">
-						And lastly, this one. <span class="text-body-secondary">Checkmate.</span>
+						Looking for an activity? <span class="text-body-secondary"> Come on over.</span>
 					</h2>
 					<p class="lead"></p>
 				</div>
 				<div class="col-md-5">
-					<svg
-						class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-						width="500" height="500" xmlns="http://www.w3.org/2000/svg"
-						role="img" aria-label="Placeholder: 500x500"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="var(--bs-secondary-bg)"></rect>
-						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+					<img
+						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
+						width="400" height="300" src="https://img.freepik.com/free-photo/always-fun-see-tall-ferris-wheel-when-approaching-park-holidays-full-happy-people_181624-2216.jpg?w=1480&t=st=1702603404~exp=1702604004~hmac=8fc0465936c6f3834861862a0654fa95d50036214c905baf6424315cd04650f2"
+						role="img" aria-label="Placeholder: 500x500">
+						<a href="#"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Activites</text></a>
 				</div>
 			</div>
 
