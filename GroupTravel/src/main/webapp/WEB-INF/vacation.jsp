@@ -34,10 +34,6 @@
 									<small class="text-muted">Family:
 										${vacation.family.name}</small>
 								</p>
-								<c:forEach items="${vacation.destinations}" var="destination">
-									<li class="list-group-item">Destination:
-										${destination.destination.name}</li>
-								</c:forEach>
 
 								<h6 class="card-subtitle mt-3 mb-2 text-muted">Confirmed
 									Attendees:</h6>
@@ -74,6 +70,7 @@
 											</form>
 												</li>
 										</c:if>
+
 										</c:if>
 									</c:forEach>
 								</ul>
@@ -100,6 +97,22 @@
 							<button type="submit" class="btn btn-warning">Add
 								Destination</button>
 						</form>
+
+						<form action="createVacationComment.do" method="GET">
+							<input type="hidden" name="familyId"
+								value="${vacation.family.id}"> <input type="hidden"
+								name="vacationId" value="${vacation.id}">
+							<textarea rows="4" cols="50" name="comment" value="Add Comment"></textarea>
+							<button type="submit" class="btn btn-warning">Add
+								Comment</button>
+						</form>
+						<ul class="list-group list-group-flush">
+							<c:forEach items="${vacation.vacationComments}" var="comment">
+														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}
+														 <br>
+													</c:forEach>
+						</ul>
+
 					</div>
 				</div>
 			</c:when>
