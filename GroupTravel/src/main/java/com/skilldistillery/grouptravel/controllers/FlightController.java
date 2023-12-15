@@ -2,6 +2,7 @@ package com.skilldistillery.grouptravel.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,13 +19,15 @@ public class FlightController {
 	private FlightDAO flightDao;
 
 	@RequestMapping(path = "createFlight.do", method = RequestMethod.POST)
-	public String createAccount(HttpSession session, Flight flight) {
-		Flight createFlight = flightDao.create(flight);
-		session.setAttribute("sessionFlight", createFlight);
+	public String createAccount(HttpSession session, Flight flight, Model model,
+			@RequestParam("vacationId") int vacationId, @RequestParam("userId") int userId) {
+		Flight createFlight = flightDao.create(flight, userId, vacationId);
+		model.addAttribute("flight", createFlight);
+		
 		if (createFlight == null) {
-			return "createAccount";
+			return "createFlight";
 		} else {
-			return "account";
+			return "redirect:vacation.do?vacationId=" + vacationId ;
 		}
 
 	}

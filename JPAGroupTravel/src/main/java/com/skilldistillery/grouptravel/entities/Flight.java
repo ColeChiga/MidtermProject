@@ -40,6 +40,14 @@ public class Flight {
 		return id;
 	}
 
+	public Attendee getAttendee() {
+		return attendee;
+	}
+
+	public void setAttendee(Attendee attendee) {
+		this.attendee = attendee;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

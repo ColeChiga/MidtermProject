@@ -31,19 +31,28 @@
 										${vacation.user.firstName} ${vacation.user.lastName}</small>
 								</p>
 								<p class="card-text">
-									<small class="text-muted">Family: ${vacation.family.name}</small>
+									<small class="text-muted">Family:
+										${vacation.family.name}</small>
 								</p>
-									<c:forEach items="${vacation.destinations}" var="destination">
-										<li class="list-group-item">Destination: ${destination.destination.name}</li>
-									</c:forEach>
-								
+								<c:forEach items="${vacation.destinations}" var="destination">
+									<li class="list-group-item">Destination:
+										${destination.destination.name}</li>
+								</c:forEach>
+
 								<h6 class="card-subtitle mt-3 mb-2 text-muted">Confirmed
 									Attendees:</h6>
 								<ul class="list-group list-group-flush">
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${attendee.confirmed}">
-											<li class="list-group-item">${attendee.user.firstName}
-												${attendee.user.lastName}</li>
+											<c:if test="${not empty attendee.flights}">
+												<li class="list-group-item">${attendee.user.firstName}
+													${attendee.user.lastName}</li>
+												<ul class="list-group list-group-flush">
+													<c:forEach items="${ attendee.flights}" var="flight">
+														${flight.airline}, Departs: ${flight.departure}, Arrival: ${flight.arrival}
+													</c:forEach>
+												</ul>
+											</c:if>
 										</c:if>
 									</c:forEach>
 								</ul>

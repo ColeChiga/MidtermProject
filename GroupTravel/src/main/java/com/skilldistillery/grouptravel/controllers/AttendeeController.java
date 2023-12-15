@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.grouptravel.data.AttendeeDao;
 import com.skilldistillery.grouptravel.data.FamilyDAO;
+import com.skilldistillery.grouptravel.data.FlightDAO;
 import com.skilldistillery.grouptravel.data.UserDAO;
 import com.skilldistillery.grouptravel.data.VacationDAO;
 import com.skilldistillery.grouptravel.entities.Attendee;
-import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Family;
+import com.skilldistillery.grouptravel.entities.Flight;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 
@@ -36,6 +37,9 @@ public class AttendeeController {
 	@Autowired
 	FamilyDAO familyDao;
 
+	@Autowired
+	FlightDAO flightDao;
+
 	@RequestMapping(path = "attendee.do", method = RequestMethod.GET)
 	public String getAttendee(HttpSession session, @RequestParam("vacationId") int vacationId, int userId) {
 		if (session.getAttribute("sessionUser") != null) {
@@ -53,17 +57,19 @@ public class AttendeeController {
 			@RequestParam("vacationId") int vacationId, Model model) {
 		Family family = familyDao.findFamilyById(familyId);
 		Vacation vacation = vacationDao.findVacationById(vacationId);
-
+		List<Flight> flight = flightDao.findFlightByUserId(family.getUser().getId());
 		// session.setAttribute("sessionFamily", family);
 		model.addAttribute("family", family);
 		model.addAttribute("vacation", vacation);
 		model.addAttribute("attendee", vacation.getAttendees());
+		model.addAttribute("flight", flight);
 		return "createAttendee";
 	}
 
 	@RequestMapping(path = "createAttendee.do", method = RequestMethod.POST)
 	public String createAttendeePost(HttpSession session, @RequestParam("userId") int userId,
-			@RequestParam("vacationId") int vacationId, Attendee attendee, Model model) {
+			@RequestParam("vacationId") int vacationId, Attendee attendee, Model model,
+			@RequestParam("createFlight") boolean flight) {
 		User user = (User) session.getAttribute("sessionUser");
 		Vacation vacation = vacationDao.findVacationById(vacationId);
 		Attendee createAttendee = null;
@@ -78,7 +84,11 @@ public class AttendeeController {
 			model.addAttribute("vacation", vacation);
 			refreshSessionUser(session);
 		}
-		return "redirect:vacation.do?vacationId=" + vacationId;
+		if (flight) {
+			return "createFlight";
+		} else {
+			return "redirect:vacation.do?vacationId=" + vacationId;
+		}
 	}
 
 	@RequestMapping(path = "removeAttendee.do", method = RequestMethod.GET)
