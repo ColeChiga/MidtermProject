@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Vacation</title>
+<title>Vacation Details</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -15,50 +15,63 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 
-
-
-	<c:choose>
-		<c:when test="${not empty vacation}">
-
-			<h3>
-				<img src="${vacation.imageUrl }">
-			</h3>
-			<h3>${vacation.title }</h3>
-			<h3>${vacation.description }</h3>
-
-
-
-			<p>Created By: ${vacation.user.firstName } ${vacation.user.lastName }</p>
-			<p>${vacation.family.name}</p>
-			<c:forEach items="${vacation.destinations}" var="destination">
-				<p>${destination.destination.name}</p>
-			</c:forEach>
-				<c:forEach items="${vacation.attendees}" var="attendee">
-				<%-- <c:if test="${attendee.confirmed}"> --%>
-					<p>Attendee: ${attendee.user.firstName}
-						${attendee.user.lastName} Confirmed: ${attendee.confirmed } </p>
-			<%-- 	</c:if> --%>
-
-			</c:forEach>
-
-			<form action="updateVacation.do" method="GET">
-				<input type="hidden" name="vacationId" value="${vacation.id}">
-				<button type="submit" class="btn btn-warning">Update
-					Vacation</button>
-			</form>
-			<br>
-			<form action="createAttendee.do" method="GET">
-				<input type="hidden" name="familyId" value="${vacation.family.id}">
-				<input type="hidden" name="vacationId" value="${vacation.id}">
-				<button type="submit" class="btn btn-warning">Add/Remove Attendee</button>
-			</form>
-			
-
-		</c:when>
-		<c:otherwise>Vacation not found</c:otherwise>
-	</c:choose>
-
-
+	<div class="container mt-4">
+		<c:choose>
+			<c:when test="${not empty vacation}">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card mb-3">
+							<img src="${vacation.imageUrl}" class="card-img-top"
+								alt="Vacation Image">
+							<div class="card-body">
+								<h5 class="card-title">${vacation.title}</h5>
+								<p class="card-text">${vacation.description}</p>
+								<p class="card-text">
+									<small class="text-muted">Created By:
+										${vacation.user.firstName} ${vacation.user.lastName}</small>
+								</p>
+								<p class="card-text">
+									<small class="text-muted">Family: ${vacation.family.name}</small>
+								</p>
+									<c:forEach items="${vacation.destinations}" var="destination">
+										<li class="list-group-item">Destination: ${destination.destination.name}</li>
+									</c:forEach>
+								
+								<h6 class="card-subtitle mt-3 mb-2 text-muted">Confirmed
+									Attendees:</h6>
+								<ul class="list-group list-group-flush">
+									<c:forEach items="${vacation.attendees}" var="attendee">
+										<c:if test="${attendee.confirmed}">
+											<li class="list-group-item">${attendee.user.firstName}
+												${attendee.user.lastName}</li>
+										</c:if>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<form action="updateVacation.do" method="GET">
+							<input type="hidden" name="vacationId" value="${vacation.id}">
+							<button type="submit" class="btn btn-warning mb-2">Update
+								Vacation</button>
+						</form>
+						<form action="createAttendee.do" method="GET">
+							<input type="hidden" name="familyId"
+								value="${vacation.family.id}"> <input type="hidden"
+								name="vacationId" value="${vacation.id}">
+							<button type="submit" class="btn btn-warning">Add/Remove
+								Attendee</button>
+						</form>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-warning" role="alert">Vacation not
+					found</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
