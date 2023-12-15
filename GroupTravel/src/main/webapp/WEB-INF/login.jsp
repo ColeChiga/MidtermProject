@@ -41,7 +41,7 @@
 					</div>
 						<div class="row">
 							<div class="col-4">
-								<input type="submit" value="Log In">
+								<input class="btn btn-warning" type="submit" value="Log In">
 							</div>
 
 
