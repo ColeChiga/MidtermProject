@@ -56,6 +56,15 @@
 										</c:if>
 									</c:forEach>
 								</ul>
+								<h6 class="card-subtitle mt-3 mb-2 text-muted">Destinations:</h6>
+								<ul class="list-group list-group-flush">
+									<c:forEach items="${destinations}" var="destination">
+											<c:if test="${not empty destination}">
+												<li class="list-group-item"><a href="individual.do?destinationId=${destination.destination.id}">${destination.destination.name},
+													${destination.destination.description}</a> ${destination.remarks}</li>
+											</c:if>
+									</c:forEach>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -71,6 +80,12 @@
 								name="vacationId" value="${vacation.id}">
 							<button type="submit" class="btn btn-warning">Add/Remove
 								Attendee</button>
+						</form>
+						<form action="createVacationDestination.do" method="GET">
+							<input type="hidden" name="familyId"
+								value="${vacation.family.id}"> <input type="hidden"
+								name="vacationId" value="${vacation.id}">
+							<button type="submit" class="btn btn-warning">Add Destination</button>
 						</form>
 					</div>
 				</div>
