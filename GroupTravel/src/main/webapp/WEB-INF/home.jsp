@@ -115,24 +115,22 @@
 							</p>
 						</c:when>
 						<c:otherwise>
-						<h2 class="fw-normal">New Account</h2>
-						<p>Some representative placeholder content for the three
-							columns of text below the carousel. This is the first column.</p>
-						<p>
-							<a class="btn btn-secondary" href="createAccount.do">Create
-								account »</a>
-						</p>
+							<h2 class="fw-normal">New Account</h2>
+							<p>Some representative placeholder content for the three
+								columns of text below the carousel. This is the first column.</p>
+							<p>
+								<a class="btn btn-secondary" href="createAccount.do">Create
+									account »</a>
+							</p>
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<!-- /.col-lg-4 -->
 				<div class="col-lg-4">
-					<svg class="bd-placeholder-img rounded-circle" width="140"
-						height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder" preserveAspectRatio="xMidYMid slice"
-						focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="var(--bs-secondary-color)"></rect></svg>
+					<img class="bd-placeholder-img rounded-circle" width="140"
+						height="140"
+						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg/2880px-Downtown_Miami_Panorama_from_the_Rusty_Pelican_photo_D_Ramey_Logan.jpg"
+						role="img" aria-label="Placeholder">
 					<h2 class="fw-normal">Log in to your account</h2>
 					<p>Another exciting bit of representative placeholder content.
 						This time, we've moved on to the second column.</p>
@@ -142,12 +140,12 @@
 				</div>
 				<!-- /.col-lg-4 -->
 				<div class="col-lg-4">
-					<svg class="bd-placeholder-img rounded-circle" width="140"
-						height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder" preserveAspectRatio="xMidYMid slice"
-						focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%"
-							fill="var(--bs-secondary-color)"></rect></svg>
+				<video class="bd-hover-img rounded-circle" width="140" height="140" loop=""
+							autoplay="" playsinline="">
+							<source
+								src="https://vod-bgc-na-east-1.media.dssott.com/bgui/ps01/disney/bgui/2019/08/07/1565217923-national-geographic.mp4"
+								type="video/mp4">
+						</video>
 					<h2 class="fw-normal">View all available destinations</h2>
 					<p>And lastly this, the third column of representative
 						placeholder content.</p>
@@ -158,7 +156,26 @@
 				<!-- /.col-lg-4 -->
 			</div>
 			<!-- /.row -->
-
+			<div role="link" class="sc-cvbbAY dMCmmS skipToContentTarget"
+				tabindex="0" aria-label="National Geographic"
+				data-testid="asset-wrapper-1-4" data-gv2elementkey="contentTile"
+				data-gv2elementtype="contentId"
+				data-gv2elementvalue="3bf4b88f-49a0-4533-ad24-97af0ca9b1d3">
+				<div class="sc-bdVaJa hRKcBi image-container" alt=""
+					style="background: linear-gradient(rgb(48, 50, 62), rgb(30, 31, 42)); border-radius: 4px; padding-top: 56.25%;">
+					<div>
+						<img alt=""
+							src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2EF24AA0A1E648E6D1A3B26491F516632137ED87AB22969D153316F8BD670FB5/scale?width=640&amp;aspectRatio=1.78&amp;format=png"
+							class="sc-bwzfXH hlugew">
+						<video class="hover-image" width="320" height="240" loop=""
+							autoplay="" playsinline="">
+							<source
+								src="https://vod-bgc-na-east-1.media.dssott.com/bgui/ps01/disney/bgui/2019/08/07/1565217923-national-geographic.mp4"
+								type="video/mp4">
+						</video>
+					</div>
+				</div>
+			</div>
 
 			<!-- START THE FEATURETTES -->
 

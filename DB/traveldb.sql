@@ -500,7 +500,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', NULL, NULL, NULL, 1);
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', 'https://img.freepik.com/free-vector/cute-cool-gorilla-wearing-waist-bag-glasses-cartoon-vector-icon-illustration-animal-fashion_138676-6783.jpg?w=1380&t=st=1702599693~exp=1702600293~hmac=4755b770d581116450e1fefb94154b695b0eca4e1d2254c3841814bb6d005c4c', NULL, NULL, 1);
 
 COMMIT;
 
