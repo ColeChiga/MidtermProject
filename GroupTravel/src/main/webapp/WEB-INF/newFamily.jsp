@@ -33,7 +33,7 @@ body {
 		<!-- 		<div class="mx-auto my-auto p-2" style="width: 200px"> -->
 
 
-		<div class="col align-self-center">
+		<div class="col align-self-start">
 			<h3>
 				<img class="bd-placeholder-img rounded-circle" width="250"
 					height="250" src="${family.imageUrl }" role="img"

@@ -34,7 +34,7 @@ body {
 
 			<c:forEach items="${ sessionFamily}" var="family">
 
-			<div class="col align-self-center">
+			<div class="col align-self-start">
 				<h3>
 					<img class="bd-placeholder-img rounded-circle" width="250"
 						height="250" src="${family.imageUrl }" role="img"
