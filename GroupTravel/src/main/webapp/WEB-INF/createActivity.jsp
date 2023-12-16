@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Create Destination</title>
+    <title>Create Activity</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
         crossorigin="anonymous">
@@ -13,28 +13,24 @@
     <jsp:include page="navbar.jsp" />
 
     <div class="container mt-5">
-        <form action="addVacationDestination.do" method="POST">
-            <input type="text" name="vacationId" value="${vacation.id}" readonly="readonly" hidden="hidden" />
+        <form action="addDestinationActivity.do" method="POST">
+            <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
 
             <div class="mb-3">
-                <label for="familyId" class="form-label">*Vacation Destination:</label>
+                <label for="destinationId" class="form-label">*Vacation Destination:</label>
                 <select class="form-select" name="destinationId">
-                    <c:forEach items="${destinations}" var="destination">
-                        <option value="${destination.id}">${destination.name} ${destination.description}</option>
+                    <c:forEach items="${ destination.activity}" var="activity">
+                        <option value="${activity.id}">${activity.name} ${activity.description}</option>
                     </c:forEach>
                 </select>
-            </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">Remarks:</label>
-                <input type="text" class="form-control" name="remarks" value="remarks">
             </div>
             <button class="btn btn-outline-warning" type="submit">Add Destination</button>
 		</form>
 		
-        <form action="createVacationDestination.do" method="POST">
-            <input type="text" name="vacationId" value="${vacation.id}" readonly="readonly" hidden="hidden" />
+        <form action="createDestinationActivity.do" method="POST">
+            <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
             <div class="mb-3">
-                <label for="title" class="form-label">*Vacation Destination:</label>
+                <label for="title" class="form-label">*Destination Activity:</label>
                 <input type="text" class="form-control" name="name" value="name" required>
             </div>
             <div class="mb-3">
@@ -43,20 +39,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="title" class="form-label">Country:</label>
-                <input type="text" class="form-control" name="country" value="country">
+                <label for="title" class="form-label">Estimated Time In Hours:</label>
+                <input type="text" class="form-control" name="estimatedTimeInHours" value="Estimated Time In Hours">
             </div>
             <div class="mb-3">
-                <label for="title" class="form-label">Image:</label>
-                <input type="text" class="form-control" name="imageUrl" value="image Url">
+                <label for="title" class="form-label">Estimated Cost:</label>
+                <input type="text" class="form-control" name="estimatedCost" value="estimatedCost">
             </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">Remarks:</label>
-                <input type="text" class="form-control" name="remarks" value="remarks">
-            </div>
-
-
-            <button class="btn btn-outline-warning" type="submit">Create Destination</button>
+       
+            <button class="btn btn-outline-warning" type="submit">Create Activity</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>
