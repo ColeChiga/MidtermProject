@@ -17,21 +17,29 @@
 	 <input type="text" name="locationId" value="${location.id}" readonly="readonly" hidden="hidden" />
 		<p>Image: <img src="${location.imageUrl}" width="400" height="400" ></p>
 
-		<p>Name: ${location.name}</p>
+		<h3>Name: ${location.name}</h3>
 		
 		<p>Description: ${location.description}</p>
+		<p>Estimated Cost: ${location.estimatedCost}</p>
+		<p>Destination: <a href="individual.do?destinationId=${location.destination.id}">${location.destination.name}</a></p>
+		<p>Address: ${location.address.street} ${location.address.city}, ${location.address.state} ${location.address.postalCode}</p>
 		
-		<p>: ${location.category.name}</p>
-		<p>: ${location.category.description}</p>
+		<p>Location Category: ${location.category.name}</p>
+		<p>${location.category.description}</p>
 		
 		
 		<form action="updateLocation.do" method="GET">
 							<input type="hidden" name="locationId" value="${location.id}"> 
-							<button type="submit" class="btn btn-warning">update
+							<button type="submit" class="btn btn-warning">Update
 								Location</button>
 						</form>
+	<%-- 	<form action="deleteLocation.do" method="GET">
+							<input type="hidden" name="locationId" value="${location.id}"> 
+							<button type="submit" class="btn btn-danger">Remove
+								Location</button>
+						</form> --%>
 
-
+<br><br>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

@@ -13,8 +13,9 @@ public interface LocationDAO {
 
 	Location create(Location location);
 	
-	Location update(Location location, int locationId);
+	Location update(Location location, int locationId, Destination destination);
 	
 	boolean delete(int locationId);
+
 
 }

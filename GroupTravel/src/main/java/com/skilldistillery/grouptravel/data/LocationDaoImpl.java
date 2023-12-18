@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-
+import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Location;
 
 import jakarta.persistence.EntityManager;
@@ -38,12 +38,12 @@ public class LocationDaoImpl implements LocationDAO {
 	}
 
 	@Override
-	public Location update(Location location, int locationId) {
+	public Location update(Location location, int locationId, Destination destination) {
 		Location locationFound = em.find(Location.class, locationId);
 		if (locationFound != null) {
 			locationFound.setAddress(location.getAddress());
 			locationFound.setDescription(location.getDescription());
-			locationFound.setDestination(location.getDestination());
+			locationFound.setDestination(destination);
 			locationFound.setEstimatedCost(location.getEstimatedCost());
 			locationFound.setImageUrl(location.getImageUrl());
 			locationFound.setName(location.getName());

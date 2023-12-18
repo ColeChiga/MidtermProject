@@ -29,11 +29,31 @@
 		</select> <br> <label for="title">Remarks : </label><input type="text"
 			name="remarks"><br> <label for="title">Is
 			Attending? : </label><input type="checkbox" name="confirmed"> <br>
-			<label for="title">Flying : </label><input type="checkbox" name="createFlight"> <br>
-
+		
+		
+		
+		<label for="title">Hotel: </label>
+			<select
+			name="hotelId">
+				<option value="-1">None</option>
+			<c:forEach items="${hotels}" var="hotel">
+				<option value="${hotel.id}">${hotel.name}</option>
+			</c:forEach>
+		</select>
+<br>
+		
+		
+		
+		<label for="title">Flying  </label>
+		<input type="checkbox"
+			name="flight"> <br> 
+			
+			
+			
+			
 		<button class="btn btn-outline-warning" type="submit">Create
 			Attendee</button>
-						
+
 	</form>
 	<c:forEach items="${vacation.attendees}" var="attendee">
 		<div>

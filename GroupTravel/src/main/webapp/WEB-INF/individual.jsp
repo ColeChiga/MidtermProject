@@ -14,25 +14,35 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	 <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
-		<p>Image: <img src="${destination.imageUrl}" width="400" height="400" ></p>
+	<input type="text" name="destinationId" value="${destination.id}"
+		readonly="readonly" hidden="hidden" />
+	<p>
+		Image: <img src="${destination.imageUrl}" width="400" height="400">
+	</p>
 
-		<p>Name: ${destination.name}</p>
-		
-		<p>Description: ${destination.description}</p>
-		
-		<p>Country: ${destination.country}</p>
-<c:forEach items="${ destination.activity}" var="activity">
+	<p>Name: ${destination.name}</p>
+
+	<p>Description: ${destination.description}</p>
+
+	<p>Country: ${destination.country}</p>
+	<c:forEach items="${ destination.activity}" var="activity">
 	${activity.name }
 </c:forEach>
-		
-		
-		<form action="createActivity.do" method="GET">
-							<input type="hidden" name="destinationId" value="${destination.id}"> 
-							<input type="hidden" name="activityId" value="${activity.id}">
-							<button type="submit" class="btn btn-warning">Add
-								Activity</button>
-						</form>
+
+	<h6>Locations:</h6>
+	<c:forEach items="${destination.location}" var="location">
+		<li><a href="individualLocation.do?locationId=${location.id}">${location.name}</a>
+			${location.description} ${location.category.name}</li>
+	</c:forEach>
+	`
+	</ul>
+
+
+	<form action="createActivity.do" method="GET">
+		<input type="hidden" name="destinationId" value="${destination.id}">
+		<input type="hidden" name="activityId" value="${activity.id}">
+		<button type="submit" class="btn btn-warning">Add Activity</button>
+	</form>
 
 
 

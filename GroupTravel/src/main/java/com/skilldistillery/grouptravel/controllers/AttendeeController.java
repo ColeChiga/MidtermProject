@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skilldistillery.grouptravel.data.AttendeeDao;
 import com.skilldistillery.grouptravel.data.FamilyDAO;
 import com.skilldistillery.grouptravel.data.FlightDAO;
+import com.skilldistillery.grouptravel.data.LocationCategoryDAO;
+import com.skilldistillery.grouptravel.data.LocationDAO;
 import com.skilldistillery.grouptravel.data.UserDAO;
 import com.skilldistillery.grouptravel.data.VacationDAO;
 import com.skilldistillery.grouptravel.entities.Attendee;
 import com.skilldistillery.grouptravel.entities.Family;
 import com.skilldistillery.grouptravel.entities.Flight;
+import com.skilldistillery.grouptravel.entities.Location;
+import com.skilldistillery.grouptravel.entities.LocationCategory;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 
@@ -39,6 +43,10 @@ public class AttendeeController {
 
 	@Autowired
 	FlightDAO flightDao;
+	@Autowired
+	LocationCategoryDAO locationCategoryDao;
+	@Autowired
+	LocationDAO locationDao;
 
 	@RequestMapping(path = "attendee.do", method = RequestMethod.GET)
 	public String getAttendee(HttpSession session, @RequestParam("vacationId") int vacationId, int userId) {
@@ -57,21 +65,30 @@ public class AttendeeController {
 			@RequestParam("vacationId") int vacationId, Model model) {
 		Family family = familyDao.findFamilyById(familyId);
 		Vacation vacation = vacationDao.findVacationById(vacationId);
+		LocationCategory hotelCategory = locationCategoryDao.findCategoryById(1);
+		List<Location> location = hotelCategory.getLocations();
 		List<Flight> flight = flightDao.findFlightByUserId(family.getUser().getId());
 		// session.setAttribute("sessionFamily", family);
 		model.addAttribute("family", family);
 		model.addAttribute("vacation", vacation);
 		model.addAttribute("attendee", vacation.getAttendees());
 		model.addAttribute("flight", flight);
+		model.addAttribute("hotels", location);
 		return "createAttendee";
 	}
 
 	@RequestMapping(path = "createAttendee.do", method = RequestMethod.POST)
 	public String createAttendeePost(HttpSession session, @RequestParam("userId") int userId,
-			@RequestParam("vacationId") int vacationId, Attendee attendee, Model model,
-			@RequestParam("createFlight") boolean flight) {
+			@RequestParam("vacationId") int vacationId, @RequestParam("hotelId") int locationId, Attendee attendee,
+			Model model, @RequestParam("flight") boolean flight) {
+		
+		System.out.println(flight);
 		User user = (User) session.getAttribute("sessionUser");
 		Vacation vacation = vacationDao.findVacationById(vacationId);
+		if (locationId != -1) {
+			Location location = locationDao.findLocationById(locationId);
+			attendee.setLocation(location);
+		}
 		Attendee createAttendee = null;
 		try {
 			createAttendee = attendeeDAO.create(attendee, vacationId, userId);
@@ -85,6 +102,7 @@ public class AttendeeController {
 			refreshSessionUser(session);
 		}
 		if (flight) {
+			refreshSessionUser(session);
 			return "createFlight";
 		} else {
 			return "redirect:vacation.do?vacationId=" + vacationId;

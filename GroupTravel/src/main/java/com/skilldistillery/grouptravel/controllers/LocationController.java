@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.grouptravel.data.AddressDao;
+import com.skilldistillery.grouptravel.data.AttendeeDao;
 import com.skilldistillery.grouptravel.data.DestinationDAO;
 import com.skilldistillery.grouptravel.data.LocationCategoryDAO;
 import com.skilldistillery.grouptravel.data.LocationDAO;
 import com.skilldistillery.grouptravel.data.VacationDestinationDAO;
 import com.skilldistillery.grouptravel.entities.Address;
+import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Location;
 import com.skilldistillery.grouptravel.entities.LocationCategory;
@@ -34,6 +37,8 @@ public class LocationController {
 	private LocationCategoryDAO locationCategoryDao;
 	@Autowired
 	private AddressDao addressDao;
+	@Autowired
+	private AttendeeDao attendeeDao;
 
 	@RequestMapping(path = "showAllLocations.do", method = RequestMethod.GET)
 	public String allLocations(Model model) {
@@ -101,23 +106,51 @@ public class LocationController {
 
 	}
 
+	@RequestMapping(path = "updateLocation.do", method = RequestMethod.GET)
+	public String updateLocationGet(HttpSession session, Model model, @RequestParam("locationId") int locationId) {
+		if (session.getAttribute("sessionUser") != null) {
+			model.addAttribute("location", locationDao.findLocationById(locationId));
+			model.addAttribute("destinations", destinationDao.findAll());
+			return "updateLocation";
+		} else {
+			return "login";
+		}
+	}
+
 	@RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
-	public String updateAccount(HttpSession session, @RequestParam("userId") int locationId, Location location,
-			@RequestParam("vacationId") int vacationId) {
-		Location updateLocation = locationDao.update(location, locationId);
-		session.setAttribute("sessionFlight", updateLocation);
+	public String updateAccount(HttpSession session, @RequestParam("locationId") int locationId, @RequestParam("locationCategoryId") int locationCategoryId,  @RequestParam("addressId") int addressId, Location location, LocationCategory category,
+			@RequestParam("destinationId") int destinationId, Address address, @RequestParam("categoryDescription") String catDesc,
+			@RequestParam("locationDescription") String locDesc, @RequestParam("categoryName") String catName,
+			@RequestParam("locationName") String locName) {
+
+		System.out.println("*********"+ destinationId);
+		category.setDescription(catDesc);
+		location.setDescription(locDesc);
+		category.setName(catName);
+		location.setName(locName);
+		
+		Address updateAddress = addressDao.create( address);
+		LocationCategory updateCategory = locationCategoryDao.create(category);
+		location.setCategory(updateCategory);
+		location.setAddress(updateAddress);
+		Destination destination = destinationDao.findDestinationById(destinationId);
+		Location updateLocation = locationDao.update(location, locationId, destination);
 		if (updateLocation == null) {
 			return "updateLocation";
 		} else {
-			return "redirect:vacation.do?vacationId=" + vacationId;
+			return "redirect:individualLocation.do?locationId=" + locationId;
 		}
 
 	}
 
 	@RequestMapping(path = "deleteLocation.do", method = RequestMethod.GET)
-	public String deleteAccount(@RequestParam("locationId") int locationId, HttpSession session) {
-		locationDao.delete(locationId);
-		return "home";
+	public String deleteAttendeeLocation(@RequestParam("locationId") int locationId,
+			HttpSession session) {
+//		Location deleteLocation = locationDao.findLocationById(locationId);
+//		deleteLocation.s
+//		 locationDao.delete(locationId);
+
+		return "showAllLocation";
 	}
 
 }

@@ -13,13 +13,16 @@
     <jsp:include page="navbar.jsp" />
 
     <div class="container mt-5">
-        <form action="createLocation.do" method="POST">
-            <input type="text" name="vacationId" value="${vacationId}" readonly="readonly" hidden="hidden" />
+        <form action="updateLocation.do" method="POST">
+            <input type="text" name="locationId" value="${location.id}" readonly="readonly" hidden="hidden" />
+            <input type="text" name="locationCategoryId" value="${location.category.id}" readonly="readonly" hidden="hidden" />
+            <input type="text" name="addressId" value="${location.address.id}" readonly="readonly" hidden="hidden" />
 
             <div class="mb-3">
                 <label for="destinationId" class="form-label">*Location Destination:</label>
                 <select class="form-select" name="destinationId">
-                    <c:forEach items="${ destinations}" var="destination">
+                        <option value="${location.destination.id}" selected>${location.destination.name} ${location.destination.description}</option>
+                    <c:forEach items="${destinations}" var="destination">
                         <option value="${destination.id}">${destination.name} ${destination.description}</option>
                     </c:forEach>
                 </select>
@@ -27,28 +30,26 @@
 		
             <div class="mb-3">
                 <label for="title" class="form-label">*Location name:</label>
-                <input type="text" class="form-control" name="locationName" value="name" required>
+                <input type="text" class="form-control" name="locationName" value="${location.name}" required>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Location Description:</label>
-                <input type="text" class="form-control" name="locationDescription" value="Location Description">
+                <input type="text" class="form-control" name="locationDescription" value="${location.description}">
             </div>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Estimated Cost</label>
-                <input type="number" step="0.01" min="0.00" class="form-control" name="estimatedCost" value="00.00" data-type="currency">
+                <input type="number" step="0.01" min="0.00" class="form-control" name="estimatedCost" value="${location.estimatedCost}" data-type="currency">
             </div>
-             <div class="mb-3">
+            <div class="mb-3">
                 <label for="title" class="form-label">Image URL</label>
-                <input type="text" step="0.01" min="0.00" class="form-control" name="imageUrl" value="image Url">
+                <input type="text" step="0.01" min="0.00" class="form-control" name="imageUrl" value="${location.imageUrl}">
             </div>
-            
-            
             
              	<div class="mb-3">
                 <label for="locationCategoryId" class="form-label">*Location category:</label>
-                    <input type="text" class="form-control" list="locationCategory" name="categoryName"/>
-                    <datalist id="locationCategory">
+                    <input type="text" class="form-control" list="locationCategory" name="categoryName" value="${location.category.description}"/>
+                    <datalist id="locationCategory" >
                     <c:forEach items="${categoryList}" var="category">
                         <option value= "${category.name}"> ${category.description}</option>
                     </c:forEach>
@@ -56,23 +57,23 @@
 				<div class="mb-3">
 					<label for="title" class="form-label">Category Description:</label> <input
 						type="text" class="form-control" name="categoryDescription"
-						value="category description">
+						value="${location.category.description}">
 				</div>
 			</div>
             
             <div class="mb-3">
                 <label for="title" class="form-label">Address:</label>
 				
-				<label for="title">*Street : </label><input type="text" name="street" value="street" required><br>
+				<label for="title">*Street : </label><input type="text" name="street" value="${location.address.street}" required><br>
 				
-				<label for="title">*City : </label><input type="text" name="city" value="city" required><br>
+				<label for="title">*City : </label><input type="text" name="city" value="${location.address.city}" required><br>
 				
-				<label for="title">*State : </label><input type="text" name="state" value="state" required><br>
+				<label for="title">*State : </label><input type="text" name="state" value="${location.address.state}" required><br>
 				
-				<label for="title">*Postal Code : </label><input type="text" name="postalCode" value="postal Code" required><br>
+				<label for="title">*Postal Code : </label><input type="text" name="postalCode" value="${location.address.postalCode}" required><br>
             </div>
        
-            <button class="btn btn-outline-warning" type="submit">Create Location</button>
+            <button class="btn btn-outline-warning" type="submit">Update Location</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>
