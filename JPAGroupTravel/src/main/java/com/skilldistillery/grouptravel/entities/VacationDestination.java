@@ -139,7 +139,7 @@ public class VacationDestination {
 	public int tallyDestinationVotesNo() {
 		int voteNo = 0;
 		for (DestinationVote votes :  destinationVotes ) {
-			if(votes.getVote() == true) {
+			if(votes.getVote() == false) {
 				voteNo++;
 			}
 		}
