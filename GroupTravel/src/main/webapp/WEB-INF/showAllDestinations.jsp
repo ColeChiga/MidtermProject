@@ -33,7 +33,6 @@ body {
 		<c:when test="${! empty destinationList }">
 			<c:forEach var="destinationList" items="${destinationList}">
 			<input type="text" name="destinationId" value="${destinationList.id}" readonly="readonly" hidden="hidden" />
-${destinationList.id}
 				<div class="row featurette">
 					<div class="col-md-7">
 						<h2 class="featurette-heading fw-normal lh-1">

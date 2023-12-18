@@ -22,6 +22,7 @@
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+	opacity: 80%;
 	font color= white;
 }
 	</style>

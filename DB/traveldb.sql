@@ -456,8 +456,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, NULL, NULL, 'https://img.freepik.com/premium-photo/rising-resilience-concept-with-tree_841543-3422.jpg?w=2000', NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (2, 'homer', 'simpson', 'dntlvr', 'mmmmm', 1, NULL, 5, NULL, NULL, 'https://img.freepik.com/free-vector/vector-colorful-icon-pink-doughnut-isolated-white-background_134830-1096.jpg?w=1380&t=st=1702918440~exp=1702919040~hmac=408e164073d10f4ea5300726677d7733c456ef3db7d92d0de6b0e27feb09b30d', NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, '2023-12-18 14:34:39', '2023-12-18 14:34:39', 'https://img.freepik.com/premium-photo/rising-resilience-concept-with-tree_841543-3422.jpg?w=2000', 'I like long trips and I can not lie');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (2, 'homer', 'simpson', 'dntlvr', 'mmmmm', 1, NULL, 5, '2023-12-18 14:34:39', '2023-12-18 14:34:39', 'https://img.freepik.com/free-vector/vector-colorful-icon-pink-doughnut-isolated-white-background_134830-1096.jpg?w=1380&t=st=1702918440~exp=1702919040~hmac=408e164073d10f4ea5300726677d7733c456ef3db7d92d0de6b0e27feb09b30d', 'MMMMM doughnuts....');
 
 COMMIT;
 
@@ -467,7 +467,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`, `enabled`) VALUES (1, 'The Millers', NULL, 1, NULL, NULL, NULL, 1);
+INSERT INTO `family` (`id`, `name`, `description`, `user_id`, `image_url`, `create_date`, `last_update`, `enabled`) VALUES (1, 'The Millers', NULL, 1, 'https://img.freepik.com/premium-vector/vector-illustration-camping-van_267243-12.jpg?w=1380', '2023-12-18 14:34:39', '2023-12-18 14:34:39', 1);
 
 COMMIT;
 
@@ -489,9 +489,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (1, 'Disney World', 'Disney Fun at Theme Park', 14, 159.00);
-INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (2, 'Miami Dolphins Game', 'Watch the Dolphins home game', 4, 162.00);
-INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (3, 'Daytona Beach Boardwalk', 'Rides and games at an Amusement Center', 12, 50.00);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (1, 'Go to Disney World', 'Disney Fun at Theme Park', 14, 159.00);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (2, 'Go to a Miami Dolphins Game', 'Watch the Dolphins home game', 4, 162.00);
+INSERT INTO `activity` (`id`, `name`, `description`, `estimated_time_hours`, `estimated_cost`) VALUES (3, 'Visit Daytona Beach Boardwalk', 'Rides and games at an Amusement Center', 12, 50.00);
 
 COMMIT;
 
@@ -501,7 +501,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, NULL, NULL, 1, 1, 'Dunston Checks In', 'Trip to Florida', 'https://img.freepik.com/free-vector/cute-cool-gorilla-wearing-waist-bag-glasses-cartoon-vector-icon-illustration-animal-fashion_138676-6783.jpg?w=1380&t=st=1702599693~exp=1702600293~hmac=4755b770d581116450e1fefb94154b695b0eca4e1d2254c3841814bb6d005c4c', NULL, NULL, 1);
+INSERT INTO `vacation` (`id`, `start_date`, `end_date`, `family_id`, `user_id`, `title`, `description`, `image_url`, `create_date`, `last_update`, `active`) VALUES (1, '2023-12-20', '2023-12-30', 1, 1, 'Dunston Checks In', 'Trip to Florida', 'https://img.freepik.com/free-vector/cute-cool-gorilla-wearing-waist-bag-glasses-cartoon-vector-icon-illustration-animal-fashion_138676-6783.jpg?w=1380&t=st=1702599693~exp=1702600293~hmac=4755b770d581116450e1fefb94154b695b0eca4e1d2254c3841814bb6d005c4c', NULL, NULL, 1);
 
 COMMIT;
 
@@ -525,9 +525,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (1, 'Disney World', 'Disney World ', NULL, 1, 2, 3, NULL, 1);
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (2, 'Hard Rock Stadium ', 'Home of the Miami Dolphins', NULL, 2, 3, 5, NULL, 1);
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (3, 'Daytona Beach Boardwalk Amusements', 'Amusement Park on a Pier', NULL, 3, 4, 4, NULL, 1);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (1, 'Disney World', 'Home of Mickey Mouse', 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Cinderella_Castle_October_2021.jpg', 1, 2, 3, 159.00, 1);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (2, 'Hard Rock Stadium ', 'Home of the Miami Dolphins', 'https://upload.wikimedia.org/wikipedia/commons/f/f7/200127-H-PX819-0092.jpg', 2, 3, 5, 162.00, 1);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (3, 'Daytona Beach Boardwalk Amusements', 'Amusement Park on a Pier', 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Daytona_Beach_Boardwalk_Aerial_Photo.jpg', 3, 4, 4, 50.00, 1);
 
 COMMIT;
 
@@ -537,7 +537,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `attendee` (`vacation_id`, `user_id`, `join_date`, `confirmed`, `remarks`, `hotel_id`) VALUES (1, 1, NULL, 1, 'sure', 1);
+INSERT INTO `attendee` (`vacation_id`, `user_id`, `join_date`, `confirmed`, `remarks`, `hotel_id`) VALUES (1, 1, '2023-12-18 14:34:39', 1, 'sure', 1);
 
 COMMIT;
 
@@ -547,7 +547,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `flight` (`id`, `airline`, `departure`, `arrival`, `flight_number`, `layover`, `layover_airline`, `attendee_vacation_id`, `attendee_user_id`, `estimated_cost`) VALUES (1, 'United', NULL, NULL, NULL, NULL, NULL, 1, 1, NULL);
+INSERT INTO `flight` (`id`, `airline`, `departure`, `arrival`, `flight_number`, `layover`, `layover_airline`, `attendee_vacation_id`, `attendee_user_id`, `estimated_cost`) VALUES (1, 'United', '2023-12-18 14:34:39', '2023-12-30 14:34:39', 'UA1234', NULL, NULL, 1, 1, NULL);
 
 COMMIT;
 
@@ -558,6 +558,8 @@ COMMIT;
 START TRANSACTION;
 USE `traveldb`;
 INSERT INTO `destination_activity` (`destination_id`, `activity_id`) VALUES (1, 1);
+INSERT INTO `destination_activity` (`destination_id`, `activity_id`) VALUES (2, 2);
+INSERT INTO `destination_activity` (`destination_id`, `activity_id`) VALUES (3, 3);
 
 COMMIT;
 
@@ -577,7 +579,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation_comment` (`id`, `comment`, `comment_date`, `user_id`, `vacation_id`, `reply_to_id`) VALUES (1, 'meh', NULL, 1, 1, NULL);
+INSERT INTO `vacation_comment` (`id`, `comment`, `comment_date`, `user_id`, `vacation_id`, `reply_to_id`) VALUES (1, 'meh', '2023-12-18 14:34:39', 1, 1, NULL);
 
 COMMIT;
 
@@ -587,7 +589,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`, `active`) VALUES (1, 1, 1, 'meh', NULL, NULL, 1);
+INSERT INTO `vacation_destination` (`vacation_id`, `destination_id`, `user_id`, `remarks`, `create_date`, `last_update`, `active`) VALUES (1, 1, 1, 'meh', '2023-12-18 14:34:39', '2023-12-18 14:34:39', 1);
 
 COMMIT;
 

@@ -31,29 +31,30 @@ body {
 	<div class="mx-auto p-2" style="width: 200px">
 
 		<form action="createAccount.do" method="POST">
-			<label for="title">*First Name : </label><input type="text"
-				name="firstName" value="first Name" required><br> <label
-				for="title">*Last Name : </label><input type="text" name="lastName"
-				value="last Name" required><br> <label for="title">*Username
-				: </label><input type="text" name="username" value="username" required><br>
-			<label for="title">*password : </label><input type="password"
-				name="password" required><br> <label for="title">*Image
-				URL : </label><input type="text" name="imageUrl"><br> <label
-				for="title">*About Me : </label>
-			<textarea rows="4" cols="50" name="aboutMe"
-				value="${sessionUser.aboutMe}"></textarea>
+			<label for="title">*First Name : </label><input type="text" name="firstName" placeholder="first Name" required><br> 
+			
+			<label for="title">*Last Name : </label><input type="text" name="lastName" placeholder="last Name" required><br> 
+			
+			<label for="title">*Username : </label><input type="text" name="username" placeholder="username" required><br>
+			
+			<label for="title">*password : </label><input type="password" name="password" required><br> 
+			
+			<label for="title">*Image URL : </label><input type="text" name="imageUrl"><br>
+			
+			 <label for="title">*About Me : </label>
+			<textarea rows="4" cols="50" name="aboutMe" value="${sessionUser.aboutMe}"></textarea>
+			
 			<label for="title">*Address : </label>
 		
-			<label for="title">*Street : </label><input type="text"
-				name="street" value="street" required><br>
-			<label for="title">*City : </label><input type="text"
-				name="city" value="city" required><br>
-			<label for="title">*State : </label><input type="text"
-				name="state" value="state" required><br>
-			<label for="title">*Postal Code : </label><input type="text"
-				name="postalCode" value="postal Code" required><br>
-			<button class="btn btn-outline-warning" type="submit">Create
-				Account</button>
+			<label for="title">*Street : </label><input type="text" name="street" placeholder="123 fake st" required><br>
+			
+			<label for="title">*City : </label><input type="text" name="city" placeholder="city" required><br>
+			
+			<label for="title">*State : </label><input type="text" name="state" placeholder="state" required><br>
+			
+			<label for="title">*Postal Code : </label><input type="text" name="postalCode" placeholder="12345" required><br>
+			
+			<button class="btn btn-outline-warning" type="submit">Create Account</button>
 		</form>
 	</div>
 
