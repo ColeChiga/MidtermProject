@@ -22,9 +22,18 @@
 		<p>Description: ${destination.description}</p>
 		
 		<p>Country: ${destination.country}</p>
+<form action="removeDestinationActivity.do" method="POST">
 <c:forEach items="${ destination.activity}" var="activity">
-	${activity.name }
+            <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
+            <input type="text" name="activityId" value="${activity.id}" readonly="readonly" hidden="hidden" />
+            <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Are you sure?')">Remove Activity</button>
+          
+	Activity Name: ${activity.name } Description: ${activity.description }
+
+	<br>
+            </div>
 </c:forEach>
+		</form>
 		
 		
 		<form action="createActivity.do" method="GET">

@@ -14,6 +14,6 @@ public interface ActivityDAO {
 
 	Activity update(int activityId, Activity activity);
 
-	boolean deleteById(int activityId);
+	boolean deleteById(int activityId, int destinationId);
 	
 }

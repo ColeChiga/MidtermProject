@@ -13,42 +13,30 @@
     <jsp:include page="navbar.jsp" />
 
     <div class="container mt-5">
-        <form action="updateDestinationActivity.do" method="GET">
+        <form action="updateDestinationActivity.do" method="POST">
             <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
+            <input type="text" name="activityId" value="${activity.id}" readonly="readonly" hidden="hidden" />
 
-            <div class="mb-3">
-                <label for="destinationId" class="form-label">*Current Destination Activities:</label>
-                <select class="form-select" name="activityId">
-                    <c:forEach items="${ activities}" var="activity">
-                        <option value="${activity.id}">${activity.name} ${activity.description}</option>
-                        <br>
-                    </c:forEach>
-                </select>
-            <button class="btn btn-outline-success" type="submit" onclick="return confirm('Are you sure?')">Update Activity</button>
-            </div>
-		</form>
-		
-        <form action="createDestinationActivity.do" method="POST">
-            <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
+       
             <div class="mb-3">
                 <label for="title" class="form-label">*Destination Activity:</label>
-                <input type="text" class="form-control" name="name" value="name" required>
+                <input type="text" class="form-control" name="name" value="${activity.name }" required>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Description:</label>
-                <input type="text" class="form-control" name="description" value="description">
+                <input type="text" class="form-control" name="description" value="${activity.description }">
             </div>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Estimated Time In Hours:</label>
-                <input type="text" class="form-control" name="estimatedTimeInHours" value="Estimated Time In Hours">
+                <input type="text" class="form-control" name="estimatedTimeInHours" value="${activity.estimatedTimeInHours }">
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Estimated Cost:</label>
-                <input type="text" class="form-control" name="estimatedCost" value="estimatedCost">
+                <input type="text" class="form-control" name="estimatedCost" value="${activity.estimatedCost }">
             </div>
        
-            <button class="btn btn-outline-warning" type="submit">Create Activity</button>
+            <button class="btn btn-outline-warning" type="submit">Update Activity</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>
