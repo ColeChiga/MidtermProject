@@ -86,7 +86,8 @@ public class DestinationVoteController {
 			@RequestParam("voteRemarks") String voteRemarks, @RequestParam("destinationId") int destinationId,
 			Model model, HttpSession session) {
 		User user = (User) session.getAttribute("sessionUser");
-		DestinationVote destinationVote = destinationVoteDao.create(vote, voteRemarks, vacationId, user.getId(), destinationId);
+		DestinationVote destinationVote = destinationVoteDao.create(vote, voteRemarks, vacationId, user.getId(),
+				destinationId);
 		model.addAttribute("vote", destinationVote);
 		System.out.println(destinationVote.getAttendee());
 		return "redirect:vacation.do?vacationId=" + vacationId;
@@ -108,8 +109,8 @@ public class DestinationVoteController {
 			user.getVacations().size();
 			user.getCreatedFamily().size();
 			session.setAttribute("sessionUser", user);
-
 		}
 
 	}
+
 }
