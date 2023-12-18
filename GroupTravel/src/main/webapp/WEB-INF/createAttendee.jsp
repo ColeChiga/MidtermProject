@@ -14,6 +14,19 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
+	<style>
+body {
+	color: black;
+	background-image:
+		url('http://m.gettywallpapers.com/wp-content/uploads/2021/12/Cool-Desktop-Wallpaper.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font
+	color=
+	black;
+}
+</style>
 
 	<form action="createAttendee.do" method="POST">
 

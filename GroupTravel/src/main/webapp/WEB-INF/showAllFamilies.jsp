@@ -33,10 +33,21 @@
 				class="bd-placeholder-img rounded-circle" width="140" height="140"
 				role="img" aria-label="Placeholder">
 		</h3>
+		<c:choose>
+		<c:when test="${not empty sessionUser}">
 		<a
 			class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 			href="family.do?familyId=${family.id}">${family.name}</a>
 		<h3>${family.description }</h3>
+		</c:when>
+		<c:otherwise>
+		<a
+			class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+			href="login.do">${family.name}</a>
+		<h3>${family.description }</h3>
+		
+		</c:otherwise>
+		</c:choose>
 		</c:if>
 	</c:forEach>
 

@@ -14,32 +14,58 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	 <input type="text" name="locationId" value="${location.id}" readonly="readonly" hidden="hidden" />
-		<p>Image: <img src="${location.imageUrl}" width="400" height="400" ></p>
+	<style>
+body {
+	color: black;
+	background-image:
+		url('http://m.gettywallpapers.com/wp-content/uploads/2021/12/Cool-Desktop-Wallpaper.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font
+	color=
+	black;
+}
+</style>
+	<div class="row align-items-start container-fluid">
+		<input type="text" name="locationId" value="${location.id}"
+			readonly="readonly" hidden="hidden" />
+		<div class="col align-self-start">
+			<p>
+				Image: <img src="${location.imageUrl}" width="400" height="400">
+			</p>
+		</div>
+		<div class="col align-self-center">
+			<h3>Name: ${location.name}</h3>
 
-		<h3>Name: ${location.name}</h3>
-		
-		<p>Description: ${location.description}</p>
-		<p>Estimated Cost: ${location.estimatedCost}</p>
-		<p>Destination: <a href="individual.do?destinationId=${location.destination.id}">${location.destination.name}</a></p>
-		<p>Address: ${location.address.street} ${location.address.city}, ${location.address.state} ${location.address.postalCode}</p>
-		
-		<p>Location Category: ${location.category.name}</p>
-		<p>${location.category.description}</p>
-		
-		
-		<form action="updateLocation.do" method="GET">
-							<input type="hidden" name="locationId" value="${location.id}"> 
-							<button type="submit" class="btn btn-warning">Update
-								Location</button>
-						</form>
-		<form action="deleteLocation.do" method="GET">
-							<input type="hidden" name="locationId" value="${location.id}"> 
-							<button type="submit" class="btn btn-danger">Remove
-								Location</button>
-						</form> 
+			<p>Description: ${location.description}</p>
+			<p>Estimated Cost: ${location.estimatedCost}</p>
+			<p>
+				Destination: <a
+					href="individual.do?destinationId=${location.destination.id}">${location.destination.name}</a>
+			</p>
+			<p>Address: ${location.address.street} ${location.address.city},
+				${location.address.state} ${location.address.postalCode}</p>
 
-<br><br>
+			<p>Location Category: ${location.category.name}</p>
+			<p>${location.category.description}</p>
+		</div>
+		<div class="col align-self-center">
+
+			<form action="updateLocation.do" method="GET">
+				<input type="hidden" name="locationId" value="${location.id}">
+				<button type="submit" class="btn btn-warning">Update
+					Location</button>
+			</form>
+			<form action="deleteLocation.do" method="GET">
+				<input type="hidden" name="locationId" value="${location.id}">
+				<button type="submit" class="btn btn-danger">Remove
+					Location</button>
+			</form>
+
+
+		</div>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
