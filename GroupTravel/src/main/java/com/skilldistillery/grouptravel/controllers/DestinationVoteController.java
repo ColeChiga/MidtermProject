@@ -64,7 +64,7 @@ public class DestinationVoteController {
 			return "attendee";
 
 		}
-		return "account";
+		return "login";
 
 	}
 

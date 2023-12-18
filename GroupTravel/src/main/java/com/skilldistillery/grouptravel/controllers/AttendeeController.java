@@ -57,7 +57,7 @@ public class AttendeeController {
 			return "attendee";
 
 		}
-		return "account";
+		return "login";
 
 	}
 

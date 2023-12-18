@@ -57,7 +57,7 @@ public class VacationDestinationController {
 			return "attendee";
 
 		}
-		return "account";
+		return "login";
 
 	}
 
