@@ -104,10 +104,9 @@
 					<c:choose>
 						<c:when test="${! empty sessionUser }">
 							<h2 class="fw-normal">Update Account</h2>
-							<p>Some representative placeholder content for the three
-								columns of text below the carousel. This is the first column.</p>
+							<p>Let your family know what's changed in your life.</p>
 							<p>
-								<a class="btn btn-secondary" href="updateAccount.do">Update
+								<a class="btn btn-warning" href="updateAccount.do">Update
 									account »</a>
 							</p>
 						</c:when>
@@ -127,11 +126,24 @@
 						height="140"
 						src="https://img.freepik.com/premium-photo/clear-days-aerial-view-beachs-waves-crashing-shore_410516-2232.jpg?w=1800"
 						role="img" aria-label="Placeholder">
-					<h2 class="fw-normal">Log in to your account</h2>
+						<c:choose>
+						<c:when test="${! empty sessionUser }">
+					<h2 class="fw-normal">View your Account</h2>
+					<p>Come on in and start making memories.</p>
+					<p>
+						<a class="btn btn-primary" href="http://localhost:8085/account.do">Account »</a>
+					</p>
+					</c:when>
+					<c:otherwise>
+						<h2 class="fw-normal">Log in to your account</h2>
 					<p>One of the team already? Then come on in and start making memories.</p>
 					<p>
 						<a class="btn btn-primary" href="http://localhost:8085/login.do">Log in »</a>
 					</p>
+					</c:otherwise>
+					
+					
+					</c:choose>
 				</div>
 				<!-- /.col-lg-4 -->
 				<div class="col-lg-4 card mb-3">
@@ -139,6 +151,7 @@
 						height="140"
 						src="https://img.freepik.com/free-photo/vertical-shot-avenue-giants-california_181624-27567.jpg?w=826&t=st=1702601113~exp=1702601713~hmac=1c2a3fa88b5a8815025aed11c5730da00a2b80a88e351b7a40bc1b807a3cfa16"
 						role="img" aria-label="Placeholder">
+						
 					<h2 class="fw-normal">View all available destinations</h2>
 					<p>Check out all the places others have been so far.</p>
 					<p>
