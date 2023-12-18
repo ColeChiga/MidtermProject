@@ -17,6 +17,7 @@ import com.skilldistillery.grouptravel.data.LocationDAO;
 import com.skilldistillery.grouptravel.data.UserDAO;
 import com.skilldistillery.grouptravel.data.VacationDAO;
 import com.skilldistillery.grouptravel.entities.Attendee;
+import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Family;
 import com.skilldistillery.grouptravel.entities.Flight;
 import com.skilldistillery.grouptravel.entities.Location;
@@ -117,6 +118,18 @@ public class AttendeeController {
 		return "redirect:vacation.do?vacationId=" + vacationId;
 	}
 
+	@RequestMapping(path = "removeHotel.do", method = RequestMethod.POST)
+	public String deleteAttendeeLocation(@RequestParam("vacationId") int vacationId, @RequestParam("userId") int usereId,
+			HttpSession session) {
+		AttendeeId attendeeId = new AttendeeId(vacationId, usereId);
+		Attendee attendee = attendeeDAO.findAttendeeById(attendeeId);
+		
+		attendee.setLocation(null);
+		refreshSessionUser(session);
+
+		return "redirect:vacation.do?vacationId=" + vacationId;
+	}
+	
 	public void refreshSessionUser(HttpSession session) {
 		User user = (User) session.getAttribute("sessionUser");
 		user = userDao.authenticateUser(user.getUsername(), user.getPassword());

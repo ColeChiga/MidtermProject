@@ -146,11 +146,12 @@ public class LocationController {
 	@RequestMapping(path = "deleteLocation.do", method = RequestMethod.GET)
 	public String deleteAttendeeLocation(@RequestParam("locationId") int locationId,
 			HttpSession session) {
-//		Location deleteLocation = locationDao.findLocationById(locationId);
-//		deleteLocation.s
-//		 locationDao.delete(locationId);
+		Location deleteLocation = locationDao.findLocationById(locationId);
+		
+//		if (deleteLocation)
+		 locationDao.delete(locationId);
 
-		return "showAllLocation";
+		return "redirect:showAllLocations.do";
 	}
 
 }

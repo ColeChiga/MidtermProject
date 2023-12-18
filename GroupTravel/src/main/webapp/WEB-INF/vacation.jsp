@@ -45,7 +45,7 @@
 												<c:if test="${not empty attendee.location}">
 													<h6>Hotel:</h6>
 													${attendee.location}
-														<form action="deleteLocation.do" method="post">
+														<form action="removeHotel.do" method="POST">
 														<input type="hidden" name="vacationId"
 															value="${attendee.vacation.id}">
 														<input type="hidden" name="userId"
@@ -103,7 +103,7 @@
 																		href="individualLocation.do?locationId=${location.id}">${location.name}</a>
 																		${location.description} ${location.category.name}</li>
 																</c:forEach>
-																`
+																
 															</ul>
 														</ul>
 														<input type="hidden" name="vacationId"
