@@ -126,6 +126,18 @@ public class VacationDestination {
 	public void setDestinationVotes(List<DestinationVote> destinationVotes) {
 		this.destinationVotes = destinationVotes;
 	}
+	
+	public int tallyDestinationVotes() {
+		int voteYes = 0;
+		for (DestinationVote votes :  destinationVotes ) {
+			if(votes.getVote() == true) {
+				voteYes++;
+			}else {
+				voteYes--;
+			}
+		}
+		return voteYes;
+	}
 
 	public boolean isActive() {
 		return active;
