@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>Family</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -62,7 +62,7 @@ body {
 				<c:forEach items="${ family.vacations}" var="vacation">
 					<li>
 					<a
-						class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+						class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
 						href="vacation.do?vacationId=${vacation.id}">${vacation.title}</a>
 					</li>
 				</c:forEach>

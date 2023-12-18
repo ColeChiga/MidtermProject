@@ -13,7 +13,7 @@
 	crossorigin="anonymous">
 <style>
 body {
-	color: black;
+	color: white;
 	background-image:
 		url('https://img.freepik.com/free-photo/beautiful-shot-crystal-clear-lake-snowy-mountain-base-during-sunny-day_181624-5459.jpg?w=996&t=st=1702339490~exp=1702340090~hmac=caa52a0f569d9fc76ba6ea20f19451ea908e1889768173984421aec9e5ccdc6d');
 	background-repeat: no-repeat;

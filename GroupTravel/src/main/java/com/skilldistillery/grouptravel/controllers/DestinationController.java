@@ -95,6 +95,18 @@ public class DestinationController {
 		activityDao.deleteById(activityId, destinationId);
 		return "redirect:individual.do?destinationId=" + destinationId;
 	}
+	
+	@RequestMapping(path = "showAllActivities.do", method = RequestMethod.GET)
+	public String findActivites(Model model, @RequestParam("destinationId") int destinationId) {
+		List<Activity> showActivity = activityDao.findActivityByDestinationId(destinationId);
+		System.out.println(showActivity.toString());
+		Destination destination = destinationDao.findDestinationById(destinationId);
+
+		model.addAttribute("destination", destination);
+		model.addAttribute("activities", showActivity);
+		return "showAllActivities";
+
+	}
 
 	public void refreshSessionUser(HttpSession session) {
 		User user = (User) session.getAttribute("sessionUser");

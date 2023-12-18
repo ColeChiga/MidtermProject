@@ -15,28 +15,34 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 	<style>
-	body {
+body {
 	color: white;
 	background-image:
 		url('https://img.freepik.com/free-photo/small-flag-map-travel-concept_169016-28625.jpg?w=1800&t=st=1702604548~exp=1702605148~hmac=f41b7f5738cb7c3cf9f6d901752e1908066b4b4503b618d75db8eeadbe06172b');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	font color= white;
+	font
+	color=
+	white;
 }
-	</style>
+</style>
 
 	<hr class="featurette-divider">
 	<c:choose>
 		<c:when test="${! empty destinationList }">
 			<c:forEach var="destinationList" items="${destinationList}">
-
+			<input type="text" name="destinationId" value="${destinationList.id}" readonly="readonly" hidden="hidden" />
 				<div class="row featurette">
 					<div class="col-md-7">
 						<h2 class="featurette-heading fw-normal lh-1">
 							${destinationList.name} <span class="text-body-secondary">${destinationList.description}</span>
 						</h2>
-
+						<form action="showAllActivities.do" method="GET">
+			<input type="text" name="destinationId" value="${destinationList.id}" readonly="readonly" hidden="hidden" />
+							<button class="btn btn-outline-warning" type="submit">Show
+								All Activities</button>
+						</form>
 						<p class="lead"></p>
 					</div>
 					<div class="col-md-5">
@@ -49,8 +55,8 @@
 						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">${destinationList.country}</text>
 					</div>
 				</div>
-		<hr class="featurette-divider">
-	</c:forEach>
+				<hr class="featurette-divider">
+			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<h1>No Destinations Found</h1>

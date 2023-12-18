@@ -17,7 +17,7 @@
 
 	<style>
 body {
-	color: white;
+	color: black;
 	background-image:
 		url('https://image.cnbcfm.com/api/v1/image/106016751-1562954520333gettyimages-908178810.jpeg?v=1644429267');
 	background-repeat: no-repeat;
