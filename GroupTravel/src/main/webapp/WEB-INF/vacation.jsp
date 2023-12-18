@@ -40,12 +40,14 @@
 								<ul class="list-group list-group-flush">
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${attendee.confirmed}">
+
 												<li class="list-group-item">${attendee.user.firstName}
 													${attendee.user.lastName}</li>
 												<c:if test="${not empty attendee.location}">
 												<c:if test="${attendee.location.active}">
 													<h6>Hotel:</h6>
 													<a href="individualLocation.do?locationId=${attendee.location.id}">${attendee.location.name}</a> ${attendee.location.description}
+
 														<form action="removeHotel.do" method="POST">
 														<input type="hidden" name="vacationId"
 															value="${attendee.vacation.id}">
@@ -56,6 +58,7 @@
 														</form>
 														</c:if>
 												</c:if>
+
 											<c:if test="${not empty attendee.flights}">
 												<ul class="list-group list-group-flush">
 													<c:forEach items="${ attendee.flights}" var="flight">
@@ -63,14 +66,15 @@
 													</c:forEach>
 												</ul>
 											</c:if>
-										</c:if>
-
+									
+</c:if>
 									</c:forEach>
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${not attendee.confirmed}">
-											<h6 class="card-subtitle mt-3 mb-2 text-muted">Unconfirmed Attendees</h6>
-												<li class="list-group-item">${attendee.user.firstName}
-													${attendee.user.lastName} </li>
+											<h6 class="card-subtitle mt-3 mb-2 text-muted">Unconfirmed
+												Attendees</h6>
+											<li class="list-group-item">${attendee.user.firstName}
+												${attendee.user.lastName}</li>
 
 										</c:if>
 
@@ -107,13 +111,11 @@
 																		${location.description} ${location.category.name}</li>
 																		</c:if>
 																</c:forEach>
-																
-															</ul>
+</ul>
 														</ul>
 														<input type="hidden" name="vacationId"
 															value="${vacation.id}"> <input type="hidden"
 															name="destinationId"
-
 															value="${destination.destination.id}">
 														<button type="submit" class="btn btn-danger mb-2 btn-sm"
 															onclick="return confirm('Are you sure?')">Remove
@@ -129,12 +131,20 @@
 															type="radio" name="vote" value="true" checked>
 														Yes <input type="radio" name="vote" value="false">
 														No
-														<button type="submit">Vote</button><textarea rows="4" cols="50" name="voteRemarks" placeholder="Add Remarks"></textarea>
+														<button type="submit">Vote</button>
+														<textarea rows="4" cols="50" name="voteRemarks"
+															placeholder="Add Remarks"></textarea>
+
 														<ul>
-															<c:forEach var="vote" items="${destination.destinationVotes}">
-																<li>${vote.attendee.user.firstName}${vote.attendee.user.lastName}</li>
+
+															<c:forEach var="vote"
+																items="${destination.destinationVotes}">
+																<li>${vote.attendee.user.firstName}
+																	${vote.attendee.user.lastName}: ${vote.vote ? 'Yes' : 'No'}
+																</li>
 															</c:forEach>
 														</ul>
+
 													</form>
 
 

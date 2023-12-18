@@ -160,4 +160,6 @@ public class VacationDestination {
 				+ createDate + ", lastUpdate=" + lastUpdate + "]";
 	}
 
+	
+
 }
