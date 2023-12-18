@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.skilldistillery.grouptravel.data.FamilyDAOImpl;
 import com.skilldistillery.grouptravel.entities.Family;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ShowAllFamiliesController {
-
 
 	@Autowired
 	private FamilyDAOImpl familyDAO;
 
 	@RequestMapping(path = "showAllFamilies.do", method = RequestMethod.GET)
-	public String showAllFamilies(Model model) {
-		List<Family> familyList = familyDAO.findAll();
-        model.addAttribute("familyList", familyList);
-		return "showAllFamilies";
-		
+	public String showAllFamilies(Model model, HttpSession session) {
+		if (session.getAttribute("sessionUser") != null) {
+			List<Family> familyList = familyDAO.findAll();
+			model.addAttribute("familyList", familyList);
+			return "showAllFamilies";
+		}
+		return "login";
 	}
 
 }

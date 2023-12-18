@@ -44,7 +44,7 @@ body {
 								</p>
 								<p class="card-text">
 									<small class="text-muted">Family:
-										${vacation.family.name}</small>
+										<a href="family.do?familyId=${vacation.family.id}">${vacation.family.name}</a></small>
 								</p>
 
 								<h6 class="card-subtitle mt-3 mb-2 text-muted">Confirmed
@@ -130,7 +130,7 @@ body {
 															value="${vacation.id}"> <input type="hidden"
 															name="destinationId"
 															value="${destination.destination.id}">
-														<button type="submit" class="btn btn-danger mb-2 btn-sm"
+														<button type="submit" class="btn btn-outline-danger mb-2 btn-sm"
 															onclick="return confirm('Are you sure?')">Remove
 															destination</button>
 													</form>
@@ -144,7 +144,7 @@ body {
 															type="radio" name="vote" value="true" checked>
 														Yes <input type="radio" name="vote" value="false">
 														No
-														<button type="submit">Vote</button>
+														<button class="btn btn-warning mb-2 btn-sm" type="submit">Vote</button>
 														<br>
 														<textarea rows="4" cols="50" name="voteRemarks"
 															placeholder="Add Remarks"></textarea>
@@ -177,11 +177,13 @@ body {
 						</div>
 					</div>
 					<div class="col-md-4">
+					<c:if test="${sessionUser.id == vacation.user.id}">
 						<form action="updateVacation.do" method="GET">
 							<input type="hidden" name="vacationId" value="${vacation.id}">
 							<button type="submit" class="btn btn-warning mb-2">Update
 								Vacation</button>
 						</form>
+						</c:if>
 						<form action="createAttendee.do" method="GET">
 							<input type="hidden" name="familyId"
 								value="${vacation.family.id}"> <input type="hidden"

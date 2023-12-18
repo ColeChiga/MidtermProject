@@ -29,11 +29,19 @@ public class DestinationVoteDaoImpl implements DestinationVoteDao {
 		Attendee attendee = em.find(Attendee.class, attendeeId);
 		VacationDestination vacationDestination = em.find(VacationDestination.class, vacationDestinationId);
 		DestinationVote destinationVote = new DestinationVote();
+		DestinationVoteId destinationVoteId = new DestinationVoteId(vacationDestinationId, attendeeId);
+		
+		if (em.find(DestinationVote.class, destinationVoteId) == null) {
 		destinationVote.setVote(vote);
 		destinationVote.setVoteRemarks(voteRemarks);
+//		System.out.println("line 34 " + attendee);
 		destinationVote.setAttendee(attendee);
 		destinationVote.setDestination(vacationDestination);
-		em.persist(destinationVote);
+			em.persist(destinationVote);
+		} else {
+			destinationVote = update(destinationVoteId, vote, voteRemarks);
+		}
+
 		return destinationVote;
 	}
 
@@ -58,7 +66,7 @@ public class DestinationVoteDaoImpl implements DestinationVoteDao {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<DestinationVote> findVotesByAttendeeId(Attendee attendeeId) {
 		String jpql = "SELECT vote FROM DestinationVote vote JOIN FETCH vote.attendee WHERE attendee.id = :attendeeId";

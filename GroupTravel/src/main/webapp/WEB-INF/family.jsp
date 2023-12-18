@@ -75,12 +75,14 @@ body {
 					<button type="submit" class="btn btn-warning">Create
 						Vacation</button>
 				</form>
-
+				<c:if test="${not family.users.contains(sessionUser)}">
 				<form action="updateFamily.do" method="POST">
 					<input type="hidden" name="familyId" value=${family.id} > <input
 						type="hidden" name="userId" value=${sessionUser.id} >
 					<button type="submit" class="btn btn-warning">Add Yourself</button>
 				</form>
+				</c:if>
+				<c:if test="${sessionUser.id == family.user.id}">
 				<form action="updateFamilyValues.do" method="GET">
 					<input type="hidden" name="familyId" value=${family.id} >
 					<button type="submit" class="btn btn-warning">Update
@@ -93,6 +95,7 @@ body {
 						onclick="return confirm('Are you sure?')">Delete
 						${family.name}</button>
 				</form>
+				</c:if>
 			</div>
 			</c:forEach>
 			

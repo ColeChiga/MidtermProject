@@ -11,10 +11,7 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-</head>
-<body>
-	<jsp:include page="navbar.jsp" />
-	<style>
+<style>
 body {
 	color: black;
 	background-image:
@@ -22,78 +19,83 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	font
-	color=
-	black;
+	font-color: black;
 }
 </style>
-	<br>
-	<div class="mx-auto p-2" style="width: 200px">
-		<h1>Hello ${sessionUser.firstName}</h1>
+</head>
+<body>
+	<jsp:include page="navbar.jsp" />
 
-		<!--First Name  -->
-		<p>First Name: ${sessionUser.firstName}</p>
-		<!-- Last Name -->
-		<p>Last Name: ${sessionUser.lastName}</p>
-		<!-- Username -->
-		<p>Username: ${sessionUser.username}</p>
-		<!-- Address -->
-		<p>Address: ${sessionUser.address.street}
-			${sessionUser.address.city}, ${sessionUser.address.state}
-			${sessionUser.address.postalCode}</p>
-
-		<!-- Family -->
-		<h3>Families:</h3>
-		<c:forEach items="${sessionUser.families}" var="family">
-			<c:if test="${family.enabled }">
-				<input type="hidden" name="familyId" value="${family.id}">
-				<a
-					class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-					href="family.do?familyId=${family.id}">${family.name}</a>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
 				<br>
-			</c:if>
-		</c:forEach>
+				<h1>Hello ${sessionUser.firstName}</h1>
 
-		<form action="createFamily.do">
-			<input type="hidden" name="userId" value=${sessionUser.id} >
-			<button type="submit" class="btn btn-warning">Create Family</button>
-		</form>
-		<!-- Vacations -->
-		<h3>Vacations:</h3>
-		<c:forEach items="${sessionUser.vacations}" var="vacation">
-			<a
-				class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-				href="vacation.do?vacationId=${vacation.id}">${vacation.title}</a>
-			<br>
-		</c:forEach>
-
-		<form action="createVacation.do">
-			<input type="hidden" name="userId" value=${sessionUser.id} >
-			<button type="submit" class="btn btn-warning">Create
-				Vacation</button>
-		</form>
-		<!--About Me-->
-		<h1>About Me</h1>
-		<p>${sessionUser.aboutMe}</p>
-		<!--Image URL -->
-		<img src="${sessionUser.imageUrl}" width="400" height="400" />
+				<p>First Name: ${sessionUser.firstName}</p>
+				<p>Last Name: ${sessionUser.lastName}</p>
+				<p>Username: ${sessionUser.username}</p>
+				<p>Address: ${sessionUser.address.street}
+					${sessionUser.address.city}, ${sessionUser.address.state}
+					${sessionUser.address.postalCode}</p>
 
 
-		<!-- Comments -->
+				<h3>Families:</h3>
+				<c:forEach items="${sessionUser.families}" var="family">
+					<c:if test="${family.enabled}">
+						<input type="hidden" name="familyId" value="${family.id}">
+						<a
+							class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+							href="family.do?familyId=${family.id}">${family.name}</a>
+						<br>
+					</c:if>
+				</c:forEach>
 
-		<form action="updateAccount.do">
-			<input type="hidden" name="userId" value=${sessionUser.id} >
-			<button type="submit" class="btn btn-warning">Update Account</button>
-		</form>
+				<form action="createFamily.do">
+					<input type="hidden" name="userId" value=${sessionUser.id}>
+					<button type="submit" class="btn btn-warning">Create
+						Family</button>
+				</form>
 
-		<form action="deleteAccount.do" method="GET">
-			<input type="hidden" name="userId" value=${sessionUser.id} >
-			<button type="submit" class="btn btn-danger"
-				onclick="return confirm('Are you sure?')">Delete
-				${sessionUser.firstName}'s Account</button>
-		</form>
+
+				<h3>Vacations:</h3>
+				<c:forEach items="${sessionUser.vacations}" var="vacation">
+					<a
+						class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+						href="vacation.do?vacationId=${vacation.id}">${vacation.title}</a>
+					<br>
+				</c:forEach>
+
+				<form action="createVacation.do">
+					<input type="hidden" name="userId" value=${sessionUser.id}>
+					<button type="submit" class="btn btn-warning">Create
+						Vacation</button>
+				</form>
+
+
+				<h1>About Me</h1>
+				<p>${sessionUser.aboutMe}</p>
+
+
+				<form action="updateAccount.do">
+					<input type="hidden" name="userId" value=${sessionUser.id}>
+					<button type="submit" class="btn btn-warning">Update
+						Account</button>
+				</form>
+
+				<form action="deleteAccount.do" method="GET">
+					<input type="hidden" name="userId" value=${sessionUser.id}>
+					<button type="submit" class="btn btn-danger"
+						onclick="return confirm('Are you sure?')">Delete
+						${sessionUser.firstName}'s Account</button>
+				</form>
+			</div>
+			<div class="col-md-6 text-center">
+
+				<img src="${sessionUser.imageUrl}" width="400" height="400" />
+			</div>
+		</div>
 	</div>
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
