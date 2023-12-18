@@ -89,15 +89,6 @@ public class DestinationVoteController {
 		DestinationVote destinationVote = destinationVoteDao.create(vote, voteRemarks, vacationId, user.getId(),
 				destinationId);
 		model.addAttribute("vote", destinationVote);
-		System.out.println(destinationVote.getAttendee());
-		return "redirect:vacation.do?vacationId=" + vacationId;
-	}
-
-	@RequestMapping(path = "removeDestinationVote.do", method = RequestMethod.POST)
-	public String removeVacationDestination(@RequestParam("destinationId") int destinationId,
-			@RequestParam("vacationId") int vacationId, HttpSession session) {
-		destinationVoteDao.deleteById(vacationId);
-		refreshSessionUser(session);
 		return "redirect:vacation.do?vacationId=" + vacationId;
 	}
 

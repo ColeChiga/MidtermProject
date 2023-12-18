@@ -127,16 +127,23 @@ public class VacationDestination {
 		this.destinationVotes = destinationVotes;
 	}
 	
-	public int tallyDestinationVotes() {
+	public int tallyDestinationVotesYes() {
 		int voteYes = 0;
 		for (DestinationVote votes :  destinationVotes ) {
 			if(votes.getVote() == true) {
 				voteYes++;
-			}else {
-				voteYes--;
 			}
 		}
 		return voteYes;
+	}
+	public int tallyDestinationVotesNo() {
+		int voteNo = 0;
+		for (DestinationVote votes :  destinationVotes ) {
+			if(votes.getVote() == true) {
+				voteNo++;
+			}
+		}
+		return voteNo;
 	}
 
 	public boolean isActive() {
