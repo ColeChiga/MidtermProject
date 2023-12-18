@@ -177,6 +177,11 @@ body {
 						</div>
 					</div>
 					<div class="col-md-4">
+					<form action="family.do" method="GET">
+							<input type="hidden" name="familyId"
+								value="${vacation.family.id}"> 
+							<button type="submit" class="btn btn-warning">Family Page</button>
+						</form>
 					<c:if test="${sessionUser.id == vacation.user.id}">
 						<form action="updateVacation.do" method="GET">
 							<input type="hidden" name="vacationId" value="${vacation.id}">
@@ -210,6 +215,8 @@ body {
 						<ul class="list-group list-group-flush">
 							<c:forEach items="${vacation.vacationComments}" var="comment">
 														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}  
+								
+								<c:if test="${sessionUser.id == comment.user.id || sessionUser.id == vacation.user.id}">
 								<form action="removeComment.do" method="POST">
 									<input type="hidden" name="commentId" value="${comment.id}"><input
 										type="hidden" name="vacationId" value="${vacation.id}">
@@ -218,6 +225,7 @@ body {
 										onclick="return confirm('Are you sure?')">Remove
 										comment</button>
 								</form>
+								</c:if>
 								<br>
 							</c:forEach>
 
