@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class DestinationVote {
 
 	@EmbeddedId
-	private DestinationVoteId id;
+	private DestinationVoteId id= new DestinationVoteId();
 
 	private boolean vote;
 

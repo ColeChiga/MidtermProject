@@ -57,19 +57,39 @@
 									<c:forEach items="${destinations}" var="destination">
 										<c:if test="${not empty destination}">
 											<c:if test="${destination.active}">
-											<li class="list-group-item">
-											<form action="removeVacationDestination.do" method="POST">
-											<a
-												href="individual.do?destinationId=${destination.destination.id}">${destination.destination.name},
-													${destination.destination.description}</a>
-												${destination.remarks}
-												<input type="hidden" name="vacationId" value="${vacation.id}">
-												<input type="hidden" name="destinationId" value="${destination.destination.id}">
-												<button type="submit" class="btn btn-danger mb-2 btn-sm" onclick="return confirm('Are you sure?')">Remove
-													destination</button>
-											</form>
+												<li class="list-group-item">
+													<form action="removeVacationDestination.do" method="POST">
+														<a
+															href="individual.do?destinationId=${destination.destination.id}">${destination.destination.name},
+															${destination.destination.description}</a>
+														${destination.remarks} <input type="hidden"
+															name="vacationId" value="${vacation.id}"> <input
+															type="hidden" name="destinationId"
+															value="${destination.destination.id}">
+														<button type="submit" class="btn btn-danger mb-2 btn-sm"
+															onclick="return confirm('Are you sure?')">Remove
+															destination</button>
+													</form>
+													<form action="createDestinationVote.do" method="POST">
+														<input type="hidden" name="familyId"
+															value="${vacation.family.id}"> <input
+															type="hidden" name="vacationId" value="${vacation.id}">
+														<input type="hidden" name="destinationId"
+															value="${destination.destination.id}"> <input
+															type="radio" name="vote" value="true" checked>
+														Yes <input type="radio" name="vote" value="false">
+														No
+														<button type="submit">Vote</button><textarea rows="4" cols="50" name="voteRemarks" placeholder="Add Remarks"></textarea>
+														<ul>
+															<c:forEach var="vote" items="${destination.destinationVotes}">
+																<li>${vote.attendee.user.firstName}${vote.attendee.user.lastName}</li>
+															</c:forEach>
+														</ul>
+													</form>
+
+
 												</li>
-										</c:if>
+											</c:if>
 
 										</c:if>
 									</c:forEach>
@@ -109,16 +129,18 @@
 						<ul class="list-group list-group-flush">
 							<c:forEach items="${vacation.vacationComments}" var="comment">
 														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}  
-								<form action="removeComment.do" method="POST"><input type="hidden" name="commentId"
-								value="${comment.id}"><input type="hidden" name="vacationId"
-								value="${vacation.id}">
+								<form action="removeComment.do" method="POST">
+									<input type="hidden" name="commentId" value="${comment.id}"><input
+										type="hidden" name="vacationId" value="${vacation.id}">
 									<button type="submit"
 										class="btn btn-outline-danger mb-2 btn-sm"
 										onclick="return confirm('Are you sure?')">Remove
 										comment</button>
 								</form>
-														 <br>
+								<br>
 							</c:forEach>
+
+
 						</ul>
 
 					</div>
