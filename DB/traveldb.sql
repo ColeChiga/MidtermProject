@@ -174,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `address_id` INT NOT NULL,
   `location_category_id` INT NOT NULL,
   `estimated_cost` DECIMAL(7,2) NULL,
+  `active` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_location_destination1_idx` (`destination_id` ASC),
   INDEX `fk_location_address1_idx` (`address_id` ASC),
@@ -455,8 +456,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, NULL, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (2, 'homer', 'simpson', 'dntlvr', 'mmmmm', 1, NULL, 5, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (1, 'joe', 'snuffy', 'admin', '12345', 1, NULL, 1, NULL, NULL, 'https://img.freepik.com/premium-photo/rising-resilience-concept-with-tree_841543-3422.jpg?w=2000', NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `enabled`, `role`, `address_id`, `create_date`, `last_update`, `image_url`, `about_me`) VALUES (2, 'homer', 'simpson', 'dntlvr', 'mmmmm', 1, NULL, 5, NULL, NULL, 'https://img.freepik.com/free-vector/vector-colorful-icon-pink-doughnut-isolated-white-background_134830-1096.jpg?w=1380&t=st=1702918440~exp=1702919040~hmac=408e164073d10f4ea5300726677d7733c456ef3db7d92d0de6b0e27feb09b30d', NULL);
 
 COMMIT;
 
@@ -524,9 +525,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `traveldb`;
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (1, 'Disney World', 'Disney World ', NULL, 1, 2, 3, NULL);
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (2, 'Hard Rock Stadium ', 'Home of the Miami Dolphins', NULL, 2, 3, 5, NULL);
-INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`) VALUES (3, 'Daytona Beach Boardwalk Amusements', 'Amusement Park on a Pier', NULL, 3, 4, 4, NULL);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (1, 'Disney World', 'Disney World ', NULL, 1, 2, 3, NULL, 1);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (2, 'Hard Rock Stadium ', 'Home of the Miami Dolphins', NULL, 2, 3, 5, NULL, 1);
+INSERT INTO `location` (`id`, `name`, `description`, `image_url`, `destination_id`, `address_id`, `location_category_id`, `estimated_cost`, `active`) VALUES (3, 'Daytona Beach Boardwalk Amusements', 'Amusement Park on a Pier', NULL, 3, 4, 4, NULL, 1);
 
 COMMIT;
 

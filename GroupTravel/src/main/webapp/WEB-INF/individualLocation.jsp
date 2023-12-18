@@ -33,11 +33,11 @@
 							<button type="submit" class="btn btn-warning">Update
 								Location</button>
 						</form>
-	<%-- 	<form action="deleteLocation.do" method="GET">
+		<form action="deleteLocation.do" method="GET">
 							<input type="hidden" name="locationId" value="${location.id}"> 
 							<button type="submit" class="btn btn-danger">Remove
 								Location</button>
-						</form> --%>
+						</form> 
 
 <br><br>
 

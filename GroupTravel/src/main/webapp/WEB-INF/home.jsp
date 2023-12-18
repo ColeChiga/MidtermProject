@@ -186,7 +186,7 @@
 						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 						width="400" height="300" src="https://img.freepik.com/free-photo/world-map-continent-global-support-graphic_53876-124649.jpg?w=900&t=st=1702603256~exp=1702603856~hmac=ba34c94ab6b954e420021c1ee30cb3656464fcf36d2ef977c047024d79a57038"
 						role="img" aria-label="Placeholder: 500x500">
-						<a href="#"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Locations</text></a>
+						<a href="http://localhost:8085/showAllLocations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Locations</text></a>
 				</div>
 			</div>
 

@@ -17,17 +17,17 @@ public class ActivityDAOImpl implements ActivityDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public List<Activity> findActivityByDestinationId(int id) {
-		String jpql = "SELECT activity FROM Activity activity JOIN FETCH activity.destination WHERE activity.id = :id";
-		
+		String jpql = "SELECT destination.activity FROM Destination destination WHERE destination.id = :id";
 		return em.createQuery(jpql, Activity.class).setParameter("id", id).getResultList();
 	}
+
 	@Override
 	public Activity findActivityId(int id) {
-		String jpql = "SELECT activity FROM Activity activity activity.id = :id";
-		
+		String jpql = "SELECT activity FROM Activity activity WHERE activity.id = :id";
+
 		return em.createQuery(jpql, Activity.class).setParameter("id", id).getSingleResult();
 	}
 
@@ -37,8 +37,8 @@ public class ActivityDAOImpl implements ActivityDAO {
 		if (activity != null) {
 			destination.addActivity(activity);
 			em.persist(activity);
-				return activity;
-				}
+			return activity;
+		}
 		return null;
 	}
 
@@ -51,18 +51,19 @@ public class ActivityDAOImpl implements ActivityDAO {
 			actFound.setEstimatedTimeInHours(activity.getEstimatedTimeInHours());
 			actFound.setEstimatedCost(activity.getEstimatedCost());
 		}
-		
+
 		return actFound;
 	}
 
 	@Override
-	public boolean deleteById(int activityId) {
+	public boolean deleteById(int activityId, int destinationId) {
+
 		Activity deleteActivity = em.find(Activity.class, activityId);
+		Destination destination = em.find(Destination.class, destinationId);
+
 		boolean success = false;
-		if(deleteActivity != null) {
-			for (Destination dest : deleteActivity.getDestination() ) {
-				em.remove(dest);
-			}
+		if (deleteActivity != null) {
+			destination.removeActivity(deleteActivity);
 			em.remove(deleteActivity);
 			success = true;
 		}

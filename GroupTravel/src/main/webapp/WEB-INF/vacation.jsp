@@ -45,6 +45,7 @@
 											<c:if test="${not empty attendee.location}">
 												<h6>Hotel:</h6>
 													${attendee.location}
+
 														<form action="deleteLocation.do" method="post">
 													<input type="hidden" name="vacationId"
 														value="${attendee.vacation.id}"> <input
@@ -53,6 +54,17 @@
 														hotel</button>
 												</form>
 											</c:if>
+
+														<form action="removeHotel.do" method="POST">
+														<input type="hidden" name="vacationId"
+															value="${attendee.vacation.id}">
+														<input type="hidden" name="userId"
+															value="${attendee.user.id}">
+														<button type="submit" class="btn btn-outline-danger btn-sm">remove hotel
+															</button>
+														</form>
+												</c:if>
+
 											<c:if test="${not empty attendee.flights}">
 												<ul class="list-group list-group-flush">
 													<c:forEach items="${ attendee.flights}" var="flight">
@@ -60,7 +72,7 @@
 													</c:forEach>
 												</ul>
 											</c:if>
-										</c:if>
+									
 
 									</c:forEach>
 									<c:forEach items="${vacation.attendees}" var="attendee">
@@ -103,8 +115,7 @@
 																		href="individualLocation.do?locationId=${location.id}">${location.name}</a>
 																		${location.description} ${location.category.name}</li>
 																</c:forEach>
-
-															</ul>
+</ul>
 														</ul>
 														<input type="hidden" name="vacationId"
 															value="${vacation.id}"> <input type="hidden"

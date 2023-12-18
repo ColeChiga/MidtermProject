@@ -44,11 +44,9 @@
 		
 		
 		
-		<label for="title">Flying  </label>
-		<input type="checkbox"
-			name="flight"> <br> 
-			
-			
+		<label for="title">Flying  </label>	
+			<input type="radio" name="flight" value="true" checked> Yes 
+			<input type="radio" name="flight" value="false"> No
 			
 			
 		<button class="btn btn-outline-warning" type="submit">Create
