@@ -35,8 +35,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="title" class="form-label">Estimated Cost</label>
-                <input type="number" step="0.01" min="0.00" class="form-control" name="estimatedCost" value="00.00" data-type="currency">
+                <label for="title" class="form-label">*Estimated Cost</label>
+                <input type="number" step="0.01" min="0.00" class="form-control" name="estimatedCost" value="00.00" data-type="currency" required>
             </div>
              <div class="mb-3">
                 <label for="title" class="form-label">Image URL</label>
