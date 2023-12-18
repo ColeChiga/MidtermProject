@@ -50,7 +50,9 @@ body {
 			name="hotelId">
 				<option value="-1">None</option>
 			<c:forEach items="${hotels}" var="hotel">
+			<c:if test="${hotel.active}">
 				<option value="${hotel.id}">${hotel.name}</option>
+				</c:if>
 			</c:forEach>
 		</select>
 <br>

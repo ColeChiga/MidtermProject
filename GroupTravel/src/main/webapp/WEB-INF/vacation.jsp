@@ -52,40 +52,35 @@ body {
 								<ul class="list-group list-group-flush">
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${attendee.confirmed}">
-											<li class="list-group-item">${attendee.user.firstName}
-												${attendee.user.lastName}</li>
-											<c:if test="${not empty attendee.location}">
-												<h6>Hotel:</h6>
-													${attendee.location}
 
-														<form action="deleteLocation.do" method="post">
-													<input type="hidden" name="vacationId"
-														value="${attendee.vacation.id}"> <input
-														type="hidden" name="userId" value="${attendee.user.id}">
-													<button type="submit" class="btn btn-outline-danger btn-sm">remove
-														hotel</button>
-												</form>
-											</c:if>
+												<li class="list-group-item">${attendee.user.firstName}
+													${attendee.user.lastName}</li>
+												<c:if test="${not empty attendee.location}">
+												<c:if test="${attendee.location.active}">
+													<h6>Hotel:</h6>
+													<a href="individualLocation.do?locationId=${attendee.location.id}">${attendee.location.name}</a> ${attendee.location.description}
 
-														<form action="removeHotel.do" method="POST">
-														<input type="hidden" name="vacationId"
-															value="${attendee.vacation.id}">
-														<input type="hidden" name="userId"
-															value="${attendee.user.id}">
-														<button type="submit" class="btn btn-outline-danger btn-sm">remove hotel
-															</button>
-														</form>
-												</c:if>
+											<form action="removeHotel.do" method="POST">
+												<input type="hidden" name="vacationId"
+													value="${attendee.vacation.id}"> <input
+													type="hidden" name="userId" value="${attendee.user.id}">
+												<button type="submit" class="btn btn-outline-danger btn-sm">remove
+													hotel</button>
+											</form>
+										</c:if>
 
-											<c:if test="${not empty attendee.flights}">
-												<ul class="list-group list-group-flush">
-													<c:forEach items="${ attendee.flights}" var="flight">
+										<c:if test="${not empty attendee.flights}">
+											<ul class="list-group list-group-flush">
+												<c:forEach items="${ attendee.flights}" var="flight">
 														${flight.airline}, Departs: ${flight.departure}, Arrival: ${flight.arrival}
 													</c:forEach>
-												</ul>
-											</c:if>
-									
+											</ul>
+										</c:if>
 
+
+
+									</c:if>
+									</c:if>
 									</c:forEach>
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${not attendee.confirmed}">
@@ -121,13 +116,15 @@ body {
 												</c:forEach>
 															<ul>
 																<h6>Locations:</h6>
-																<c:forEach items="${destination.destination.location}"
-																	var="location">
+																<c:forEach items="${destination.destination.location}" var="location">
+																<c:if test="${attendee.location.active}">
+																	
 																	<li><a
 																		href="individualLocation.do?locationId=${location.id}">${location.name}</a>
 																		${location.description} ${location.category.name}</li>
+																		</c:if>
 																</c:forEach>
-</ul>
+															</ul>
 														</ul>
 														<input type="hidden" name="vacationId"
 															value="${vacation.id}"> <input type="hidden"
@@ -148,19 +145,23 @@ body {
 														Yes <input type="radio" name="vote" value="false">
 														No
 														<button type="submit">Vote</button>
+														<br>
 														<textarea rows="4" cols="50" name="voteRemarks"
 															placeholder="Add Remarks"></textarea>
-
-																${destination.tallyDestinationVotes()}
+														<br>
 														<ul>
+															<li>Total Yes Votes:
+																${destination.tallyDestinationVotesYes()}</li>
+															<li>Total No Votes:
+																${destination.tallyDestinationVotesNo()}</li>
 															<c:forEach var="vote"
 																items="${destination.destinationVotes}">
 																<li>${vote.attendee.user.firstName}
 																	${vote.attendee.user.lastName}: ${vote.vote ? 'Yes' : 'No'}
-																</li>
+																	<strong>${vote.voteRemarks}</strong></li>
 															</c:forEach>
-														</ul>
 
+														</ul>
 													</form>
 
 

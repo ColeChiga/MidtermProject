@@ -148,9 +148,9 @@ public class LocationController {
 			HttpSession session) {
 		Location deleteLocation = locationDao.findLocationById(locationId);
 		
-//		if (deleteLocation)
+		
 		 locationDao.delete(locationId);
-
+		
 		return "redirect:showAllLocations.do";
 	}
 

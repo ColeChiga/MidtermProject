@@ -31,6 +31,7 @@ public class Location {
 	@ManyToOne
 	@JoinColumn(name="location_category_id")
 	private LocationCategory category;
+	private boolean active;
 	
 
 	public Location() {
@@ -122,6 +123,14 @@ public class Location {
 	public String toString() {
 		return "Location [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
 				+ ", estimatedCost=" + estimatedCost + "]";
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	
