@@ -139,8 +139,8 @@
 														<textarea rows="4" cols="50" name="voteRemarks"
 															placeholder="Add Remarks"></textarea>
 
+																${destination.tallyDestinationVotes()}
 														<ul>
-
 															<c:forEach var="vote"
 																items="${destination.destinationVotes}">
 																<li>${vote.attendee.user.firstName}

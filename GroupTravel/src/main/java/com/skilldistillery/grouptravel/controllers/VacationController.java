@@ -1,5 +1,6 @@
 package com.skilldistillery.grouptravel.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import com.skilldistillery.grouptravel.entities.Family;
 import com.skilldistillery.grouptravel.entities.User;
 import com.skilldistillery.grouptravel.entities.Vacation;
 import com.skilldistillery.grouptravel.entities.VacationComment;
+import com.skilldistillery.grouptravel.entities.VacationDestination;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -35,7 +37,7 @@ public class VacationController {
 	private VacationCommentDao vacationCommentDao;
 
 	@RequestMapping(path = "vacation.do", method = RequestMethod.GET)
-	public String getVacation(HttpSession session, @RequestParam("vacationId") int id, Model model) {
+	public String getVacation(HttpSession session, @RequestParam("vacationId") int id, Model model, VacationDestination vd) {
 		if (session.getAttribute("sessionUser") != null) {
 			// session.setAttribute("sessionVacation", vacationDao.findVacationById(id));
 			model.addAttribute("vacation", vacationDao.findVacationById(id));
