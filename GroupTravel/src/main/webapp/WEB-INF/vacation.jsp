@@ -130,7 +130,7 @@ body {
 															value="${vacation.id}"> <input type="hidden"
 															name="destinationId"
 															value="${destination.destination.id}">
-														<button type="submit" class="btn btn-danger mb-2 btn-sm"
+														<button type="submit" class="btn btn-outline-danger mb-2 btn-sm"
 															onclick="return confirm('Are you sure?')">Remove
 															destination</button>
 													</form>
@@ -144,7 +144,7 @@ body {
 															type="radio" name="vote" value="true" checked>
 														Yes <input type="radio" name="vote" value="false">
 														No
-														<button type="submit">Vote</button>
+														<button class="btn btn-warning mb-2 btn-sm" type="submit">Vote</button>
 														<br>
 														<textarea rows="4" cols="50" name="voteRemarks"
 															placeholder="Add Remarks"></textarea>
