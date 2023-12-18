@@ -33,7 +33,7 @@ public class FamilyController {
 			return "family";
 
 		}
-		return "account";
+		return "login";
 
 	}
 
