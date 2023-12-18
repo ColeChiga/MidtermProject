@@ -43,8 +43,9 @@
 												<li class="list-group-item">${attendee.user.firstName}
 													${attendee.user.lastName}</li>
 												<c:if test="${not empty attendee.location}">
+												<c:if test="${attendee.location.active}">
 													<h6>Hotel:</h6>
-													${attendee.location}
+													<a href="individualLocation.do?locationId=${attendee.location.id}">${attendee.location.name}</a> ${attendee.location.description}
 														<form action="removeHotel.do" method="POST">
 														<input type="hidden" name="vacationId"
 															value="${attendee.vacation.id}">
@@ -53,6 +54,7 @@
 														<button type="submit" class="btn btn-outline-danger btn-sm">remove hotel
 															</button>
 														</form>
+														</c:if>
 												</c:if>
 											<c:if test="${not empty attendee.flights}">
 												<ul class="list-group list-group-flush">
@@ -97,11 +99,13 @@
 												</c:forEach>
 															<ul>
 																<h6>Locations:</h6>
-																<c:forEach items="${destination.destination.location}"
-																	var="location">
+																<c:forEach items="${destination.destination.location}" var="location">
+																<c:if test="${attendee.location.active}">
+																	
 																	<li><a
 																		href="individualLocation.do?locationId=${location.id}">${location.name}</a>
 																		${location.description} ${location.category.name}</li>
+																		</c:if>
 																</c:forEach>
 																
 															</ul>

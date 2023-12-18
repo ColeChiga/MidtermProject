@@ -30,7 +30,7 @@
 	<c:choose>
 		<c:when test="${! empty locationList }">
 			<c:forEach var="location" items="${locationList}">
-
+			<c:if test="${location.active}">
 				<div class="row featurette">
 					<div class="col-md-7">
 						<h2 class="featurette-heading fw-normal lh-1">
@@ -54,6 +54,7 @@
 					</div>
 				</div>
 		<hr class="featurette-divider">
+		</c:if>
 	</c:forEach>
 		</c:when>
 		<c:otherwise>

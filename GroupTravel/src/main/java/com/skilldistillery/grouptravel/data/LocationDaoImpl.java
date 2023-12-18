@@ -32,7 +32,7 @@ public class LocationDaoImpl implements LocationDAO {
 
 	@Override
 	public Location create(Location location) {
-
+		location.setActive(true);
 		em.persist(location);
 		return location;
 	}
@@ -48,6 +48,7 @@ public class LocationDaoImpl implements LocationDAO {
 			locationFound.setImageUrl(location.getImageUrl());
 			locationFound.setName(location.getName());
 			locationFound.setCategory(location.getCategory());
+			locationFound.setActive(true);
 		}
 		return locationFound;
 	}
@@ -57,7 +58,7 @@ public class LocationDaoImpl implements LocationDAO {
 		Location deletedLocation = em.find(Location.class, locationId);
 		boolean successfullDeletedFam = false;
 		if (deletedLocation != null) {
-			em.remove(deletedLocation);
+			deletedLocation.setActive(false);
 			
 			successfullDeletedFam = true;
 		}
