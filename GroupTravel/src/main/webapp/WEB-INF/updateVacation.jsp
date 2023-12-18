@@ -54,7 +54,7 @@ body {
                 <input type="text" class="form-control" name="imageUrl" value="${sessionVacation.imageUrl}">
             </div>
 
-            <button class="btn btn-outline-warning" type="submit">Update Vacation</button>
+            <button class="btn btn-outline-success" type="submit">Update Vacation</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>
