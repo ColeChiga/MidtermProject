@@ -49,7 +49,7 @@
         <div class="card-body">
             <h3 class="card-title text-center">Sign Up</h3>
             <div class="text-center">
-                <small><a href="/signup">Don't have an account? Sign Up</a></small>
+                <small><a href="createAccount.do">Don't have an account? Sign Up</a></small>
             </div>
         </div>
     </div>
