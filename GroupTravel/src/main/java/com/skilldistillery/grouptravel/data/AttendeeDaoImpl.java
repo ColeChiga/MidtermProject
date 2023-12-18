@@ -28,6 +28,11 @@ public class AttendeeDaoImpl implements AttendeeDao {
 		return em.createQuery(jpql, Vacation.class).getResultList();
 
 	}
+	@Override
+	public Attendee findAttendeeById(AttendeeId id) {
+		return em.find(Attendee.class, id);
+		
+	}
 
 	@Override
 	public Vacation findVacationById(int vacationId, int userId) {
@@ -68,6 +73,7 @@ public class AttendeeDaoImpl implements AttendeeDao {
 			attendeeFound.setJoinDate(attendee.getJoinDate());
 			attendeeFound.setRemarks(attendee.getRemarks());
 			attendeeFound.setConfirmed(attendee.isConfirmed());
+			attendeeFound.setLocation(attendee.getLocation());
 		}
 		return attendeeFound;
 	}

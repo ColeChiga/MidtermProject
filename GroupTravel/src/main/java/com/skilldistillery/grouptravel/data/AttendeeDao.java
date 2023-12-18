@@ -18,4 +18,6 @@ public interface AttendeeDao {
 
 	boolean deleteById(int userId, int vacationId);
 
+	Attendee findAttendeeById(AttendeeId id);
+
 }

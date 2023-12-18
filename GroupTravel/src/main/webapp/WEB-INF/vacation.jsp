@@ -40,9 +40,21 @@
 								<ul class="list-group list-group-flush">
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${attendee.confirmed}">
-											<c:if test="${not empty attendee.flights}">
 												<li class="list-group-item">${attendee.user.firstName}
 													${attendee.user.lastName}</li>
+												<c:if test="${not empty attendee.location}">
+													<h6>Hotel:</h6>
+													${attendee.location}
+														<form action="deleteLocation.do" method="post">
+														<input type="hidden" name="vacationId"
+															value="${attendee.vacation.id}">
+														<input type="hidden" name="userId"
+															value="${attendee.user.id}">
+														<button type="submit" class="btn btn-outline-danger btn-sm">remove hotel
+															</button>
+														</form>
+												</c:if>
+											<c:if test="${not empty attendee.flights}">
 												<ul class="list-group list-group-flush">
 													<c:forEach items="${ attendee.flights}" var="flight">
 														${flight.airline}, Departs: ${flight.departure}, Arrival: ${flight.arrival}
@@ -50,6 +62,16 @@
 												</ul>
 											</c:if>
 										</c:if>
+
+									</c:forEach>
+									<c:forEach items="${vacation.attendees}" var="attendee">
+										<c:if test="${not attendee.confirmed}">
+											<h6 class="card-subtitle mt-3 mb-2 text-muted">Unconfirmed Attendees</h6>
+												<li class="list-group-item">${attendee.user.firstName}
+													${attendee.user.lastName} </li>
+
+										</c:if>
+
 									</c:forEach>
 								</ul>
 								<h6 class="card-subtitle mt-3 mb-2 text-muted">Destinations:</h6>
@@ -62,14 +84,38 @@
 														<a
 															href="individual.do?destinationId=${destination.destination.id}">${destination.destination.name},
 															${destination.destination.description}</a>
-														${destination.remarks} <input type="hidden"
+
+														<%-- ${destination.remarks} <input type="hidden"
 															name="vacationId" value="${vacation.id}"> <input
-															type="hidden" name="destinationId"
+															type="hidden" name="destinationId" --%>
+
+														${destination.remarks}
+														<ul class="list-group list-group-flush">
+															<c:forEach items="${destination.destination.activity}"
+																var="activity">
+													${activity.name} 
+												</c:forEach>
+															<ul>
+																<h6>Locations:</h6>
+																<c:forEach items="${destination.destination.location}"
+																	var="location">
+																	<li><a
+																		href="individualLocation.do?locationId=${location.id}">${location.name}</a>
+																		${location.description} ${location.category.name}</li>
+																</c:forEach>
+																`
+															</ul>
+														</ul>
+														<input type="hidden" name="vacationId"
+															value="${vacation.id}"> <input type="hidden"
+															name="destinationId"
+
 															value="${destination.destination.id}">
 														<button type="submit" class="btn btn-danger mb-2 btn-sm"
 															onclick="return confirm('Are you sure?')">Remove
 															destination</button>
 													</form>
+
 													<form action="createDestinationVote.do" method="POST">
 														<input type="hidden" name="familyId"
 															value="${vacation.family.id}"> <input
@@ -88,10 +134,12 @@
 													</form>
 
 
+
 												</li>
 											</c:if>
 
 										</c:if>
+										<br>
 									</c:forEach>
 								</ul>
 							</div>
