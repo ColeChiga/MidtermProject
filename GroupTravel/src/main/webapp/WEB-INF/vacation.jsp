@@ -53,13 +53,14 @@ body {
 									<c:forEach items="${vacation.attendees}" var="attendee">
 										<c:if test="${attendee.confirmed}">
 
-												<li class="list-group-item">${attendee.user.firstName}
+												<li class="list-group-item">Attendee: ${attendee.user.firstName}
 													${attendee.user.lastName}</li>
 												<c:if test="${not empty attendee.location}">
 												<c:if test="${attendee.location.active}">
 													<h6>Hotel:</h6>
 													<a href="individualLocation.do?locationId=${attendee.location.id}">${attendee.location.name}</a> ${attendee.location.description}
 
+									<c:if test="${sessionUser.id == attendee.user.id}">
 											<form action="removeHotel.do" method="POST">
 												<input type="hidden" name="vacationId"
 													value="${attendee.vacation.id}"> <input
@@ -67,6 +68,7 @@ body {
 												<button type="submit" class="btn btn-outline-danger btn-sm">remove
 													hotel</button>
 											</form>
+											</c:if>
 										</c:if>
 
 										<c:if test="${not empty attendee.flights}">
@@ -126,6 +128,7 @@ body {
 																</c:forEach>
 															</ul>
 														</ul>
+														<c:if test="${sessionUser.id == destination.user.id || sessionUser.id == vacation.user.id}">
 														<input type="hidden" name="vacationId"
 															value="${vacation.id}"> <input type="hidden"
 															name="destinationId"
@@ -133,6 +136,7 @@ body {
 														<button type="submit" class="btn btn-outline-danger mb-2 btn-sm"
 															onclick="return confirm('Are you sure?')">Remove
 															destination</button>
+															</c:if>
 													</form>
 
 													<form action="createDestinationVote.do" method="POST">
@@ -177,6 +181,11 @@ body {
 						</div>
 					</div>
 					<div class="col-md-4">
+					<form action="family.do" method="GET">
+							<input type="hidden" name="familyId"
+								value="${vacation.family.id}"> 
+							<button type="submit" class="btn btn-warning">Family Page</button>
+						</form>
 					<c:if test="${sessionUser.id == vacation.user.id}">
 						<form action="updateVacation.do" method="GET">
 							<input type="hidden" name="vacationId" value="${vacation.id}">
@@ -191,6 +200,7 @@ body {
 							<button type="submit" class="btn btn-warning">Add/Remove
 								Attendee</button>
 						</form>
+						
 						<form action="createVacationDestination.do" method="GET">
 							<input type="hidden" name="familyId"
 								value="${vacation.family.id}"> <input type="hidden"
@@ -210,6 +220,8 @@ body {
 						<ul class="list-group list-group-flush">
 							<c:forEach items="${vacation.vacationComments}" var="comment">
 														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}  
+								
+								<c:if test="${sessionUser.id == comment.user.id || sessionUser.id == vacation.user.id}">
 								<form action="removeComment.do" method="POST">
 									<input type="hidden" name="commentId" value="${comment.id}"><input
 										type="hidden" name="vacationId" value="${vacation.id}">
@@ -218,9 +230,10 @@ body {
 										onclick="return confirm('Are you sure?')">Remove
 										comment</button>
 								</form>
-								<br>
+								</c:if>
 							</c:forEach>
 
+								<br>
 
 						</ul>
 
