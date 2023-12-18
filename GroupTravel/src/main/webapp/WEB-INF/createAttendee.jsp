@@ -29,17 +29,28 @@ body {
 </style>
 
 	<form action="createAttendee.do" method="POST">
-
 		<input type="text" name="vacationId" value="${vacation.id}"
-			readonly="readonly" hidden="hidden" /> <label for="title">*Attendee
-			Name : </label><select name="userId">
+			readonly="readonly" hidden="hidden" /> 
+			<label for="title">*AttendeeName : </label>
+		<c:choose>
+		<c:when test="${sessionUser.id == vacation.user.id}">
+			<select name="userId">
 			<c:forEach items="${family.users}" var="user">
 				<c:if test="${not vacation.userIsAttendee(user.id) }">
 					<option value="${user.id}">${user.firstName},
 						${user.lastName}</option>
 				</c:if>
 			</c:forEach>
-		</select> <br> <label for="title">Remarks : </label><input type="text"
+		</select>
+		<br>
+			</c:when>
+			<c:otherwise>
+			<input type="text" name="userId" value="${sessionUser.id}" readonly="readonly" hidden="hidden">
+			<h6>${sessionUser.firstName} ${sessionUser.lastName}</h6>
+			
+			</c:otherwise>
+			</c:choose>
+		 <label for="title">Remarks : </label><input type="text"
 			name="remarks"><br> <label for="title">Is
 			Attending? : </label><input type="checkbox" name="confirmed"> <br>
 		
@@ -68,6 +79,9 @@ body {
 			Attendee</button>
 
 	</form>
+	
+	<c:choose>
+		<c:when test="${sessionUser.id == vacation.user.id}">
 	<c:forEach items="${vacation.attendees}" var="attendee">
 		<div>
 			Name: ${attendee.user.firstName} ${attendee.user.lastName}
@@ -79,7 +93,19 @@ body {
 			</form>
 		</div>
 	</c:forEach>
+</c:when>
+<c:otherwise>
 
+Name: ${sessionUser.firstName} ${sessionUser.lastName}
+			<form action="removeAttendee.do" method="GET">
+				<input type="hidden" name="userId" value="${sessionUser.id}">
+				<input type="hidden" name="vacationId" value="${vacation.id}">
+				<button type="submit" class="btn btn-danger"
+					onclick="return confirm('Are you sure?')">Delete Attendee</button>
+			</form>
+
+</c:otherwise>
+</c:choose>
 	<a href=" javascript: history.back()"><button
 			class="btn btn-warning">Go back</button></a>
 
