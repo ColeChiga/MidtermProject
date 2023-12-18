@@ -32,6 +32,7 @@ body {
 	<c:choose>
 		<c:when test="${! empty destinationList }">
 			<c:forEach var="destinationList" items="${destinationList}">
+			Destination ID : ${destinationList.id}
 			<input type="text" name="destinationId" value="${destinationList.id}" readonly="readonly" hidden="hidden" />
 				<div class="row featurette">
 					<div class="col-md-7">
