@@ -11,6 +11,20 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp" />
+    
+        <style>
+body {
+	color: black;
+	background-image:
+		url('http://m.gettywallpapers.com/wp-content/uploads/2021/12/Cool-Desktop-Wallpaper.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font
+	color=
+	black;
+}
+</style>
 
     <div class="container mt-5">
         <form action="createVacation.do" method="POST">
@@ -40,7 +54,7 @@
                 <input type="text" class="form-control" name="imageUrl" value="">
             </div>
 
-            <button class="btn btn-outline-warning" type="submit">Create Vacation</button>
+            <button class="btn btn-outline-success" type="submit">Create Vacation</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>

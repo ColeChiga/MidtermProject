@@ -45,20 +45,20 @@ body {
             <input type="text" name="destinationId" value="${destination.id}" readonly="readonly" hidden="hidden" />
             <div class="mb-3">
                 <label for="title" class="form-label">*Destination Activity:</label>
-                <input type="text" class="form-control" name="name" value="name" required>
+                <input type="text" class="form-control" name="name" placeholder="name" required>
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Description:</label>
-                <input type="text" class="form-control" name="description" value="description">
+                <input type="text" class="form-control" name="description" placeholder="description">
             </div>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Estimated Time In Hours:</label>
-                <input type="text" class="form-control" name="estimatedTimeInHours" value="Estimated Time In Hours">
+                <input type="text" class="form-control" name="estimatedTimeInHours" placeholder="Estimated Time In Hours">
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Estimated Cost:</label>
-                <input type="text" class="form-control" name="estimatedCost" value="estimatedCost">
+                <input type="text" class="form-control" name="estimatedCost" placeholder="estimatedCost">
             </div>
        
             <button class="btn btn-outline-warning" type="submit">Create Activity</button>
