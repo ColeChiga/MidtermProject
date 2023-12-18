@@ -204,7 +204,7 @@
 						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 						width="400" height="300" src="https://img.freepik.com/free-photo/always-fun-see-tall-ferris-wheel-when-approaching-park-holidays-full-happy-people_181624-2216.jpg?w=1480&t=st=1702603404~exp=1702604004~hmac=8fc0465936c6f3834861862a0654fa95d50036214c905baf6424315cd04650f2"
 						role="img" aria-label="Placeholder: 500x500">
-						<a href="#"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Activites</text></a>
+						<a href="http://localhost:8085/showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Activites</text></a>
 				</div>
 			</div>
 

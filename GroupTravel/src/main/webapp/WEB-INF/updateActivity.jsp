@@ -49,7 +49,7 @@ body {
                 <input type="text" class="form-control" name="estimatedCost" value="${activity.estimatedCost }">
             </div>
        
-            <button class="btn btn-outline-warning" type="submit">Update Activity</button>
+            <button class="btn btn-outline-success" type="submit">Update Activity</button>
         </form>
 
         <a href="javascript: history.back()" class="btn btn-warning mt-3">Go back</a>
