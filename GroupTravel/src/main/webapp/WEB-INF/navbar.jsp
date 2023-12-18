@@ -20,6 +20,8 @@
 						Destinations</a></li>
 				<li class="nav-item"><a class="nav-link" href="showAllFamilies.do">Show All
 						Families</a></li>
+				<li class="nav-item"><a class="nav-link" href="showAllLocations.do">Show All
+						Locations</a></li>
 			</ul>
 			<form class="d-flex" role="search" action="individual.do">
 				<input class="form-control me-2" type="text" name="destinationId"

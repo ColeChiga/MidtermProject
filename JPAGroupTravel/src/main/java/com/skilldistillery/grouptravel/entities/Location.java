@@ -28,9 +28,21 @@ public class Location {
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
+	@ManyToOne
+	@JoinColumn(name="location_category_id")
+	private LocationCategory category;
 	
 
 	public Location() {
+	}
+
+	public LocationCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(LocationCategory category) {
+		category.addLocation(this);
+		this.category = category;
 	}
 
 	public int getId() {
