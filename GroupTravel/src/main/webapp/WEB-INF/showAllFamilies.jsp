@@ -39,6 +39,15 @@
 			class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
 			href="family.do?familyId=${family.id}">${family.name}</a>
 		<h3>${family.description }</h3>
+		
+		<c:if test="${ sessionUser.id == 1}">
+		<form action="deleteFamily.do" method="GET">
+					<input type="hidden" name="familyId" value="${family.id}">
+					<button type="submit" class="btn btn-danger"
+						onclick="return confirm('Are you sure?')">Delete
+						${family.name}</button>
+				</form>
+		</c:if>
 		</c:when>
 		<c:otherwise>
 		<a
