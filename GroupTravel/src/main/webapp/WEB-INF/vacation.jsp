@@ -236,7 +236,7 @@ body {
 						<ul class="list-group list-group-flush">
 							<c:forEach items="${vacation.vacationComments}" var="comment">
 														 ${comment.user.firstName} ${comment.user.lastName}: ${comment.comment}  
-								
+															<br>
 								<c:if test="${sessionUser.id == comment.user.id || sessionUser.id == vacation.user.id}">
 								<form action="removeComment.do" method="POST">
 									<input type="hidden" name="commentId" value="${comment.id}"><input

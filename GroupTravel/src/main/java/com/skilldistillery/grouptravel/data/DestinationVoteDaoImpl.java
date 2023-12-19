@@ -34,7 +34,6 @@ public class DestinationVoteDaoImpl implements DestinationVoteDao {
 		if (em.find(DestinationVote.class, destinationVoteId) == null) {
 		destinationVote.setVote(vote);
 		destinationVote.setVoteRemarks(voteRemarks);
-//		System.out.println("line 34 " + attendee);
 		destinationVote.setAttendee(attendee);
 		destinationVote.setDestination(vacationDestination);
 			em.persist(destinationVote);

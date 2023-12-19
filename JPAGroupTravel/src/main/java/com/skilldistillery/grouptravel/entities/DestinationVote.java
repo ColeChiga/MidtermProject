@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class DestinationVote {
 
 	@EmbeddedId
-	private DestinationVoteId id= new DestinationVoteId();
+	private DestinationVoteId id = new DestinationVoteId();
 
 	private boolean vote;
 
@@ -24,13 +24,15 @@ public class DestinationVote {
 	private String voteRemarks;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "attendee_vacation_id", referencedColumnName = "vacation_id"), @JoinColumn(name = "attendee_user_id",referencedColumnName = "user_id") })
-	@MapsId(value="attendeeId")
+	@JoinColumns({ @JoinColumn(name = "attendee_vacation_id", referencedColumnName = "vacation_id"),
+			@JoinColumn(name = "attendee_user_id", referencedColumnName = "user_id") })
+	@MapsId(value = "attendeeId")
 	private Attendee attendee;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "destination_vacation_id", referencedColumnName = "vacation_id"), @JoinColumn(name = "destination_destination_id", referencedColumnName = "destination_id") })
-	@MapsId(value="vacationDestinationId")
+	@JoinColumns({ @JoinColumn(name = "destination_vacation_id", referencedColumnName = "vacation_id"),
+			@JoinColumn(name = "destination_destination_id", referencedColumnName = "destination_id") })
+	@MapsId(value = "vacationDestinationId")
 	private VacationDestination destination;
 
 	public DestinationVoteId getId() {
