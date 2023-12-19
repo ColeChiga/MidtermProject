@@ -18,7 +18,7 @@
 body {
 	color: white;
 	background-image:
-		url('https://img.freepik.com/free-photo/beautiful-shot-crystal-clear-lake-snowy-mountain-base-during-sunny-day_181624-5459.jpg?w=996&t=st=1702339490~exp=1702340090~hmac=caa52a0f569d9fc76ba6ea20f19451ea908e1889768173984421aec9e5ccdc6d');
+		url('http://m.gettywallpapers.com/wp-content/uploads/2023/04/Beautiful-Nature-Computer-Wallpaper-scaled.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;

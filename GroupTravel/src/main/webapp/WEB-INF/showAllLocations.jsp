@@ -18,11 +18,10 @@
 	body {
 	color: white;
 	background-image:
-		url('https://img.freepik.com/free-photo/small-flag-map-travel-concept_169016-28625.jpg?w=1800&t=st=1702604548~exp=1702605148~hmac=f41b7f5738cb7c3cf9f6d901752e1908066b4b4503b618d75db8eeadbe06172b');
+		url('http://m.gettywallpapers.com/wp-content/uploads/2022/06/USA-Map-Background-Photos.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	opacity: 80%;
 	font color= white;
 }
 	</style>
@@ -44,14 +43,14 @@
 
 						<p class="lead"></p>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-5 ">
 						<a href="individualLocation.do?locationId=${location.id}"><img
 							class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 							width="500px" height="250px" src="${location.imageUrl}"
 							role="img" aria-label="Placeholder: 500x500"></a>
 						<title>${location.name}</title>
 						<rect width="25%" height="500px" fill="var(--bs-secondary-bg)"></rect>
-						<text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">${location.name}</text>
+						<h5 style="color: black ">${location.name}</h5>
 					</div>
 				</div>
 		<hr class="featurette-divider">
