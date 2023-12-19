@@ -9,6 +9,7 @@ import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Address;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
@@ -20,15 +21,35 @@ public class AddressDaoImpl implements AddressDao {
 	private EntityManager em;
 
 	@Override
-	public List<Destination> findAll() {
-		String jpql = "SELECT destination FROM Destination destination";
-		return em.createQuery(jpql, Destination.class).getResultList();
-
+	public List<Address> findAll() {
+		String jpql = "SELECT address FROM Address address";
+		return em.createQuery(jpql, Address.class).getResultList();
+	}
+	@Override
+	public Address findAddressByInfo(String street, String city, String state, String postalCode) {
+		String jpql = "SELECT address FROM Address address WHERE "
+				+ "address.street LIKE :street AND "
+				+ "address.city LIKE :city AND "
+				+ "address.state LIKE :state AND "
+				+ "address.postalCode LIKE :postalCode";
+		
+		try {
+			Address address = em.createQuery(jpql, Address.class)
+					.setParameter("street", street)
+					.setParameter("city", city)
+					.setParameter("state", state)
+					.setParameter("postalCode", postalCode)
+					.getSingleResult();
+			
+			return address;
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public Destination findDestinationById(int destinationId) {
-		return em.find(Destination.class, destinationId);
+	public Address findAddressById(int addressId) {
+		return em.find(Address.class, addressId);
 	}
 
 	@Override

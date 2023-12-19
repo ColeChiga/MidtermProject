@@ -7,14 +7,16 @@ import com.skilldistillery.grouptravel.entities.Destination;
 
 public interface AddressDao {
 
-	public List<Destination> findAll();
+	public List<Address> findAll();
 
-	public Destination findDestinationById(int destinationId);
+	public Address findAddressById(int addressId);
 
 	public Address create(Address address);
 
 	Address update(int id, Address address);
 
 	boolean deleteById(int userId);
+
+	Address findAddressByInfo(String street, String city, String state, String postalCode);
 
 }

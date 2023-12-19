@@ -55,7 +55,8 @@ body {
 
 												<li class="list-group-item">Attendee: ${attendee.user.firstName}
 													${attendee.user.lastName}</li>
-												<c:if test="${not empty attendee.location}">
+												<c:choose>
+												<c:when test="${not empty attendee.location}">
 												<c:if test="${attendee.location.active}">
 													<h6>Hotel:</h6>
 													<a href="individualLocation.do?locationId=${attendee.location.id}">${attendee.location.name}</a> ${attendee.location.description}
@@ -69,8 +70,18 @@ body {
 													hotel</button>
 											</form>
 											</c:if>
-										</c:if>
-
+									</c:if>
+										</c:when>
+										<c:otherwise>
+											<form action="addHotel.do" method="GET">
+												<input type="hidden" name="vacationId"
+													value="${attendee.vacation.id}"> <input
+													type="hidden" name="userId" value="${attendee.user.id}">
+												<button type="submit" class="btn btn-outline-danger btn-sm">add
+													hotel</button>
+											</form>
+										</c:otherwise>
+												</c:choose>
 										<c:if test="${not empty attendee.flights}">
 											<ul class="list-group list-group-flush">
 												<c:forEach items="${ attendee.flights}" var="flight">
@@ -81,7 +92,6 @@ body {
 
 
 
-									</c:if>
 									</c:if>
 									</c:forEach>
 									<c:forEach items="${vacation.attendees}" var="attendee">
