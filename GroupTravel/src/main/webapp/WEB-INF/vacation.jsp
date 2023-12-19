@@ -77,6 +77,7 @@ body {
 									</c:if>
 										</c:when>
 										<c:otherwise>
+											<c:if test="${sessionUser.id == attendee.user.id}">
 											<form action="addHotel.do" method="GET">
 												<input type="hidden" name="vacationId"
 													value="${attendee.vacation.id}"> <input
@@ -84,6 +85,7 @@ body {
 												<button type="submit" class="btn btn-outline-danger btn-sm">add
 													hotel</button>
 											</form>
+											</c:if>
 										</c:otherwise>
 												</c:choose>
 										<c:if test="${not empty attendee.flights}">
@@ -223,7 +225,6 @@ body {
 							<button type="submit" class="btn btn-warning">Add
 								Destination</button>
 						</form>
-
 						<form action="createVacationComment.do" method="GET">
 							<input type="hidden" name="familyId"
 								value="${vacation.family.id}"> <input type="hidden"

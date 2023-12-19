@@ -54,12 +54,12 @@ body {
                 <input type="text" class="form-control" name="imageUrl" value="">
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Start Date:</label>
-                <input type="date" class="form-control" name="startDate" value="">
+                <label for="startDate" class="form-label">*Start Date:</label>
+                <input type="date" class="form-control" name="startDate" value="" required>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">End Date:</label>
-                <input type="date" class="form-control" name="endDate" value="">
+                <label for="endDate" class="form-label">*End Date:</label>
+                <input type="date" class="form-control" name="endDate" value="" required>
             </div>
 
             <button class="btn btn-outline-success" type="submit">Create Vacation</button>

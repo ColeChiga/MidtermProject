@@ -62,12 +62,13 @@
 
 		</c:otherwise>
 	</c:choose>
-
+			<c:if test="${ not empty sessionUser}">
 		<form action="createLocation.do" method="GET">
 							<input type="hidden" name="vacationId" value="-1"> 
 							<button type="submit" class="btn btn-warning">Create
 								Location</button>
 						</form>
+						</c:if>
 
 
 

@@ -76,7 +76,7 @@ public class FamilyController {
 		session.setAttribute("sessionUser", user);
 		session.setAttribute("family", family);
 		session.setAttribute("sessionFamily", family);
-		return "account";
+		return "redirect:family.do?familyId="+family.getId();
 
 	}
 	@RequestMapping(path = "updateFamilyValues.do", method = RequestMethod.GET)

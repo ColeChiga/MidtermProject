@@ -70,11 +70,14 @@ body {
 
 				</div>
 			<div class="col align-self-center">
+			
+				<c:if test="${family.users.contains(sessionUser)}">
 				<form action="createVacation.do">
 					<input type="hidden" name="userId" value=${sessionUser.id} >
 					<button type="submit" class="btn btn-warning">Create
 						Vacation</button>
 				</form>
+				</c:if>
 				<c:if test="${not family.users.contains(sessionUser)}">
 				<form action="updateFamily.do" method="POST">
 					<input type="hidden" name="familyId" value=${family.id} > <input

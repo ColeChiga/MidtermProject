@@ -19,7 +19,9 @@
                 <select class="form-select" name="locationId">
             <c:forEach items="${hotelList}" var="hotel">
             	<c:if test="${hotel.category.id == 1 }">
+            	<c:if test="${hotel.active}">
                         <option value="${hotel.id}">${hotel.name} ${hotel.description}</option>
+            	</c:if>
             	</c:if>
             </c:forEach>
             </select>

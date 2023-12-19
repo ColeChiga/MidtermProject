@@ -47,33 +47,39 @@ body {
 
 			<h6>Locations:</h6>
 			<c:forEach items="${destination.location}" var="location">
+			         <c:if test="${location.active}">
 				<li><a href="individualLocation.do?locationId=${location.id}">${location.name}</a>
 					${location.description} ${location.category.name}</li>
+					</c:if>
 			</c:forEach>
 
 			</ul>
 		</div>
 		<div class="col align-self-center">
+		
 			<form action="removeDestinationActivity.do" method="POST">
 				<c:forEach items="${ destination.activity}" var="activity">
+				<c:if test="${ sessionUser.id == 1}">
 					<input type="text" name="destinationId" value="${destination.id}"
 						readonly="readonly" hidden="hidden" />
 					<input type="text" name="activityId" value="${activity.id}"
 						readonly="readonly" hidden="hidden" />
 					<button class="btn btn-outline-danger" type="submit"
 						onclick="return confirm('Are you sure?')">Remove Activity</button>
-          
+          </c:if>
 	Activity Name: ${activity.name } Description: ${activity.description }
 
 	<br>
 				</c:forEach>
 			</form>
 
+		<c:if test="${ not empty sessionUser}">
 			<form action="createActivity.do" method="GET">
 				<input type="hidden" name="destinationId" value="${destination.id}">
 				<input type="hidden" name="activityId" value="${activity.id}">
 				<button type="submit" class="btn btn-warning">Add Activity</button>
 			</form>
+			</c:if>
 		</div>
 	</div>
 

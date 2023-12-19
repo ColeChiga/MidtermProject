@@ -71,7 +71,7 @@ public class VacationController {
 		Vacation createVacation = vacationDao.create(vacation);
 		session.setAttribute("sessionVacation", createVacation);
 		refreshSessionUser(session);
-		return "redirect:account.do";
+		return "redirect:vacation.do?vacationId="+createVacation.getId();
 	}
 
 	@RequestMapping(path = "updateVacation.do", method = RequestMethod.GET)
@@ -92,7 +92,7 @@ public class VacationController {
 
 		session.setAttribute("sessionVacation", updatedVacay);
 		refreshSessionUser(session);
-		return "redirect:account.do";
+		return "redirect:vacation.do?vacationId=" + vacationId;
 	}
 
 	@RequestMapping(path = "removeUser.do", method = RequestMethod.GET)

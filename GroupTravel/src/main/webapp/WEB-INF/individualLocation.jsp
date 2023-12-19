@@ -51,18 +51,20 @@ body {
 			<p>${location.category.description}</p>
 		</div>
 		<div class="col align-self-center">
-
+			<c:if test="${ not empty sessionUser}">
 			<form action="updateLocation.do" method="GET">
 				<input type="hidden" name="locationId" value="${location.id}">
 				<button type="submit" class="btn btn-warning">Update
 					Location</button>
 			</form>
+			</c:if>
+			<c:if test="${ sessionUser.id == 1}">
 			<form action="deleteLocation.do" method="GET">
 				<input type="hidden" name="locationId" value="${location.id}">
 				<button type="submit" class="btn btn-danger">Remove
 					Location</button>
 			</form>
-
+			</c:if>
 
 		</div>
 	</div>
