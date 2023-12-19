@@ -31,9 +31,15 @@ public class UserController {
 
 	@RequestMapping(path = "createAccount.do", method = RequestMethod.POST)
 	public String createAccount(HttpSession session, User user, Address address) {
-		Address createAddress = addressDao.create(address);
-		session.setAttribute("sessionAddress", createAddress);
-		user.setAddress(createAddress);
+		 Address testAddress = addressDao.findAddressByInfo(address.getStreet(), address.getCity(), address.getState(), address.getPostalCode());
+			if(testAddress == null) {
+			address = addressDao.create(address);
+			}
+			else {
+				address=testAddress;
+			}
+		session.setAttribute("sessionAddress", address);
+		user.setAddress(address);
 		User createUser = userDao.create(user);
 		session.setAttribute("sessionUser", createUser);
 		if (createUser == null) {

@@ -21,6 +21,7 @@ import com.skilldistillery.grouptravel.entities.AttendeeId;
 import com.skilldistillery.grouptravel.entities.Destination;
 import com.skilldistillery.grouptravel.entities.Location;
 import com.skilldistillery.grouptravel.entities.LocationCategory;
+import com.skilldistillery.grouptravel.entities.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -73,6 +74,85 @@ public class LocationController {
 		}
 	}
 
+	@RequestMapping(path = "addHotel.do", method = RequestMethod.GET)
+	public String createHotelGet(HttpSession session, Model model, @RequestParam("vacationId") int vacationId) {
+		if (session.getAttribute("sessionUser") != null) {
+			List<Location> hotelList =locationDao.findAll();
+			model.addAttribute("hotelList", hotelList);
+			model.addAttribute("vacationId", vacationId);
+			model.addAttribute("destinations", vacationDestinationDao.findVacationDestinationByVacationId(vacationId));
+
+			return "addHotel";
+		} else {
+			return "login";
+		}
+	}
+
+	@RequestMapping(path = "addExistingHotel.do", method = RequestMethod.POST)
+	public String addExistingHotelPost(HttpSession session, Model model,
+			@RequestParam("vacationId") int vacationId,  @RequestParam("locationId") int hotelId) {
+
+		
+		User user= (User) session.getAttribute("sessionUser");
+		Location location = locationDao.findLocationById(hotelId);
+		AttendeeId attendeeId = new AttendeeId(vacationId,user.getId());
+		Attendee attendee=attendeeDao.findAttendeeById(attendeeId);
+		
+		
+		attendee.setLocation(location);	
+		Attendee createAttendee = attendeeDao.update(attendeeId, attendee);		
+		
+
+		if (createAttendee == null) {
+			return "addHotel";
+		} else {
+			return "redirect:vacation.do?vacationId=" + vacationId;
+		}
+
+	}
+	
+	@RequestMapping(path = "addHotel.do", method = RequestMethod.POST)
+	public String addHotelPost(HttpSession session,
+			@RequestParam("destinationId") int destinationId,
+			Location location, Address address, Model model,
+			@RequestParam("vacationId") int vacationId) {
+		User user= (User) session.getAttribute("sessionUser");
+		LocationCategory category = locationCategoryDao.findCategoryById(1);
+		location.setCategory(category);
+		 Address testAddress = addressDao.findAddressByInfo(address.getStreet(), address.getCity(), address.getState(), address.getPostalCode());
+		if(testAddress == null) {
+		address = addressDao.create(address);
+		}
+		else {
+			address=testAddress;
+		}
+		location.setAddress(address);
+		
+
+
+		Destination destination = destinationDao.findDestinationById(destinationId);
+		location.setDestination(destination);
+		
+		AttendeeId attendeeId = new AttendeeId(vacationId,user.getId());
+		Attendee attendee=attendeeDao.findAttendeeById(attendeeId);
+		Location createLocation = locationDao.create(location);
+			
+		attendee.setLocation(createLocation);
+
+		Attendee createAttendee = attendeeDao.update(attendeeId, attendee);		
+
+		if (createAttendee == null) {
+			return "addHotel";
+		} else {
+			return "redirect:vacation.do?vacationId=" + vacationId;
+		}
+
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(path = "createLocation.do", method = RequestMethod.POST)
 	public String createLocationPost(HttpSession session, @RequestParam("destinationId") int destinationId,
 			Location location, LocationCategory category, Address address, Model model,
@@ -85,7 +165,13 @@ public class LocationController {
 		category.setName(catName);
 		location.setName(locName);
 
-		address = addressDao.create(address);
+		 Address testAddress = addressDao.findAddressByInfo(address.getStreet(), address.getCity(), address.getState(), address.getPostalCode());
+			if(testAddress == null) {
+			address = addressDao.create(address);
+			}
+			else {
+				address=testAddress;
+			}
 		category = locationCategoryDao.create(category);
 
 		location.setAddress(address);
@@ -118,21 +204,29 @@ public class LocationController {
 	}
 
 	@RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
-	public String updateAccount(HttpSession session, @RequestParam("locationId") int locationId, @RequestParam("locationCategoryId") int locationCategoryId,  @RequestParam("addressId") int addressId, Location location, LocationCategory category,
-			@RequestParam("destinationId") int destinationId, Address address, @RequestParam("categoryDescription") String catDesc,
+	public String updateAccount(HttpSession session, @RequestParam("locationId") int locationId,
+			@RequestParam("locationCategoryId") int locationCategoryId, @RequestParam("addressId") int addressId,
+			Location location, LocationCategory category, @RequestParam("destinationId") int destinationId,
+			Address address, @RequestParam("categoryDescription") String catDesc,
 			@RequestParam("locationDescription") String locDesc, @RequestParam("categoryName") String catName,
 			@RequestParam("locationName") String locName) {
 
-		System.out.println("*********"+ destinationId);
+		System.out.println("*********" + destinationId);
 		category.setDescription(catDesc);
 		location.setDescription(locDesc);
 		category.setName(catName);
 		location.setName(locName);
-		
-		Address updateAddress = addressDao.create( address);
+
+		 Address testAddress = addressDao.findAddressByInfo(address.getStreet(), address.getCity(), address.getState(), address.getPostalCode());
+			if(testAddress == null) {
+			address = addressDao.create(address);
+			}
+			else {
+				address=testAddress;
+			}
 		LocationCategory updateCategory = locationCategoryDao.create(category);
 		location.setCategory(updateCategory);
-		location.setAddress(updateAddress);
+		location.setAddress(address);
 		Destination destination = destinationDao.findDestinationById(destinationId);
 		Location updateLocation = locationDao.update(location, locationId, destination);
 		if (updateLocation == null) {
@@ -144,13 +238,11 @@ public class LocationController {
 	}
 
 	@RequestMapping(path = "deleteLocation.do", method = RequestMethod.GET)
-	public String deleteAttendeeLocation(@RequestParam("locationId") int locationId,
-			HttpSession session) {
+	public String deleteAttendeeLocation(@RequestParam("locationId") int locationId, HttpSession session) {
 		Location deleteLocation = locationDao.findLocationById(locationId);
-		
-		
-		 locationDao.delete(locationId);
-		
+
+		locationDao.delete(locationId);
+
 		return "redirect:showAllLocations.do";
 	}
 
