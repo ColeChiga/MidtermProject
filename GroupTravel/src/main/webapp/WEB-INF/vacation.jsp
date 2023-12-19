@@ -83,6 +83,7 @@ body {
 										</c:otherwise>
 												</c:choose>
 										<c:if test="${not empty attendee.flights}">
+											<h6>Flights:</h6>
 											<ul class="list-group list-group-flush">
 												<c:forEach items="${ attendee.flights}" var="flight">
 														${flight.airline}, Departs: ${flight.departure}, Arrival: ${flight.arrival}

@@ -38,9 +38,14 @@ public class VacationController {
 
 	@RequestMapping(path = "vacation.do", method = RequestMethod.GET)
 	public String getVacation(HttpSession session, @RequestParam("vacationId") int id, Model model, VacationDestination vd) {
+		
+		Vacation vacation = vacationDao.findVacationById(id);
+		if (!((User)session.getAttribute("sessionUser")).getFamilies().contains(vacation.getFamily())) {
+			return "redirect:family.do?familyId="+vacation.getFamily().getId();
+		}
 		if (session.getAttribute("sessionUser") != null) {
 			// session.setAttribute("sessionVacation", vacationDao.findVacationById(id));
-			model.addAttribute("vacation", vacationDao.findVacationById(id));
+			model.addAttribute("vacation", vacation);
 			model.addAttribute("destinations", vacationDestinationDao.findVacationDestinationByVacationId(id));
 			return "vacation";
 
