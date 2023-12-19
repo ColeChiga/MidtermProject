@@ -19,15 +19,21 @@ The inspiration began as one contributor was planning a multi-family vacation bu
 
 # ===Technologies Used===
 
-- Java			Gradle
-- MySQL			JSP
-- MAMP			SpringToolSuite 4
-- SpringBoot	EC2
-- GitHub		CSS
-- JPA			Trello
-- BootStrap		JDBC
+- Java			
+- MySQL			
+- MAMP			
+- SpringBoot		
+- GitHub			
+- CSS
+- JPA			
+- Trello
+- BootStrap		
+- JDBC
 - J-Unit
-
+- Gradle
+- JSP
+- SpringToolSuite 4
+- EC2
 
 # Lessons Learned
 
