@@ -18,7 +18,7 @@
 body {
 	color: white;
 	background-image:
-		url('https://img.freepik.com/free-photo/small-flag-map-travel-concept_169016-28625.jpg?w=1800&t=st=1702604548~exp=1702605148~hmac=f41b7f5738cb7c3cf9f6d901752e1908066b4b4503b618d75db8eeadbe06172b');
+		url('http://m.gettywallpapers.com/wp-content/uploads/2022/06/World-Map-Wallpaper-HD.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
