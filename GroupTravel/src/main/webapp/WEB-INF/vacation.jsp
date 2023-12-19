@@ -46,6 +46,10 @@ body {
 									<small class="text-muted">Family:
 										<a href="family.do?familyId=${vacation.family.id}">${vacation.family.name}</a></small>
 								</p>
+								<p class="card-text">
+									<small class="text-muted">
+										Start Date: ${vacation.startDate} <br>  End Date: ${vacation.endDate}</small>
+								</p>
 
 								<h6 class="card-subtitle mt-3 mb-2 text-muted">Confirmed
 									Attendees:</h6>

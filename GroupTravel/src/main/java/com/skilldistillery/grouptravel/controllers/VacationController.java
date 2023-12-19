@@ -78,7 +78,7 @@ public class VacationController {
 	public String updateVacationGet(HttpSession session, @RequestParam("vacationId") int vacationId,
 			Vacation vacation) {
 		User user = (User) session.getAttribute("sessionUser");
-		vacation = (Vacation) session.getAttribute("sessionVacation");
+		vacation = vacationDao.findVacationById(vacationId);
 		session.setAttribute("sessionVacation", vacation);
 		return "updateVacation";
 	}

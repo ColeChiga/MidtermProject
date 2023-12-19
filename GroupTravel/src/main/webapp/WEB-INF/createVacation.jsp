@@ -53,6 +53,14 @@ body {
                 <label for="imageUrl" class="form-label">Image URL:</label>
                 <input type="text" class="form-control" name="imageUrl" value="">
             </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Start Date:</label>
+                <input type="date" class="form-control" name="startDate" value="">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">End Date:</label>
+                <input type="date" class="form-control" name="endDate" value="">
+            </div>
 
             <button class="btn btn-outline-success" type="submit">Create Vacation</button>
         </form>
