@@ -36,7 +36,7 @@
 						<h2 class="featurette-heading fw-normal lh-1">
 							${location.name} <span class="text-body-secondary">${location.description}</span>
 						</h2>
-						<h3>Estimated Cost: ${location.category.name} ${location.category.description}</h3>
+						<h3>Category: ${location.category.name} ${location.category.description}</h3>
 						<h4>Estimated Cost: ${location.estimatedCost}</h4>
 						<h4>Destination: ${location.destination.name} ${location.destination.description}</h4>
 						<h4>Address: ${location.address.street} ${location.address.city} ${location.address.state}</h4>
