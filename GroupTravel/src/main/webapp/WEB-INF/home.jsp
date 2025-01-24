@@ -39,7 +39,7 @@
 							<h1>Daytona Beach, Florida</h1>
 							<p class="opacity-75">Known for Daytona International Speedway.</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=3">View Destination</a>
+								<a class="btn btn-lg btn-primary" href="individual.do?destinationId=3">View Destination</a>
 							</p>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 							<h1>Miami, Florida</h1>
 							<p>Famous for its golden beaches, foodie scene and Latin vibe.</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=2">Learn more</a>
+								<a class="btn btn-lg btn-primary" href="individual.do?destinationId=2">Learn more</a>
 							</p>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 							<h1>Orlando, Florida</h1>
 							<p>Known as the Theme Park Capital of the World</p>
 							<p>
-								<a class="btn btn-lg btn-primary" href="http://localhost:8085/individual.do?destinationId=1">Browse Destination</a>
+								<a class="btn btn-lg btn-primary" href="individual.do?destinationId=1">Browse Destination</a>
 							</p>
 						</div>
 					</div>
@@ -131,14 +131,14 @@
 					<h2 class="fw-normal">View your Account</h2>
 					<p>Come on in and start making memories.</p>
 					<p>
-						<a class="btn btn-primary" href="http://localhost:8085/account.do">Account »</a>
+						<a class="btn btn-primary" href="account.do">Account »</a>
 					</p>
 					</c:when>
 					<c:otherwise>
 						<h2 class="fw-normal">Log in to your account</h2>
 					<p>One of the team already? Then come on in and start making memories.</p>
 					<p>
-						<a class="btn btn-primary" href="http://localhost:8085/login.do">Log in »</a>
+						<a class="btn btn-primary" href="login.do">Log in »</a>
 					</p>
 					</c:otherwise>
 					
@@ -155,7 +155,7 @@
 					<h2 class="fw-normal">View all available destinations</h2>
 					<p>Check out all the places others have been so far.</p>
 					<p>
-						<a class="btn btn-success" href="http://localhost:8085/showAllDestinations.do">View Destinations »</a>
+						<a class="btn btn-success" href="showAllDestinations.do">View Destinations »</a>
 					</p>
 				</div>
 				<!-- /.col-lg-4 -->
@@ -180,7 +180,7 @@
 						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 						width="400" height="300" src="https://img.freepik.com/free-photo/beautiful-scenery-emerald-lake-yoho-national-park-british-columbia-canada_181624-6877.jpg?w=900&t=st=1702602171~exp=1702602771~hmac=c030f14b4afd1d7e5dcd49afe87dc28e482833d568d17dd48c78cba0aa42560f"
 						role="img" aria-label="Placeholder: 500x500">
-						<a href="http://localhost:8085/showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Destinations</text></a>
+						<a href="showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Destinations</text></a>
 				</div>
 			</div>
 
@@ -199,7 +199,7 @@
 						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 						width="400" height="300" src="https://img.freepik.com/free-photo/world-map-continent-global-support-graphic_53876-124649.jpg?w=900&t=st=1702603256~exp=1702603856~hmac=ba34c94ab6b954e420021c1ee30cb3656464fcf36d2ef977c047024d79a57038"
 						role="img" aria-label="Placeholder: 500x500">
-						<a href="http://localhost:8085/showAllLocations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Locations</text></a>
+						<a href="showAllLocations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Locations</text></a>
 				</div>
 			</div>
 
@@ -217,7 +217,7 @@
 						class="bd-placeholder-img bd-placeholder-img-lg featurette-image"
 						width="400" height="300" src="https://img.freepik.com/free-photo/always-fun-see-tall-ferris-wheel-when-approaching-park-holidays-full-happy-people_181624-2216.jpg?w=1480&t=st=1702603404~exp=1702604004~hmac=8fc0465936c6f3834861862a0654fa95d50036214c905baf6424315cd04650f2"
 						role="img" aria-label="Placeholder: 500x500">
-						<a href="http://localhost:8085/showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Activites</text></a>
+						<a href="showAllDestinations.do"><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">Activites</text></a>
 				</div>
 			</div>
 

@@ -32,7 +32,7 @@ dependencies {
 	
 	implementation project(':JPAGroupTravel')
 	implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
- 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+ 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
  	compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0' 
  	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	
